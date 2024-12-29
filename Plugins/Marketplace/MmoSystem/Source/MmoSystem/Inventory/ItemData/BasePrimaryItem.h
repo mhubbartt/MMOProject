@@ -2,9 +2,13 @@
 
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
+#include "Engine/AssetManager.h"
 #include "MmoSystem/StrucNEnumhHeaders.h"
 #include "BasePrimaryItem.generated.h"
 
+
+
+struct FItemDependency;
 
 UENUM(BlueprintType)
 enum class EHandedness : uint8
@@ -40,7 +44,36 @@ enum class EItemType : uint8
 	Miscellaneous UMETA(DisplayName = "Miscellaneous") // Anything that doesn’t fit into the above
 };
 
+USTRUCT(BlueprintType)
+struct FItemDependency
+{
+	GENERATED_BODY()
 
+	// Reference to the asset
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dependency")
+	FPrimaryAssetType Asset;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Asset Management")
+	FName AssetName;
+
+	// Description or metadata about the dependency (optional)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dependency")
+	FString Description;
+
+	// Priority or usage context (optional)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dependency")
+	int32 Priority = 0;
+
+	// Convert to FPrimaryAssetId at runtime
+	FPrimaryAssetId ResolveToAssetId() const
+	{
+		if (Asset.IsValid())
+		{			
+			return FPrimaryAssetId(Asset, AssetName); // TODO:: AssetName()
+		}
+		return FPrimaryAssetId();
+	}
+};
 
 UCLASS(Blueprintable, BlueprintType)
 class UBasePrimaryItem : public UPrimaryDataAsset
@@ -49,9 +82,20 @@ class UBasePrimaryItem : public UPrimaryDataAsset
 
 public:
 
+	// Editable fields for Asset ID components
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Asset Management")
+	FPrimaryAssetType PrimaryAssetType ;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Asset Management")
-	FPrimaryAssetId AssetId;
+	FName AssetName;
+
+	// Description or metadata about the dependency (optional)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Asset Management")
+	FString Description;
+
+	// Dependencies required by this item
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Asset Management")
+	TArray<FItemDependency> Dependencies;
 	
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	EItemType ItemType = EItemType::None;
@@ -71,8 +115,19 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UTexture2D* Icon = nullptr;  // TODO:: Maybe 2dTextRender
+
+	// Generate the Asset ID dynamically
+	FPrimaryAssetId GetAssetId() const
+	{
+		return FPrimaryAssetId(PrimaryAssetType, AssetName);
+	}
+
+	// Resolve dependencies to FPrimaryAssetId at runtime
+	TArray<FPrimaryAssetId> GetResolvedDependencies() const;
 	
 };
+
+
 
 UCLASS(Blueprintable, BlueprintType)
 class UBaseWEquippablePrimaryItem : public UBasePrimaryItem

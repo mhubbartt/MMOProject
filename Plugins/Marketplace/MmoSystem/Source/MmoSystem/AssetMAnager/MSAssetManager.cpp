@@ -1,4 +1,6 @@
 #include "MSAssetManager.h"
+#include "Engine/StreamableManager.h"
+#include "MmoSystem/StrucNEnumhHeaders.h"
 #include "Engine/Engine.h"
 
 UMSAssetManager& UMSAssetManager::Get()
@@ -12,60 +14,8 @@ UMSAssetManager& UMSAssetManager::Get()
 }
 
 template <typename T>
-void UMSAssetManager::LoadItemAssetAsync(const FPrimaryAssetId& AssetId, TFunction<void(T*)> Callback)
-{
-    // Get the asset path from the Primary Asset ID
-    FSoftObjectPath AssetPath = GetPrimaryAssetPath(AssetId);
-
-    if (!AssetPath.IsValid())
-    {
-        LogInvalidAsset(AssetId, TEXT("Invalid asset path for async load."));
-        Callback(nullptr);
-        return;
-    }
-
-    // Use the StreamableManager to asynchronously load the asset
-    FStreamableManager& StreamableManager = UAssetManager::GetStreamableManager();
-    TSharedPtr<FStreamableHandle> Handle = StreamableManager.RequestAsyncLoad(
-        AssetPath,
-        [this, AssetId, Callback, AssetPath]() // Lambda executed when loading is complete
-        {
-            UObject* LoadedObject = AssetPath.ResolveObject();
-
-            if (!LoadedObject)
-            {
-                LogInvalidAsset(AssetId, TEXT("Failed to resolve the asset after async load."));
-                Callback(nullptr);
-                return;
-            }
-
-            // Cache the loaded asset
-            UPrimaryDataAsset* LoadedAsset = Cast<UPrimaryDataAsset>(LoadedObject);
-            if (LoadedAsset)
-            {
-                LoadedAssets.Add(AssetId, LoadedAsset);
-                Callback(Cast<T>(LoadedAsset));
-            }
-            else
-            {
-                LogInvalidAsset(AssetId, TEXT("Loaded object is not a UPrimaryDataAsset."));
-                Callback(nullptr);
-            }
-        },
-        FStreamableManager::AsyncLoadHighPriority
-    );
-
-    if (!Handle.IsValid())
-    {
-        LogInvalidAsset(AssetId, TEXT("Failed to create a valid handle for async load."));
-        Callback(nullptr);
-    }
-}
-
-template <typename T>
 T* UMSAssetManager::LoadItemAsset(const FPrimaryAssetId& AssetId)
 {
-    // Synchronous loading for comparison
     if (LoadedAssets.Contains(AssetId))
     {
         return Cast<T>(LoadedAssets[AssetId]);
@@ -99,27 +49,88 @@ T* UMSAssetManager::LoadItemAsset(const FPrimaryAssetId& AssetId)
     return nullptr;
 }
 
-void UMSAssetManager::LogInvalidAsset(const FPrimaryAssetId& AssetId, const FString& Reason) const
+template <typename T>
+void UMSAssetManager::LoadItemAssetAsync(const FPrimaryAssetId& AssetId, TFunction<void(T*)> Callback)
 {
-    UE_LOG(LogTemp, Error, TEXT("Asset ID: %s - %s"), *AssetId.ToString(), *Reason);
+    FSoftObjectPath AssetPath = GetPrimaryAssetPath(AssetId);
+
+    if (!AssetPath.IsValid())
+    {
+        LogInvalidAsset(AssetId, TEXT("Invalid asset path for async load."));
+        Callback(nullptr);
+        return;
+    }
+
+    FStreamableManager& StreamableManager = UAssetManager::GetStreamableManager();
+    TSharedPtr<FStreamableHandle> Handle = StreamableManager.RequestAsyncLoad(
+        AssetPath,
+        [this, AssetId, Callback, AssetPath]()
+        {
+            UObject* LoadedObject = AssetPath.ResolveObject();
+
+            if (!LoadedObject)
+            {
+                LogInvalidAsset(AssetId, TEXT("Failed to resolve the asset after async load."));
+                Callback(nullptr);
+                return;
+            }
+
+            UPrimaryDataAsset* LoadedAsset = Cast<UPrimaryDataAsset>(LoadedObject);
+            if (LoadedAsset)
+            {
+                LoadedAssets.Add(AssetId, LoadedAsset);
+                Callback(Cast<T>(LoadedAsset));
+            }
+            else
+            {
+                LogInvalidAsset(AssetId, TEXT("Loaded object is not a UPrimaryDataAsset."));
+                Callback(nullptr);
+            }
+        },
+        FStreamableManager::AsyncLoadHighPriority
+    );
+
+    if (!Handle.IsValid())
+    {
+        LogInvalidAsset(AssetId, TEXT("Failed to create a valid handle for async load."));
+        Callback(nullptr);
+    }
 }
 
-void UMSAssetManager::StartInitialLoading()
+void UMSAssetManager::PreloadAssets(const TArray<FPrimaryAssetId>& AssetIds)
 {
-    Super::StartInitialLoading();
+    TSet<FPrimaryAssetId> LoadedSet;
 
-    UE_LOG(LogTemp, Log, TEXT("UMSAssetManager: StartInitialLoading called."));
+    for (const FPrimaryAssetId& AssetId : AssetIds)
+    {
+        PreloadAssetWithDependencies(AssetId, LoadedSet);
+    }
+}
 
-    // Example: Preload some critical assets during initialization
-    TArray<FPrimaryAssetId> InitialAssets = {
-        FPrimaryAssetId("Item.HealthPotion"),
-        FPrimaryAssetId("Item.Sword"),
-        FPrimaryAssetId("Item.Shield")
-    };
+void UMSAssetManager::PreloadAssetWithDependencies(const FPrimaryAssetId& AssetId, TSet<FPrimaryAssetId>& LoadedSet)
+{
+    if (LoadedSet.Contains(AssetId))
+    {
+        return; // Prevent duplicate loads
+    }
 
-    PreloadAssets(InitialAssets);
-    PrintLoadedAssets();
-};
+    UBasePrimaryItem* Asset = LoadItemAsset<UBasePrimaryItem>(AssetId);
+    if (!Asset)
+    {
+        LogInvalidAsset(AssetId, TEXT("Failed to preload main asset."));
+        return;
+    }
+
+    UE_LOG(LogTemp, Log, TEXT("Preloading Asset: %s"), *AssetId.ToString());
+    LoadedSet.Add(AssetId);
+
+    // Resolve dependencies using the custom struct
+    TArray<FPrimaryAssetId> ResolvedDependencies = Asset->GetResolvedDependencies();
+    for (const FPrimaryAssetId& DependencyId : ResolvedDependencies)
+    {
+        PreloadAssetWithDependencies(DependencyId, LoadedSet);
+    }
+}
 
 void UMSAssetManager::PrintLoadedAssets() const
 {
@@ -137,15 +148,20 @@ void UMSAssetManager::PrintLoadedAssets() const
     }
 }
 
-void UMSAssetManager::PreloadAssets(const TArray<FPrimaryAssetId>& AssetIds)
+void UMSAssetManager::StartInitialLoading()
 {
-    for (const FPrimaryAssetId& AssetId : AssetIds)
-    {
-        // Load each asset synchronously to ensure it's available
-        UPrimaryDataAsset* Asset = LoadItemAsset<UPrimaryDataAsset>(AssetId);
-        if (!Asset)
-        {
-            LogInvalidAsset(AssetId, TEXT("Failed to preload asset."));
-        }
-    }
+    Super::StartInitialLoading();
+
+    TArray<FPrimaryAssetId> InitialAssets = {
+        FPrimaryAssetId("Item.HealthPotion"),
+        FPrimaryAssetId("Item.Sword")
+    };
+
+    PreloadAssets(InitialAssets);
+    PrintLoadedAssets();
+}
+
+void UMSAssetManager::LogInvalidAsset(const FPrimaryAssetId& AssetId, const FString& Reason) const
+{
+    UE_LOG(LogTemp, Error, TEXT("Asset ID: %s - %s"), *AssetId.ToString(), *Reason);
 }

@@ -5,6 +5,11 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
+				"C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Content/System/MyMSPlayerController.uasset",
+				"C:/Users/Epoch/Documents/GitHub/MMOProject/Content/Working/NewBlueprint1.uasset",
+				"C:/Users/Epoch/Documents/GitHub/MMOProject/Content/Items/IS_Test.uasset",
+				"C:/Users/Epoch/Documents/GitHub/MMOProject/Content/LevelPrototyping/Textures/T_GridChecker_A.uasset",
+				"C:/Users/Epoch/Documents/GitHub/MMOProject/Content/Items/ID_Test.uasset",
 				"C:/Users/Epoch/Documents/GitHub/MMOProject/Content/Working/IS_Test.uasset",
 				"C:/Users/Epoch/Documents/Unreal Projects/MmoProject/Plugins/Marketplace/MmoSystem/Content/Characters/Heroes/Mannequin/Animations/ABP_Mannequin_Base.uasset",
 				"C:/Users/Epoch/Documents/Unreal Projects/MmoProject/Plugins/Marketplace/MmoSystem/Content/Characters/Cameras/CM_ThirdPerson.uasset",

@@ -31,16 +31,22 @@ struct Z_Construct_UClass_UMSAssetManager_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "/**\n * Custom Asset Manager for managing game assets and their dependencies.\n */" },
+#endif
 		{ "IncludePath", "AssetMAnager/MSAssetManager.h" },
 		{ "ModuleRelativePath", "AssetMAnager/MSAssetManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Custom Asset Manager for managing game assets and their dependencies." },
+#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_LoadedAssets_MetaData[] = {
 #if !UE_BUILD_SHIPPING
-		{ "Comment", "// Cache for loaded assets\n" },
+		{ "Comment", "// Cache for loaded assets to prevent redundant loading\n" },
 #endif
 		{ "ModuleRelativePath", "AssetMAnager/MSAssetManager.h" },
 #if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Cache for loaded assets" },
+		{ "ToolTip", "Cache for loaded assets to prevent redundant loading" },
 #endif
 	};
 #endif // WITH_METADATA
@@ -104,10 +110,10 @@ UMSAssetManager::~UMSAssetManager() {}
 struct Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_AssetMAnager_MSAssetManager_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UMSAssetManager, UMSAssetManager::StaticClass, TEXT("UMSAssetManager"), &Z_Registration_Info_UClass_UMSAssetManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UMSAssetManager), 4167825858U) },
+		{ Z_Construct_UClass_UMSAssetManager, UMSAssetManager::StaticClass, TEXT("UMSAssetManager"), &Z_Registration_Info_UClass_UMSAssetManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UMSAssetManager), 2606075059U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_AssetMAnager_MSAssetManager_h_2207169399(TEXT("/Script/MmoSystem"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_AssetMAnager_MSAssetManager_h_53580284(TEXT("/Script/MmoSystem"),
 	Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_AssetMAnager_MSAssetManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_AssetMAnager_MSAssetManager_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
