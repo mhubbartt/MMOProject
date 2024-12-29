@@ -1,0 +1,13 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-MmoProject.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"..\Intermediate\Build\Win64\x64\UnrealEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.obj"
+"C:\Users\Epoch\Documents\GitHub\MMOProject\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoProject\MmoProject.cpp.obj"
+"C:\Users\Epoch\Documents\GitHub\MMOProject\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoProject\PerModuleInline.gen.cpp.obj"
+"..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Default.rc2.res"
+/OUT:"C:\Users\Epoch\Documents\GitHub\MMOProject\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoProject\UnrealEditor-MmoProject.lib"

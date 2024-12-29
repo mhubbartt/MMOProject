@@ -1,0 +1,11 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.MmoSystemEditor.cpp.obj": [
+			"MmoSystemEditor.cpp.obj",
+			"MmoSystemEditorCommands.cpp.obj",
+			"MmoSystemEditorStyle.cpp.obj",
+			"PerModuleInline.gen.cpp.obj"
+		]
+	}
+}
