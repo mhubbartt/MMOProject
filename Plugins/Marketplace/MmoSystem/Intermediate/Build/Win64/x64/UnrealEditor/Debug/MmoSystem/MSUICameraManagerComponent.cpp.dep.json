@@ -1,0 +1,23 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\camera\\msuicameramanagercomponent.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\x64\\unrealeditor\\debug\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\x64\\unrealeditor\\debug\\mmosystem\\definitions.mmosystem.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\camera\\msuicameramanagercomponent.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\unrealeditor\\inc\\mmosystem\\uht\\msuicameramanagercomponent.generated.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\engine\\classes\\gameframework\\hud.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\engine\\classes\\gameframework\\hudhitbox.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\engine\\classes\\gameframework\\debugtextinfo.h",
+            "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\debugtextinfo.generated.h",
+            "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\hud.generated.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\camera\\msplayercameramanager.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\unrealeditor\\inc\\mmosystem\\uht\\msplayercameramanager.generated.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\unrealeditor\\inc\\mmosystem\\uht\\msuicameramanagercomponent.gen.cpp"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

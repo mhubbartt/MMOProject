@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\unrealeditor\\inc\\mmosystem\\uht\\interactioninterface.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\x64\\unrealeditor\\debug\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\x64\\unrealeditor\\debug\\mmosystem\\definitions.mmosystem.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\interfaces\\interactioninterface.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\unrealeditor\\inc\\mmosystem\\uht\\interactioninterface.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

@@ -1,0 +1,95 @@
+Log started at 12/17/2024 01:13:03 (2024-12-17T07:13:03Z)
+No config file at C:\UnrealEngine 5.5\Engine\Restricted\NotForLicensees\Programs\UnrealBuildTool\BuildConfiguration.xml
+No config file at C:\ProgramData\Unreal Engine\UnrealBuildTool\BuildConfiguration.xml
+No config file at C:\Users\Epoch\AppData\Local\Unreal Engine\UnrealBuildTool\BuildConfiguration.xml
+No config file at C:\Users\Epoch\Documents\Unreal Engine\UnrealBuildTool\BuildConfiguration.xml
+Configuration will be read from:
+  C:\UnrealEngine 5.5\Engine\Saved\UnrealBuildTool\BuildConfiguration.xml
+  C:\Users\Epoch\AppData\Roaming\Unreal Engine\UnrealBuildTool\BuildConfiguration.xml
+Log file: C:\Users\Epoch\Documents\Unreal Projects\MmoProject\Saved\Logs\UnrealVersionSelector-2024.12.17-01.13.03.log
+
+Setting temp directory to 'C:\Users\Epoch\AppData\Local\Temp\UnrealBuildTool\eb607a28'
+    Registering build platform: UnrealBuildTool.AndroidPlatformFactory
+Unable to find valid SDK(s) for Android:
+  Found Sdk Version, MinRequired=r25b, MaxRequired=r27.
+  Found AutoSdk Version, Required=r25b.
+        Registering build platform: Android - buildable: False
+    Registering build platform: UnrealBuildTool.IOSPlatformFactory
+Unable to find valid SDK(s) for IOS:
+  Found Sdk Version, MinRequired=1100.0.0.0, MaxRequired=8999.0.
+  Found AutoSdk Version, Required=15.2.
+        Registering build platform: IOS - buildable: False
+    Registering build platform: UnrealBuildTool.LinuxPlatformFactory
+Unable to find valid SDK(s) for Linux:
+  Found Sdk Version=v22_clang-16.0.6-centos7, Required=v23_clang-18.1.0-rockylinux8.
+  Found AutoSdk Version, Required=v23_clang-18.1.0-rockylinux8.
+        Registering build platform: Linux - buildable: True
+Unable to find valid SDK(s) for LinuxArm64:
+  Found Sdk Version=v22_clang-16.0.6-centos7, Required=v23_clang-18.1.0-rockylinux8.
+  Found AutoSdk Version, Required=v23_clang-18.1.0-rockylinux8.
+        Registering build platform: LinuxArm64 - buildable: True
+    Registering build platform: UnrealBuildTool.MacPlatformFactory
+Unable to find valid SDK(s) for Mac:
+  Found Sdk Version, MinRequired=1100.0.0.0, MaxRequired=8999.0.
+  Found AutoSdk Version, Required=15.2.
+        Registering build platform: Mac - buildable: False
+    Registering build platform: UnrealBuildTool.TVOSPlatformFactory
+Unable to find valid SDK(s) for TVOS:
+  Found Sdk Version, MinRequired=1100.0.0.0, MaxRequired=8999.0.
+  Found AutoSdk Version, Required=15.2.
+        Registering build platform: TVOS - buildable: False
+    Registering build platform: UnrealBuildTool.WindowsPlatformFactory
+Found Windows 10 SDK root at C:\Program Files (x86)\Windows Kits\10 (1)
+Found Windows 10 SDK root at C:\Program Files (x86)\Windows Kits\10 (2)
+Found Windows 10 SDK version 10.0.22621.0 at C:\Program Files (x86)\Windows Kits\10
+Found Universal CRT version 10.0.22621.0 at C:\Program Files (x86)\Windows Kits\10
+Win64 Installed SDK(s): MinVersion_Sdk=10.0.19041.0, MaxVersion_Sdk=10.9.99999.0, CurrentVersion_Sdk=10.0.22621.0, Version_AutoSdk=10.0.22621.0, CurrentVersion_AutoSdk=
+        Registering build platform: Win64 - buildable: True
+    Registering build platform: UnrealBuildTool.VisionOSPlatformFactory
+        Registering build platform: VisionOS - buildable: False
+Log file: C:\UnrealEngine 5.5\Engine\Programs\UnrealBuildTool\Log_GPF.txt
+Deleting old log file: C:\UnrealEngine 5.5\Engine\Programs\UnrealBuildTool\Log_GPF-backup-2024.12.02-22.06.22.txt
+Resolved project argument C:/Users/Epoch/Documents/Unreal Projects/MmoProject/MmoProject.uproject to C:\Users\Epoch\Documents\Unreal Projects\MmoProject\MmoProject.uproject
+Registering project generator UnrealBuildTool.AndroidProjectGenerator for Android
+Registering project generator UnrealBuildTool.IOSProjectGenerator for IOS
+Registering project generator UnrealBuildTool.LinuxProjectGenerator for Linux
+Registering project generator UnrealBuildTool.LinuxProjectGenerator for LinuxArm64
+Registering project generator UnrealBuildTool.MacProjectGenerator for Mac
+Registering project generator UnrealBuildTool.TVOSProjectGenerator for TVOS
+Registering project generator UnrealBuildTool.WindowsProjectGenerator for Win64
+Registering project generator UnrealBuildTool.VisionOSProjectGenerator for VisionOS
+
+---   SDK INFO START   ---
+
+Some Platforms were skipped due to invalid SDK setup: Mac, IOS, Android, Linux, LinuxArm64, TVOS.
+See the log file for detailed information
+
+---   SDK INFO END   ---
+
+
+Generating VisualStudio project files:
+Discovering modules, targets and source code for project...
+Found VisualStudio2022 installation: C:\Program Files\Microsoft Visual Studio\2022\Preview (Product=Microsoft.VisualStudio.Product.Community, Version=17.13.35507.96)
+Found Visual Studio toolchain: C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.38.33130 (Family=14.38.33130, FamilyRank=0, Version=14.38.33143, Is64Bit=True, ReleaseChannel=Preview, Architecture=x64, Error=False, Redist=C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Redist\MSVC\14.38.33130)
+Found Visual Studio toolchain: C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.43.34604 (Family=14.43.34604, FamilyRank=1, Version=14.43.34604, Is64Bit=True, ReleaseChannel=Preview, Architecture=x64, Error=False, Redist=C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Redist\MSVC\14.42.34430)
+Detected supported platforms: Win64, Mac, IOS, Android, Linux, LinuxArm64, TVOS, VisionOS
+Generating target Client for C:\Users\Epoch\Documents\Unreal Projects\MmoProject\Intermediate\ProjectFiles\UE5.vcxproj
+Generating target Editor for C:\Users\Epoch\Documents\Unreal Projects\MmoProject\Intermediate\ProjectFiles\UE5.vcxproj
+Generating target Game for C:\Users\Epoch\Documents\Unreal Projects\MmoProject\Intermediate\ProjectFiles\UE5.vcxproj
+Generating target Server for C:\Users\Epoch\Documents\Unreal Projects\MmoProject\Intermediate\ProjectFiles\UE5.vcxproj
+Compiling C:\Users\Epoch\Documents\Unreal Projects\MmoProject\Intermediate\Build\BuildRules\MmoProjectModuleRules.dll: Added source file (C:\Users\Epoch\Documents\Unreal Projects\MmoProject\Plugins\Marketplace\MmoSystem\Source\MySQL\MySQL.Build.cs)
+C:\Users\Epoch\Documents\Unreal Projects\MmoProject\Plugins\Marketplace\MmoSystem\Source\MmoSystem\MmoSystem.Build.cs(39,5): error CS0119: 'MySQL' is a type, which is not valid in the given context
+Total execution time: 1.70 seconds
+Expecting to find a type to be declared in a target rules named 'MmoProjectTarget'.  This type must derive from the 'TargetRules' type defined by UnrealBuildTool.
+CompilationResultException: Expecting to find a type to be declared in a target rules named 'MmoProjectTarget'.  This type must derive from the 'TargetRules' type defined by UnrealBuildTool.
+   at UnrealBuildTool.RulesAssembly.CreateTargetRules(String TargetName, UnrealTargetPlatform Platform, UnrealTargetConfiguration Configuration, UnrealArchitectures Architectures, FileReference ProjectFile, CommandLineArguments Arguments, ILogger Logger, Boolean IsTestTarget, TargetRulesValidationOptions ValidationOptions, UnrealIntermediateEnvironment IntermediateEnvironment) in C:\UnrealEngine 5.5\Engine\Source\Programs\UnrealBuildTool\System\RulesAssembly.cs:line 884
+   at UnrealBuildTool.ProjectFileGenerator.AddProjectsForAllTargets(PlatformProjectGeneratorCollection PlatformProjectGenerators, List`1 AllGames, List`1 AllTargetFiles, String[] Arguments, List`1 EngineProjects, List`1 GameProjects, Dictionary`2 ProjectFileToUProjectFile, Dictionary`2 ProgramProjects, Dictionary`2 RulesAssemblies, ILogger Logger) in C:\UnrealEngine 5.5\Engine\Source\Programs\UnrealBuildTool\ProjectFiles\ProjectFileGenerator.cs:line 2799
+   at UnrealBuildTool.ProjectFileGenerator.GenerateProjectFiles(PlatformProjectGeneratorCollection PlatformProjectGenerators, String[] Arguments, Boolean bCacheDataForEditor, ILogger Logger) in C:\UnrealEngine 5.5\Engine\Source\Programs\UnrealBuildTool\ProjectFiles\ProjectFileGenerator.cs:line 1048
+   at UnrealBuildTool.GenerateProjectFilesMode.ExecuteAsync(CommandLineArguments Arguments, ILogger Logger) in C:\UnrealEngine 5.5\Engine\Source\Programs\UnrealBuildTool\Modes\GenerateProjectFilesMode.cs:line 260
+   at UnrealBuildTool.UnrealBuildTool.Main(String[] ArgumentsArray) in C:\UnrealEngine 5.5\Engine\Source\Programs\UnrealBuildTool\UnrealBuildTool.cs:line 687
+WriteFileIfChanged() wrote 0 changed files of 2 requested writes.
+Timeline:
+
+[ 0.000]
+[ 0.000](+1.710) <unknown>
+[ 1.710]

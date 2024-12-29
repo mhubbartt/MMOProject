@@ -1,0 +1,33 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\camera\\msplayercameramanager.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\x64\\unrealeditor\\debug\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\x64\\unrealeditor\\debug\\mmosystem\\definitions.mmosystem.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\camera\\msplayercameramanager.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\unrealeditor\\inc\\mmosystem\\uht\\msplayercameramanager.generated.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\engine\\classes\\engine\\canvas.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\engine\\public\\canvasitem.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\engine\\classes\\engine\\font.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\engine\\classes\\engine\\fontimportoptions.h",
+            "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\fontimportoptions.generated.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\slatecore\\public\\fonts\\fontproviderinterface.h",
+            "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\slatecore\\uht\\fontproviderinterface.generated.h",
+            "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\font.generated.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\engine\\public\\canvastypes.h",
+            "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\canvastypes.generated.h",
+            "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\canvas.generated.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\camera\\mscameracomponent.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\engine\\classes\\camera\\cameracomponent.h",
+            "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\cameracomponent.generated.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\unrealeditor\\inc\\mmosystem\\uht\\mscameracomponent.generated.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\camera\\msuicameramanagercomponent.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\unrealeditor\\inc\\mmosystem\\uht\\msuicameramanagercomponent.generated.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\unrealeditor\\inc\\mmosystem\\uht\\msplayercameramanager.gen.cpp"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

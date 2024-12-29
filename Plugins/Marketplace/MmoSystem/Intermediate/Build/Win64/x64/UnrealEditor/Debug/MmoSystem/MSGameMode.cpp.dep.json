@@ -1,0 +1,21 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\game\\msgamemode.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\x64\\unrealeditor\\debug\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\x64\\unrealeditor\\debug\\mmosystem\\definitions.mmosystem.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\game\\msgamemode.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\engine\\classes\\gameframework\\gamemode.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\engine\\classes\\gameframework\\gamemodebase.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\engine\\classes\\engine\\serverstatreplicator.h",
+            "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\serverstatreplicator.generated.h",
+            "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\gamemodebase.generated.h",
+            "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\gamemode.generated.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\unrealeditor\\inc\\mmosystem\\uht\\msgamemode.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystemeditor\\source\\mmosystemeditor\\private\\mmosystemeditorcommands.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\x64\\unrealeditor\\debug\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystemeditor\\intermediate\\build\\win64\\x64\\unrealeditor\\debug\\mmosystemeditor\\definitions.mmosystemeditor.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystemeditor\\source\\mmosystemeditor\\public\\mmosystemeditorcommands.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystemeditor\\source\\mmosystemeditor\\public\\mmosystemeditorstyle.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

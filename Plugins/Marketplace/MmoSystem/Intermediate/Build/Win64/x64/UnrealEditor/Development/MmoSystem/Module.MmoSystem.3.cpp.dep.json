@@ -1,0 +1,23 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\epoch\\documents\\unreal projects\\mmosystem\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\mmosystem\\module.mmosystem.3.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\epoch\\documents\\unreal projects\\mmosystem\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\mmosystem\\definitions.mmosystem.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmosystem\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\ui\\widgetsubsystem.cpp",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmosystem\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\ui\\widgetsubsystem.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmosystem\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\unrealeditor\\inc\\mmosystem\\uht\\widgetsubsystem.generated.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmosystem\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\ui\\widgetsystemcontroller.cpp",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmosystem\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\ui\\widgetsystemcontroller.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmosystem\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\ui\\widgetcontroller.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmosystem\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\unrealeditor\\inc\\mmosystem\\uht\\widgetcontroller.generated.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmosystem\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\unrealeditor\\inc\\mmosystem\\uht\\widgetsystemcontroller.generated.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmosystem\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\uloggermacros.cpp",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmosystem\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\uloggermacros.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

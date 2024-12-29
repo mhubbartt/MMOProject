@@ -1,0 +1,15 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-MmoSystemEditor-Win64-Debug.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"..\Intermediate\Build\Win64\x64\UnrealEditor\Debug\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.obj"
+"C:\Users\Epoch\Documents\Unreal Projects\MmoProject\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Debug\MmoSystemEditor\MmoSystemEditor.cpp.obj"
+"C:\Users\Epoch\Documents\Unreal Projects\MmoProject\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Debug\MmoSystemEditor\MmoSystemEditorCommands.cpp.obj"
+"C:\Users\Epoch\Documents\Unreal Projects\MmoProject\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Debug\MmoSystemEditor\MmoSystemEditorStyle.cpp.obj"
+"C:\Users\Epoch\Documents\Unreal Projects\MmoProject\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Debug\MmoSystemEditor\PerModuleInline.gen.cpp.obj"
+"..\Intermediate\Build\Win64\x64\UnrealEditor\Debug\Default.rc2.res"
+/OUT:"C:\Users\Epoch\Documents\Unreal Projects\MmoProject\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Debug\MmoSystemEditor\UnrealEditor-MmoSystemEditor-Win64-Debug.lib"

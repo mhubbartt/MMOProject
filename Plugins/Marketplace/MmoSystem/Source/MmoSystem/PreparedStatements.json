@@ -1,0 +1,7 @@
+{
+    "LoadInventory": "INSERT INTO players (name, score) VALUES (?, ?);",
+    "SaveInventory": "UPDATE players SET score = ? WHERE name = ?;",
+    "AddItem": "DELETE FROM players WHERE name = ?;",
+    "SwapSlots": "DELETE FROM players WHERE name = ?;",
+    "RemoveItem": "DELETE FROM players WHERE name = ?;"
+}

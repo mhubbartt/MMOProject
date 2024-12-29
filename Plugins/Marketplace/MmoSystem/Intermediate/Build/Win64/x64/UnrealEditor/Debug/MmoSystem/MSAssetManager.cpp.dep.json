@@ -1,0 +1,30 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\assetmanager\\msassetmanager.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\x64\\unrealeditor\\debug\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\x64\\unrealeditor\\debug\\mmosystem\\definitions.mmosystem.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\assetmanager\\msassetmanager.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\engine\\classes\\engine\\assetmanager.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\engine\\classes\\engine\\assetmanagertypes.h",
+            "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\assetmanagertypes.generated.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\coreuobject\\public\\misc\\assetregistryinterface.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\engine\\classes\\engine\\streamablemanager.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\coreuobject\\public\\misc\\packageaccesstracking.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\core\\public\\misc\\sourcelocation.h",
+            "c:\\program files\\microsoft visual studio\\2022\\preview\\vc\\tools\\msvc\\14.38.33130\\include\\source_location",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\core\\public\\misc\\sourcelocationutils.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\assetregistry\\public\\assetregistry\\assetregistrymodule.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\assetregistry\\public\\assetregistry\\iassetregistry.h",
+            "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\assetregistry\\uht\\iassetregistry.generated.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\core\\public\\genericplatform\\genericplatformchunkinstall.h",
+            "c:\\unrealengine 5.5\\engine\\source\\runtime\\engine\\classes\\engine\\contentencryptionconfig.h",
+            "c:\\unrealengine 5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\assetmanager.generated.h",
+            "c:\\users\\epoch\\documents\\unreal projects\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\unrealeditor\\inc\\mmosystem\\uht\\msassetmanager.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
