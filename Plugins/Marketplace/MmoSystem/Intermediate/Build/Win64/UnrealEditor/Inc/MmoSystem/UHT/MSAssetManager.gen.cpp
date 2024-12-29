@@ -10,7 +10,9 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeMSAssetManager() {}
 
 // Begin Cross Module References
+COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FPrimaryAssetId();
 ENGINE_API UClass* Z_Construct_UClass_UAssetManager();
+ENGINE_API UClass* Z_Construct_UClass_UPrimaryDataAsset_NoRegister();
 MMOSYSTEM_API UClass* Z_Construct_UClass_UMSAssetManager();
 MMOSYSTEM_API UClass* Z_Construct_UClass_UMSAssetManager_NoRegister();
 UPackage* Z_Construct_UPackage__Script_MmoSystem();
@@ -29,19 +31,38 @@ struct Z_Construct_UClass_UMSAssetManager_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "/**\n * \n */" },
-#endif
 		{ "IncludePath", "AssetMAnager/MSAssetManager.h" },
 		{ "ModuleRelativePath", "AssetMAnager/MSAssetManager.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_LoadedAssets_MetaData[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Map to store already loaded assets for faster retrieval\n" },
+#endif
+		{ "ModuleRelativePath", "AssetMAnager/MSAssetManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Map to store already loaded assets for faster retrieval" },
+#endif
+	};
 #endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_LoadedAssets_ValueProp;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_LoadedAssets_Key_KeyProp;
+	static const UECodeGen_Private::FMapPropertyParams NewProp_LoadedAssets;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UMSAssetManager>::IsAbstract,
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UMSAssetManager_Statics::NewProp_LoadedAssets_ValueProp = { "LoadedAssets", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 1, Z_Construct_UClass_UPrimaryDataAsset_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UMSAssetManager_Statics::NewProp_LoadedAssets_Key_KeyProp = { "LoadedAssets_Key", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FPrimaryAssetId, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_UMSAssetManager_Statics::NewProp_LoadedAssets = { "LoadedAssets", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UMSAssetManager, LoadedAssets), EMapPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_LoadedAssets_MetaData), NewProp_LoadedAssets_MetaData) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UMSAssetManager_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMSAssetManager_Statics::NewProp_LoadedAssets_ValueProp,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMSAssetManager_Statics::NewProp_LoadedAssets_Key_KeyProp,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMSAssetManager_Statics::NewProp_LoadedAssets,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UMSAssetManager_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UMSAssetManager_Statics::DependentSingletons[])() = {
 	(UObject* (*)())Z_Construct_UClass_UAssetManager,
 	(UObject* (*)())Z_Construct_UPackage__Script_MmoSystem,
@@ -53,11 +74,11 @@ const UECodeGen_Private::FClassParams Z_Construct_UClass_UMSAssetManager_Statics
 	&StaticCppClassTypeInfo,
 	DependentSingletons,
 	nullptr,
-	nullptr,
+	Z_Construct_UClass_UMSAssetManager_Statics::PropPointers,
 	nullptr,
 	UE_ARRAY_COUNT(DependentSingletons),
 	0,
-	0,
+	UE_ARRAY_COUNT(Z_Construct_UClass_UMSAssetManager_Statics::PropPointers),
 	0,
 	0x001000A0u,
 	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UMSAssetManager_Statics::Class_MetaDataParams), Z_Construct_UClass_UMSAssetManager_Statics::Class_MetaDataParams)
@@ -83,10 +104,10 @@ UMSAssetManager::~UMSAssetManager() {}
 struct Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_AssetMAnager_MSAssetManager_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UMSAssetManager, UMSAssetManager::StaticClass, TEXT("UMSAssetManager"), &Z_Registration_Info_UClass_UMSAssetManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UMSAssetManager), 686798329U) },
+		{ Z_Construct_UClass_UMSAssetManager, UMSAssetManager::StaticClass, TEXT("UMSAssetManager"), &Z_Registration_Info_UClass_UMSAssetManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UMSAssetManager), 2658830147U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_AssetMAnager_MSAssetManager_h_3223794844(TEXT("/Script/MmoSystem"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_AssetMAnager_MSAssetManager_h_1832803982(TEXT("/Script/MmoSystem"),
 	Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_AssetMAnager_MSAssetManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_AssetMAnager_MSAssetManager_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
