@@ -48,6 +48,10 @@ class UBasePrimaryItem : public UPrimaryDataAsset
 	GENERATED_BODY()
 
 public:
+
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Asset Management")
+	FPrimaryAssetId AssetId;
 	
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	EItemType ItemType = EItemType::None;

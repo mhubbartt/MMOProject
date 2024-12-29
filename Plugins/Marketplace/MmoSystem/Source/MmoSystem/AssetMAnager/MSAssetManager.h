@@ -13,12 +13,13 @@ public:
 	// Singleton access to the Asset Manager
 	static UMSAssetManager& Get();
 
-	// Load asset by FPrimaryAssetId
+	// Asynchronous loading of an asset
+	template <typename T>
+	void LoadItemAssetAsync(const FPrimaryAssetId& AssetId, TFunction<void(T*)> Callback);
+
+	// Load asset by FPrimaryAssetId (synchronous for comparison)
 	template <typename T>
 	T* LoadItemAsset(const FPrimaryAssetId& AssetId);
-
-	// Preload a list of assets (e.g., for initialization)
-	void PreloadAssets(const TArray<FPrimaryAssetId>& AssetIds);
 
 	// Debug method to print all loaded assets
 	void PrintLoadedAssets() const;
@@ -27,10 +28,17 @@ protected:
 	// Called during initial loading
 	virtual void StartInitialLoading() override;
 
-private:
+	// Preload a list of assets (e.g., for initialization)
+	void PreloadAssets(const TArray<FPrimaryAssetId>& AssetIds);
 
-	
-	// Map to store already loaded assets for faster retrieval
+private:
+	// Cache for loaded assets
 	UPROPERTY()
 	TMap<FPrimaryAssetId, UPrimaryDataAsset*> LoadedAssets;
+
+	// Log errors for invalid assets
+	void LogInvalidAsset(const FPrimaryAssetId& AssetId, const FString& Reason) const;
 };
+
+
+
