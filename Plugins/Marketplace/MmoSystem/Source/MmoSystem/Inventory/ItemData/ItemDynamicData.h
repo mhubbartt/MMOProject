@@ -69,4 +69,10 @@ struct FDynamicItemData
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	FLinearColor ITemColor2 = FColor();
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString OwnerID = "None"; // For ownership tracking
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString CreatorID = "None"; // For ownership tracking
+	
 };

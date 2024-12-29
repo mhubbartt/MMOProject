@@ -14,7 +14,15 @@ enum class EHandedness : uint8
 	Ambidextrous UMETA(DisplayName = "Ambidextrous")
 };
 
-
+UENUM(BlueprintType)
+enum class EItemRarity : uint8
+{
+	Common UMETA(DisplayName = "Common"),
+	Uncommon UMETA(DisplayName = "Uncommon"),
+	Rare UMETA(DisplayName = "Rare"),
+	Epic UMETA(DisplayName = "Epic"),
+	Legendary UMETA(DisplayName = "Legendary")
+};
 
 UENUM(BlueprintType)
 enum class EItemType : uint8
@@ -52,7 +60,13 @@ public:
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	float ItemWeight = 0.0f;
+
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	EItemRarity ItemRarity = EItemRarity::Common;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UTexture2D* Icon = nullptr;  // TODO:: Maybe 2dTextRender
 	
 };
 
