@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\unrealeditor\\inc\\mmosystem\\uht\\mscameraassistinterface.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\unrealed\\sharedpch.unrealed.project.nonoptimized.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\x64\\unrealeditor\\debuggame\\mmosystem\\definitions.mmosystem.h",
+            "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\camera\\mscameraassistinterface.h",
+            "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\unrealeditor\\inc\\mmosystem\\uht\\mscameraassistinterface.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

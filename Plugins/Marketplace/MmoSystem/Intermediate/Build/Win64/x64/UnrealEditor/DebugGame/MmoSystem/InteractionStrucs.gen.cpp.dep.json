@@ -1,0 +1,18 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\unrealeditor\\inc\\mmosystem\\uht\\interactionstrucs.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\unrealed\\sharedpch.unrealed.project.nonoptimized.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\x64\\unrealeditor\\debuggame\\mmosystem\\definitions.mmosystem.h",
+            "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\interaction\\interactionstrucs.h",
+            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\gameplaytags\\classes\\gameplaytagcontainer.h",
+            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\core\\public\\misc\\comparisonutility.h",
+            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\gameplaytags\\uht\\gameplaytagcontainer.generated.h",
+            "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\unrealeditor\\inc\\mmosystem\\uht\\interactionstrucs.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

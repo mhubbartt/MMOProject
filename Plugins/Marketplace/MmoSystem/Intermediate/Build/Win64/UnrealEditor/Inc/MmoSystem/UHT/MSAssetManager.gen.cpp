@@ -32,21 +32,21 @@ struct Z_Construct_UClass_UMSAssetManager_Statics
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
 #if !UE_BUILD_SHIPPING
-		{ "Comment", "/**\n * Custom Asset Manager for managing game assets and their dependencies.\n */" },
+		{ "Comment", "/**\n * Custom Asset Manager for managing game assets and their dependencies.\n * \n * This class provides functionality for loading assets synchronously and asynchronously,\n * preloading dependencies, and debugging the state of loaded assets.\n */" },
 #endif
 		{ "IncludePath", "AssetMAnager/MSAssetManager.h" },
 		{ "ModuleRelativePath", "AssetMAnager/MSAssetManager.h" },
 #if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Custom Asset Manager for managing game assets and their dependencies." },
+		{ "ToolTip", "Custom Asset Manager for managing game assets and their dependencies.\n\nThis class provides functionality for loading assets synchronously and asynchronously,\npreloading dependencies, and debugging the state of loaded assets." },
 #endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_LoadedAssets_MetaData[] = {
 #if !UE_BUILD_SHIPPING
-		{ "Comment", "// Cache for loaded assets to prevent redundant loading\n" },
+		{ "Comment", "/**\n     * Cache for loaded assets to prevent redundant loading.\n     *\n     * This map associates primary asset IDs with their corresponding loaded data assets.\n     * It helps optimize loading by avoiding duplicate load operations.\n     */" },
 #endif
 		{ "ModuleRelativePath", "AssetMAnager/MSAssetManager.h" },
 #if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Cache for loaded assets to prevent redundant loading" },
+		{ "ToolTip", "Cache for loaded assets to prevent redundant loading.\n\nThis map associates primary asset IDs with their corresponding loaded data assets.\nIt helps optimize loading by avoiding duplicate load operations." },
 #endif
 	};
 #endif // WITH_METADATA
@@ -110,10 +110,10 @@ UMSAssetManager::~UMSAssetManager() {}
 struct Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_AssetMAnager_MSAssetManager_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UMSAssetManager, UMSAssetManager::StaticClass, TEXT("UMSAssetManager"), &Z_Registration_Info_UClass_UMSAssetManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UMSAssetManager), 2606075059U) },
+		{ Z_Construct_UClass_UMSAssetManager, UMSAssetManager::StaticClass, TEXT("UMSAssetManager"), &Z_Registration_Info_UClass_UMSAssetManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UMSAssetManager), 199610740U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_AssetMAnager_MSAssetManager_h_53580284(TEXT("/Script/MmoSystem"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_AssetMAnager_MSAssetManager_h_1502011511(TEXT("/Script/MmoSystem"),
 	Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_AssetMAnager_MSAssetManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_AssetMAnager_MSAssetManager_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

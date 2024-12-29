@@ -4,45 +4,16 @@
 #include "GameplayTagContainer.h"
 #include "Engine/AssetManager.h"
 #include "MmoSystem/StrucNEnumhHeaders.h"
+#include "MmoSystem/Inventory/ItemTypeTags.h"
 #include "BasePrimaryItem.generated.h"
 
 
 
 struct FItemDependency;
 
-UENUM(BlueprintType)
-enum class EHandedness : uint8
-{
-	Right UMETA(DisplayName = "Right"),
-	Left UMETA(DisplayName = "Left"),
-	Ambidextrous UMETA(DisplayName = "Ambidextrous")
-};
 
-UENUM(BlueprintType)
-enum class EItemRarity : uint8
-{
-	Common UMETA(DisplayName = "Common"),
-	Uncommon UMETA(DisplayName = "Uncommon"),
-	Rare UMETA(DisplayName = "Rare"),
-	Epic UMETA(DisplayName = "Epic"),
-	Legendary UMETA(DisplayName = "Legendary")
-};
 
-UENUM(BlueprintType)
-enum class EItemType : uint8
-{
-	None UMETA(DisplayName = "None"),                 // Default or uninitialized
-	Equippable UMETA(DisplayName = "Equippable"),     // Swords, bows, guns, etc.	
-	Consumable UMETA(DisplayName = "Consumable"),    // Potions, food, etc.
-	QuestItem UMETA(DisplayName = "Quest Item"),     // Items tied to quests, non-tradable
-	Material UMETA(DisplayName = "Material"),        // Crafting resources like ores and herbs	
-	SkillItem UMETA(DisplayName = "Skill Item"),     // Scrolls or books for learning skills
-	Key UMETA(DisplayName = "Key"),                 // Unlocks doors, chests, or areas
-	Mount UMETA(DisplayName = "Mount"),             // Items to summon mounts
-	Pet UMETA(DisplayName = "Pet"),                 // Items to summon pets
-	Cosmetic UMETA(DisplayName = "Cosmetic"),       // Dyes, costumes, visual-only items
-	Miscellaneous UMETA(DisplayName = "Miscellaneous") // Anything that doesn’t fit into the above
-};
+
 
 USTRUCT(BlueprintType)
 struct FItemDependency
@@ -50,18 +21,18 @@ struct FItemDependency
 	GENERATED_BODY()
 
 	// Reference to the asset
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dependency")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dependency Management")
 	FPrimaryAssetType Asset;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Asset Management")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dependency Management")
 	FName AssetName;
 
 	// Description or metadata about the dependency (optional)
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dependency")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dependency Management")
 	FString Description;
 
 	// Priority or usage context (optional)
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dependency")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dependency Management")
 	int32 Priority = 0;
 
 	// Convert to FPrimaryAssetId at runtime
@@ -82,6 +53,23 @@ class UBasePrimaryItem : public UPrimaryDataAsset
 
 public:
 
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Item Management")
+	FGameplayTag ItemType = FGameplayTag(MSGlobal::ItemType_None);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Management")
+	UTexture2D* InventoryIcon = nullptr;  // TODO:: Maybe 2dTextRender
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Item Management")
+	int32 StackSize = 0;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Item Management")
+	float ItemWeight = 0.0f;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Management")
+	FGameplayTag ItemRarity = FGameplayTag(MSGlobal::ItemRarity_Common);
+
+
+
 	// Editable fields for Asset ID components
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Asset Management")
 	FPrimaryAssetType PrimaryAssetType ;
@@ -91,30 +79,13 @@ public:
 
 	// Description or metadata about the dependency (optional)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Asset Management")
-	FString Description;
+	FString AssetDescription;
 
-	// Dependencies required by this item
+	// AssetDependencies required by this item
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Asset Management")
-	TArray<FItemDependency> Dependencies;
+	TArray<FItemDependency> AssetDependencies;
 	
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	EItemType ItemType = EItemType::None;
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	int32 StackSize = 1;
-
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	bool bIsStackable = false;
-
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	float ItemWeight = 0.0f;
-
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	EItemRarity ItemRarity = EItemRarity::Common;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UTexture2D* Icon = nullptr;  // TODO:: Maybe 2dTextRender
 
 	// Generate the Asset ID dynamically
 	FPrimaryAssetId GetAssetId() const
@@ -136,25 +107,25 @@ class UBaseWEquippablePrimaryItem : public UBasePrimaryItem
 
 public:
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Equipment Management")
 	FGameplayTag EquipmentSlotTag = FGameplayTag();
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Equipment Management")
 	bool bIsTwoHanded = false;
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	EHandedness Handedness = EHandedness::Right;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Equipment Management")
+	FGameplayTag Handedness = FGameplayTag(MSGlobal::Handedness_Right);
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Equipment Management")
 	USkeletalMesh* EquipedMesh = nullptr;
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Equipment Management")
 	UStaticMesh* WorldMesh = nullptr;
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Equipment Management")
 	TArray< FStatsAndEffects> StatsAndEffects = TArray<FStatsAndEffects>();
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Equipment Management")
 	TArray< UGameplayAbility*> WeaponAbilities = TArray<UGameplayAbility*>();
 	
 };

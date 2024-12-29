@@ -57,7 +57,7 @@ void FInventoryList::AddItem(FName ItemName, UBasePrimaryItem* StaticItemData,
 	
 	}
 	
-	if (ItemInstance->ItemData->bIsStackable)
+	if (ItemInstance->ItemData->StackSize > 1)
 	{
 		int32 HalfIndex = -1;
 		if (AnyHalfFullStacks(ItemInstance, HalfIndex))

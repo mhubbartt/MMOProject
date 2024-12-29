@@ -1,0 +1,32 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystemeditor\\intermediate\\build\\win64\\x64\\unrealeditor\\debuggame\\mmosystemeditor\\module.mmosystemeditor.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\unrealed\\sharedpch.unrealed.project.nonoptimized.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystemeditor\\intermediate\\build\\win64\\x64\\unrealeditor\\debuggame\\mmosystemeditor\\definitions.mmosystemeditor.h",
+            "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystemeditor\\intermediate\\build\\win64\\x64\\unrealeditor\\debuggame\\mmosystemeditor\\permoduleinline.gen.cpp",
+            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\core\\public\\hal\\permoduleinline.inl",
+            "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystemeditor\\source\\mmosystemeditor\\private\\mmosystemeditor.cpp",
+            "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystemeditor\\source\\mmosystemeditor\\public\\mmosystemeditor.h",
+            "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystemeditor\\source\\mmosystemeditor\\public\\mmosystemeditorstyle.h",
+            "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystemeditor\\source\\mmosystemeditor\\public\\mmosystemeditorcommands.h",
+            "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystemeditor\\source\\mmosystemeditor\\private\\mmosystemeditorcommands.cpp",
+            "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystemeditor\\source\\mmosystemeditor\\private\\mmosystemeditorstyle.cpp",
+            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\slatecore\\public\\styling\\slatestyleregistry.h",
+            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\engine\\public\\slate\\slategameresources.h",
+            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\projects\\public\\interfaces\\ipluginmanager.h",
+            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\projects\\public\\plugindescriptor.h",
+            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\projects\\public\\custombuildsteps.h",
+            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\projects\\public\\localizationdescriptor.h",
+            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\projects\\public\\moduledescriptor.h",
+            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\projects\\public\\plugindisalloweddescriptor.h",
+            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\projects\\public\\pluginreferencedescriptor.h",
+            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\projects\\public\\versescope.h",
+            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\slatecore\\public\\styling\\slatestylemacros.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

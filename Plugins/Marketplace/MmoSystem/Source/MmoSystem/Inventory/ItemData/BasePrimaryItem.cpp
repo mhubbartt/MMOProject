@@ -7,7 +7,7 @@ TArray<FPrimaryAssetId> UBasePrimaryItem::GetResolvedDependencies() const
 {
 	TArray<FPrimaryAssetId> ResolvedDependencies;
 
-	for (const FItemDependency& Dependency : Dependencies)
+	for (const FItemDependency& Dependency : AssetDependencies)
 	{
 		FPrimaryAssetId AssetId = Dependency.ResolveToAssetId();
 		if (AssetId.IsValid())

@@ -9,8 +9,6 @@ namespace MSGlobal
 
 
 
-	UE_DEFINE_GAMEPLAY_TAG(Event_Movement_ADS, "Event.Movement.ADS");
-
 	// Primary Attributes Tags
 	UE_DEFINE_GAMEPLAY_TAG(Attribute_Primary_Constitution, "Attribute.Primary.Constitution");   
 	UE_DEFINE_GAMEPLAY_TAG(Attribute_Primary_Dexterity, "Attribute.Primary.Dexterity");      

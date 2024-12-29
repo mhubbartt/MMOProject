@@ -56,6 +56,10 @@ struct FDynamicItemData
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	FName ItemName = "NONAMEDUDE";
+	
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dependency Management")
+	FString Description = " No Description";
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	TArray<FStatsAndEffects> StatsAndEffects = TArray<FStatsAndEffects>();
