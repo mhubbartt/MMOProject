@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "InvStucsNEnums.h"
+#include "InventoryObjects.h"
 #include "MmoSystem/Inventory/InventoryComponent.h"
 #include "MmoSystem/GlobalsNTags.h"
 #include "InventoryManager/InventorySaveBlobStruct.h"
@@ -13,7 +13,7 @@ using namespace MSGlobal;
 
 
 
-void FInventoryList::AddItem(FName ItemName, UStaticItemData* StaticItemData,
+void FInventoryList::AddItem(FName ItemName, UBasePrimaryItem* StaticItemData,
 													FDynamicItemData DynamicItemData, int32 Quantity) 
 {
 
@@ -57,7 +57,7 @@ void FInventoryList::AddItem(FName ItemName, UStaticItemData* StaticItemData,
 	
 	}
 	
-	if (ItemInstance->ItemData->bStackable)
+	if (ItemInstance->ItemData->bIsStackable)
 	{
 		int32 HalfIndex = -1;
 		if (AnyHalfFullStacks(ItemInstance, HalfIndex))

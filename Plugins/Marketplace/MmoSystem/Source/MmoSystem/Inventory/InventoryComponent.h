@@ -3,7 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "InvStucsNEnums.h"
+#include "InventoryObjects.h"
+#include "MmoSystem/StrucNEnumhHeaders.h"
 #include "Components/ActorComponent.h"
 #include "InventoryComponent.generated.h"
 
@@ -55,7 +56,7 @@ public:
 	/*  Main Editor Functions */
 
 	UFUNCTION(BlueprintCallable, Server, Reliable, Category = "A WPU Inventory Manager|Functions")
-	void AddItemToInventory(FName ItemName, UStaticItemData* StaticItemData, FDynamicItemData
+	void AddItemToInventory(FName ItemName, UBasePrimaryItem* StaticItemData, FDynamicItemData
 							DynamicItemData, int32 Quantity);
 
 	UFUNCTION(BlueprintCallable, Server, Reliable, Category = "A WPU Inventory Manager|Functions")

@@ -1,12 +1,12 @@
-"C:\Users\Epoch\Documents\Unreal Projects\MMOSystem\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystemEditor\Module.MmoSystemEditor.cpp"
+"C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystemEditor\Module.MmoSystemEditor.cpp"
 /FI"..\Intermediate\Build\Win64\x64\UnrealEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h"
-/FI"C:\Users\Epoch\Documents\Unreal Projects\MMOSystem\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystemEditor\Definitions.MmoSystemEditor.h"
+/FI"C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystemEditor\Definitions.MmoSystemEditor.h"
 /Yu"..\Intermediate\Build\Win64\x64\UnrealEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h"
 /Fp"..\Intermediate\Build\Win64\x64\UnrealEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.pch"
-/Fo"C:\Users\Epoch\Documents\Unreal Projects\MMOSystem\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystemEditor\Module.MmoSystemEditor.cpp.obj"
-/experimental:log "C:\Users\Epoch\Documents\Unreal Projects\MMOSystem\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystemEditor\Module.MmoSystemEditor.cpp.sarif"
-/sourceDependencies "C:\Users\Epoch\Documents\Unreal Projects\MMOSystem\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystemEditor\Module.MmoSystemEditor.cpp.dep.json"
-@"C:\Users\Epoch\Documents\Unreal Projects\MMOSystem\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystemEditor\MmoSystemEditor.Shared.rsp"
+/Fo"C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystemEditor\Module.MmoSystemEditor.cpp.obj"
+/experimental:log "C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystemEditor\Module.MmoSystemEditor.cpp.sarif"
+/sourceDependencies "C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystemEditor\Module.MmoSystemEditor.cpp.dep.json"
+@"C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystemEditor\MmoSystemEditor.Shared.rsp"
 /d2ssa-cfg-question-
 /Zc:inline
 /nologo

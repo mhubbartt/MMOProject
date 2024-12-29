@@ -3,7 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "MmoSystem/Inventory/InvStucsNEnums.h"
+#include "MmoSystem/Inventory/InventoryObjects.h"
+#include "MmoSystem/StrucNEnumhHeaders.h"
 #include "InventorySaveBlobStruct.generated.h"
 
 
@@ -97,7 +98,7 @@ struct FInventorySaveItem
 	int32 Quantity = 0;
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	TSoftObjectPtr<UStaticItemData> StaticData = nullptr;
+	TSoftObjectPtr<UBasePrimaryItem> StaticData = nullptr;
 
 	// Add the BlobStruct to handle item data
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)

@@ -6,7 +6,7 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "MmoSystem/Inventory/InventoryManager/InventoryManager.h"
-#include "MmoSystem/Inventory/InvStucsNEnums.h"
+#include "MmoSystem/Inventory/ItemData/ItemDynamicData.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 
@@ -651,8 +651,8 @@ struct Z_Construct_UFunction_UInventoryManager_RunSerialDeserializationTests_Sta
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
 const UECodeGen_Private::FNamePropertyParams Z_Construct_UFunction_UInventoryManager_RunSerialDeserializationTests_Statics::NewProp_ItemName = { "ItemName", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventRunSerialDeserializationTests_Parms, ItemName), METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UInventoryManager_RunSerialDeserializationTests_Statics::NewProp_Effects_Inner = { "Effects", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FStatsAndEffects, METADATA_PARAMS(0, nullptr) }; // 1427308182
-const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UInventoryManager_RunSerialDeserializationTests_Statics::NewProp_Effects = { "Effects", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventRunSerialDeserializationTests_Parms, Effects), EArrayPropertyFlags::None, METADATA_PARAMS(0, nullptr) }; // 1427308182
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UInventoryManager_RunSerialDeserializationTests_Statics::NewProp_Effects_Inner = { "Effects", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FStatsAndEffects, METADATA_PARAMS(0, nullptr) }; // 1159584597
+const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UInventoryManager_RunSerialDeserializationTests_Statics::NewProp_Effects = { "Effects", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventRunSerialDeserializationTests_Parms, Effects), EArrayPropertyFlags::None, METADATA_PARAMS(0, nullptr) }; // 1159584597
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UInventoryManager_RunSerialDeserializationTests_Statics::NewProp_Condition = { "Condition", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventRunSerialDeserializationTests_Parms, Condition), METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UInventoryManager_RunSerialDeserializationTests_Statics::NewProp_Color1 = { "Color1", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventRunSerialDeserializationTests_Parms, Color1), Z_Construct_UScriptStruct_FLinearColor, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UInventoryManager_RunSerialDeserializationTests_Statics::NewProp_Color2 = { "Color2", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventRunSerialDeserializationTests_Parms, Color2), Z_Construct_UScriptStruct_FLinearColor, METADATA_PARAMS(0, nullptr) };
@@ -713,8 +713,8 @@ struct Z_Construct_UFunction_UInventoryManager_TestBlobSerialization_Statics
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
 const UECodeGen_Private::FNamePropertyParams Z_Construct_UFunction_UInventoryManager_TestBlobSerialization_Statics::NewProp_ItemName = { "ItemName", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventTestBlobSerialization_Parms, ItemName), METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UInventoryManager_TestBlobSerialization_Statics::NewProp_InSNE_Inner = { "InSNE", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FStatsAndEffects, METADATA_PARAMS(0, nullptr) }; // 1427308182
-const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UInventoryManager_TestBlobSerialization_Statics::NewProp_InSNE = { "InSNE", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventTestBlobSerialization_Parms, InSNE), EArrayPropertyFlags::None, METADATA_PARAMS(0, nullptr) }; // 1427308182
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UInventoryManager_TestBlobSerialization_Statics::NewProp_InSNE_Inner = { "InSNE", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FStatsAndEffects, METADATA_PARAMS(0, nullptr) }; // 1159584597
+const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UInventoryManager_TestBlobSerialization_Statics::NewProp_InSNE = { "InSNE", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventTestBlobSerialization_Parms, InSNE), EArrayPropertyFlags::None, METADATA_PARAMS(0, nullptr) }; // 1159584597
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UInventoryManager_TestBlobSerialization_Statics::NewProp_InCondition = { "InCondition", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventTestBlobSerialization_Parms, InCondition), METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UInventoryManager_TestBlobSerialization_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UInventoryManager_TestBlobSerialization_Statics::NewProp_ItemName,
@@ -843,8 +843,8 @@ struct Z_Construct_UClass_UInventoryManager_Statics
 		{ &Z_Construct_UFunction_UInventoryManager_OnDatabaseConnectionCompleteSave, "OnDatabaseConnectionCompleteSave" }, // 228376875
 		{ &Z_Construct_UFunction_UInventoryManager_OnInventoryLoaded, "OnInventoryLoaded" }, // 2392614151
 		{ &Z_Construct_UFunction_UInventoryManager_RunInventoryTests, "RunInventoryTests" }, // 1225950972
-		{ &Z_Construct_UFunction_UInventoryManager_RunSerialDeserializationTests, "RunSerialDeserializationTests" }, // 1463344466
-		{ &Z_Construct_UFunction_UInventoryManager_TestBlobSerialization, "TestBlobSerialization" }, // 1700058412
+		{ &Z_Construct_UFunction_UInventoryManager_RunSerialDeserializationTests, "RunSerialDeserializationTests" }, // 9733181
+		{ &Z_Construct_UFunction_UInventoryManager_TestBlobSerialization, "TestBlobSerialization" }, // 459977950
 		{ &Z_Construct_UFunction_UInventoryManager_TestDatabaseConnectionCallback, "TestDatabaseConnectionCallback" }, // 4104920649
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
@@ -895,7 +895,7 @@ UInventoryManager::~UInventoryManager() {}
 // End Class UInventoryManager
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_Epoch_Documents_Unreal_Projects_MMOSystem_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryManager_InventoryManager_h_Statics
+struct Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryManager_InventoryManager_h_Statics
 {
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
 		{ FDatabaseConnectionDetails::StaticStruct, Z_Construct_UScriptStruct_FDatabaseConnectionDetails_Statics::NewStructOps, TEXT("DatabaseConnectionDetails"), &Z_Registration_Info_UScriptStruct_DatabaseConnectionDetails, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FDatabaseConnectionDetails), 1672081440U) },
@@ -903,12 +903,12 @@ struct Z_CompiledInDeferFile_FID_Users_Epoch_Documents_Unreal_Projects_MMOSystem
 		{ FPreparedStatement::StaticStruct, Z_Construct_UScriptStruct_FPreparedStatement_Statics::NewStructOps, TEXT("PreparedStatement"), &Z_Registration_Info_UScriptStruct_PreparedStatement, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FPreparedStatement), 331730547U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UInventoryManager, UInventoryManager::StaticClass, TEXT("UInventoryManager"), &Z_Registration_Info_UClass_UInventoryManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UInventoryManager), 3273582008U) },
+		{ Z_Construct_UClass_UInventoryManager, UInventoryManager::StaticClass, TEXT("UInventoryManager"), &Z_Registration_Info_UClass_UInventoryManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UInventoryManager), 3795904329U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Epoch_Documents_Unreal_Projects_MMOSystem_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryManager_InventoryManager_h_54645810(TEXT("/Script/MmoSystem"),
-	Z_CompiledInDeferFile_FID_Users_Epoch_Documents_Unreal_Projects_MMOSystem_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryManager_InventoryManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Epoch_Documents_Unreal_Projects_MMOSystem_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryManager_InventoryManager_h_Statics::ClassInfo),
-	Z_CompiledInDeferFile_FID_Users_Epoch_Documents_Unreal_Projects_MMOSystem_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryManager_InventoryManager_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Epoch_Documents_Unreal_Projects_MMOSystem_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryManager_InventoryManager_h_Statics::ScriptStructInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryManager_InventoryManager_h_1166936389(TEXT("/Script/MmoSystem"),
+	Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryManager_InventoryManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryManager_InventoryManager_h_Statics::ClassInfo),
+	Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryManager_InventoryManager_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryManager_InventoryManager_h_Statics::ScriptStructInfo),
 	nullptr, 0);
 // End Registration
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

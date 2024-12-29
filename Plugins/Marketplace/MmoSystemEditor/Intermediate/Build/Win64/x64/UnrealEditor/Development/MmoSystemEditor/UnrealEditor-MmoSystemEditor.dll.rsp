@@ -37,7 +37,7 @@
 /FUNCTIONPADMIN:6
 /NOIMPLIB
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.obj"
-"C:\Users\Epoch\Documents\Unreal Projects\MMOSystem\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystemEditor\Module.MmoSystemEditor.cpp.obj"
+"C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystemEditor\Module.MmoSystemEditor.cpp.obj"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Default.rc2.res"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Projects\UnrealEditor-Projects.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\InputCore\UnrealEditor-InputCore.lib"
@@ -74,6 +74,6 @@
 "synchronization.lib"
 "dwmapi.lib"
 "imm32.lib"
-/OUT:"C:\Users\Epoch\Documents\Unreal Projects\MMOSystem\Plugins\Marketplace\MmoSystemEditor\Binaries\Win64\UnrealEditor-MmoSystemEditor.dll"
-/PDB:"C:\Users\Epoch\Documents\Unreal Projects\MMOSystem\Plugins\Marketplace\MmoSystemEditor\Binaries\Win64\UnrealEditor-MmoSystemEditor.pdb"
+/OUT:"C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystemEditor\Binaries\Win64\UnrealEditor-MmoSystemEditor.dll"
+/PDB:"C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystemEditor\Binaries\Win64\UnrealEditor-MmoSystemEditor.pdb"
 /ignore:4078

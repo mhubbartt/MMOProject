@@ -7,8 +7,8 @@
 /IGNORE:4221
 /NODEFAULTLIB
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.obj"
-"C:\Users\Epoch\Documents\Unreal Projects\MMOSystem\Plugins\Marketplace\MmoSystem\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystem\Module.MmoSystem.1.cpp.obj"
-"C:\Users\Epoch\Documents\Unreal Projects\MMOSystem\Plugins\Marketplace\MmoSystem\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystem\Module.MmoSystem.2.cpp.obj"
-"C:\Users\Epoch\Documents\Unreal Projects\MMOSystem\Plugins\Marketplace\MmoSystem\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystem\Module.MmoSystem.3.cpp.obj"
+"C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystem\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystem\Module.MmoSystem.1.cpp.obj"
+"C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystem\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystem\Module.MmoSystem.2.cpp.obj"
+"C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystem\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystem\Module.MmoSystem.3.cpp.obj"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Default.rc2.res"
-/OUT:"C:\Users\Epoch\Documents\Unreal Projects\MMOSystem\Plugins\Marketplace\MmoSystem\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystem\UnrealEditor-MmoSystem.lib"
+/OUT:"C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystem\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystem\UnrealEditor-MmoSystem.lib"

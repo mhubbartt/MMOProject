@@ -7,7 +7,7 @@
 #include "UObject/GeneratedCppIncludes.h"
 #include "MmoSystem/Inventory/Actors/WorldActor.h"
 #include "GameplayAbilities/Public/ActiveGameplayEffectHandle.h"
-#include "MmoSystem/Inventory/InvStucsNEnums.h"
+#include "MmoSystem/Inventory/ItemData/ItemDynamicData.h"
 #include "Runtime/Engine/Classes/Engine/HitResult.h"
 #include "Runtime/GameplayTags/Classes/GameplayTagContainer.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -30,8 +30,8 @@ GAMEPLAYABILITIES_API UScriptStruct* Z_Construct_UScriptStruct_FActiveGameplayEf
 GAMEPLAYTAGS_API UScriptStruct* Z_Construct_UScriptStruct_FGameplayTag();
 MMOSYSTEM_API UClass* Z_Construct_UClass_AWorldActor();
 MMOSYSTEM_API UClass* Z_Construct_UClass_AWorldActor_NoRegister();
+MMOSYSTEM_API UClass* Z_Construct_UClass_UBasePrimaryItem_NoRegister();
 MMOSYSTEM_API UClass* Z_Construct_UClass_UInteractionInterface_NoRegister();
-MMOSYSTEM_API UClass* Z_Construct_UClass_UStaticItemData_NoRegister();
 MMOSYSTEM_API UEnum* Z_Construct_UEnum_MmoSystem_EEffectApplicationPolicy();
 MMOSYSTEM_API UEnum* Z_Construct_UEnum_MmoSystem_EEffectRemovalPolicy();
 MMOSYSTEM_API UScriptStruct* Z_Construct_UScriptStruct_FDynamicItemData();
@@ -662,8 +662,8 @@ void Z_Construct_UClass_AWorldActor_Statics::NewProp_bCanAddToInventory_SetBit(v
 	((AWorldActor*)Obj)->bCanAddToInventory = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AWorldActor_Statics::NewProp_bCanAddToInventory = { "bCanAddToInventory", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AWorldActor), &Z_Construct_UClass_AWorldActor_Statics::NewProp_bCanAddToInventory_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bCanAddToInventory_MetaData), NewProp_bCanAddToInventory_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWorldActor_Statics::NewProp_ItemID = { "ItemID", nullptr, (EPropertyFlags)0x0124080000000005, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWorldActor, ItemID), Z_Construct_UClass_UStaticItemData_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ItemID_MetaData), NewProp_ItemID_MetaData) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AWorldActor_Statics::NewProp_DynamicItemData = { "DynamicItemData", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWorldActor, DynamicItemData), Z_Construct_UScriptStruct_FDynamicItemData, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DynamicItemData_MetaData), NewProp_DynamicItemData_MetaData) }; // 4104860089
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWorldActor_Statics::NewProp_ItemID = { "ItemID", nullptr, (EPropertyFlags)0x0124080000000005, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWorldActor, ItemID), Z_Construct_UClass_UBasePrimaryItem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ItemID_MetaData), NewProp_ItemID_MetaData) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AWorldActor_Statics::NewProp_DynamicItemData = { "DynamicItemData", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWorldActor, DynamicItemData), Z_Construct_UScriptStruct_FDynamicItemData, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DynamicItemData_MetaData), NewProp_DynamicItemData_MetaData) }; // 287864075
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWorldActor_Statics::NewProp_SceneCaptureComponent2D = { "SceneCaptureComponent2D", nullptr, (EPropertyFlags)0x01240800000a001d, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWorldActor, SceneCaptureComponent2D), Z_Construct_UClass_USceneCaptureComponent2D_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SceneCaptureComponent2D_MetaData), NewProp_SceneCaptureComponent2D_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWorldActor_Statics::NewProp_StaticMesh = { "StaticMesh", nullptr, (EPropertyFlags)0x01240800000a001d, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWorldActor, StaticMesh), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StaticMesh_MetaData), NewProp_StaticMesh_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWorldActor_Statics::NewProp_Niagara = { "Niagara", nullptr, (EPropertyFlags)0x01240800000a001d, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWorldActor, Niagara), Z_Construct_UClass_UNiagaraComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Niagara_MetaData), NewProp_Niagara_MetaData) };
@@ -747,19 +747,19 @@ AWorldActor::~AWorldActor() {}
 // End Class AWorldActor
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_Epoch_Documents_Unreal_Projects_MMOSystem_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_Actors_WorldActor_h_Statics
+struct Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_Actors_WorldActor_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
 		{ EEffectApplicationPolicy_StaticEnum, TEXT("EEffectApplicationPolicy"), &Z_Registration_Info_UEnum_EEffectApplicationPolicy, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 4251810952U) },
 		{ EEffectRemovalPolicy_StaticEnum, TEXT("EEffectRemovalPolicy"), &Z_Registration_Info_UEnum_EEffectRemovalPolicy, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1638561062U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AWorldActor, AWorldActor::StaticClass, TEXT("AWorldActor"), &Z_Registration_Info_UClass_AWorldActor, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWorldActor), 4132621672U) },
+		{ Z_Construct_UClass_AWorldActor, AWorldActor::StaticClass, TEXT("AWorldActor"), &Z_Registration_Info_UClass_AWorldActor, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWorldActor), 2428575780U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Epoch_Documents_Unreal_Projects_MMOSystem_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_Actors_WorldActor_h_1225644686(TEXT("/Script/MmoSystem"),
-	Z_CompiledInDeferFile_FID_Users_Epoch_Documents_Unreal_Projects_MMOSystem_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_Actors_WorldActor_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Epoch_Documents_Unreal_Projects_MMOSystem_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_Actors_WorldActor_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_Actors_WorldActor_h_403961499(TEXT("/Script/MmoSystem"),
+	Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_Actors_WorldActor_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_Actors_WorldActor_h_Statics::ClassInfo),
 	nullptr, 0,
-	Z_CompiledInDeferFile_FID_Users_Epoch_Documents_Unreal_Projects_MMOSystem_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_Actors_WorldActor_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Epoch_Documents_Unreal_Projects_MMOSystem_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_Actors_WorldActor_h_Statics::EnumInfo));
+	Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_Actors_WorldActor_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_Actors_WorldActor_h_Statics::EnumInfo));
 // End Registration
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

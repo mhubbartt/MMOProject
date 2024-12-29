@@ -7,12 +7,13 @@
 #include "GameplayTagContainer.h"
 #include "GameFramework/Actor.h"
 #include "MmoSystem/Interfaces/InteractionInterface.h"
-#include "MmoSystem/Inventory/InvStucsNEnums.h"
+#include "MmoSystem/Inventory/InventoryObjects.h"
+#include "MmoSystem/StrucNEnumhHeaders.h"
 #include "WorldActor.generated.h"
 
 
 struct FDynamicItemData;
-class UStaticItemData;
+class UBasePrimaryItem;
 class APlayerCharacter;
 class UInventoryComponent;
 class UProjectileMovementComponent;
@@ -166,7 +167,7 @@ protected:
 	bool bCanAddToInventory = false;
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "World Actor|InventoryList")
-	TObjectPtr<UStaticItemData> ItemID ;
+	TObjectPtr<UBasePrimaryItem> ItemID ;
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "World Actor|InventoryList")
 	FDynamicItemData DynamicItemData = {}; ;

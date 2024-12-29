@@ -1,5 +1,5 @@
 /I "."
-/I "C:\Users\Epoch\Documents\Unreal Projects\MMOSystem\Plugins\Marketplace\MmoSystemEditor\Source\MmoSystemEditor\Private"
+/I "C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystemEditor\Source\MmoSystemEditor\Private"
 /I "Runtime\Projects\Public"
 /I "Runtime\Projects\Internal"
 /I "Runtime\Core\Public"
@@ -286,8 +286,8 @@
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\MaterialUtilities\UHT"
 /I "Developer\MaterialUtilities\Public"
 /I "Editor\KismetCompiler\Public"
-/I "C:\Users\Epoch\Documents\Unreal Projects\MMOSystem\Plugins\Marketplace\MmoSystemEditor\Source"
-/I "C:\Users\Epoch\Documents\Unreal Projects\MMOSystem\Plugins\Marketplace\MmoSystemEditor\Source\MmoSystemEditor\Public"
+/I "C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystemEditor\Source"
+/I "C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystemEditor\Source\MmoSystemEditor\Public"
 /external:W0
 /external:I "ThirdParty\GuidelinesSupportLibrary\GSL-1144\include"
 /external:I "ThirdParty\RapidJSON\1.1.0"

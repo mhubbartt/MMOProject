@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "Windows/WindowsHWrapper.h"
 #include "InventorySaveBlobStruct.h"
+#include "MmoSystem/StrucNEnumhHeaders.h"
 #include "mysql.h"
 #include "MmoSystem/Inventory/InventoryComponent.h"
 #include "InventoryManager.generated.h"

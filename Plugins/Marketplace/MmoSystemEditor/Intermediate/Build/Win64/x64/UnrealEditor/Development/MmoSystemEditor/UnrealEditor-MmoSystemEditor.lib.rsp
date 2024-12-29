@@ -7,6 +7,6 @@
 /IGNORE:4221
 /NODEFAULTLIB
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.obj"
-"C:\Users\Epoch\Documents\Unreal Projects\MMOSystem\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystemEditor\Module.MmoSystemEditor.cpp.obj"
+"C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystemEditor\Module.MmoSystemEditor.cpp.obj"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Default.rc2.res"
-/OUT:"C:\Users\Epoch\Documents\Unreal Projects\MMOSystem\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystemEditor\UnrealEditor-MmoSystemEditor.lib"
+/OUT:"C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystemEditor\Intermediate\Build\Win64\x64\UnrealEditor\Development\MmoSystemEditor\UnrealEditor-MmoSystemEditor.lib"

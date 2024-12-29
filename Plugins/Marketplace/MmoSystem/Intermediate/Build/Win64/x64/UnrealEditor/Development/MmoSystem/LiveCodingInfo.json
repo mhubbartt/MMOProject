@@ -66,12 +66,12 @@
 			"BaseCharacter.cpp.obj",
 			"NetCharacterMovementComponent.cpp.obj",
 			"NPCCharacter.cpp.obj",
-			"PlayerCharacter.cpp.obj",
-			"LoggingMacros.cpp.obj",
-			"BaseUserWidget.cpp.obj",
-			"WidgetController.cpp.obj"
+			"PlayerCharacter.cpp.obj"
 		],
 		"Module.MmoSystem.3.cpp.obj": [
+			"LoggingMacros.cpp.obj",
+			"BaseUserWidget.cpp.obj",
+			"WidgetController.cpp.obj",
 			"WidgetSubsystem.cpp.obj",
 			"WidgetSystemController.cpp.obj",
 			"ULoggerMacros.cpp.obj"

@@ -101,7 +101,7 @@ void UInventoryComponent::DebugInventory()
 
 // Main Functions
 
-void UInventoryComponent::AddItemToInventory_Implementation( FName ItemName, UStaticItemData* StaticItemData,
+void UInventoryComponent::AddItemToInventory_Implementation( FName ItemName, UBasePrimaryItem* StaticItemData,
                                                     FDynamicItemData DynamicItemData, int32 Quantity) 
 {	
     InventoryList.AddItem(ItemName,StaticItemData, DynamicItemData, Quantity);

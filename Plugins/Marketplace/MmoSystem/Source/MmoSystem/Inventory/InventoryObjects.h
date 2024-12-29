@@ -8,118 +8,18 @@
 #include "Windows/WindowsHWrapper.h"
 #include "Net/Serialization/FastArraySerializer.h"
 #include "UObject/Object.h"
-#include "InvStucsNEnums.generated.h"
-
+#include "MmoSystem/StrucNEnumhHeaders.h"
+#include "InventoryObjects.generated.h"
 
 
 struct FInventorySaveItem;
 class UInventoryComponent;
 
 
-UENUM(Blueprintable, BlueprintType, Meta = (DisplayName = "Item Type"))
-enum EItemType : uint8
-{
-	Unknown UMETA(DisplayName = "Unknown"),
-	Consumable UMETA(DisplayName = "Consumable"),
-	Equipment UMETA(DisplayName = "Equipment"),
-	Container UMETA(DisplayName = "Container"),
-	Weapon UMETA(DisplayName = "Weapon"),	
-	Tool UMETA(DisplayName = "Tool"),
-	Other UMETA(DisplayName = "Other"),
-	Quest UMETA(DisplayName = "Quest"),
-	
-};
-USTRUCT(BlueprintType)
-struct FStatsAndEffects
-{
-	GENERATED_BODY()
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FGameplayTag StatTag = FGameplayTag();
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int32 StatAmount = 0;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<UGameplayEffect> GameplayEffect = nullptr;
-
-	// Serialization and deserialization logic
-	friend FArchive& operator<<(FArchive& Ar, FStatsAndEffects& Struct)
-	{
-		// Serialize the StatTag and StatAmount
-		Ar << Struct.StatTag;
-		Ar << Struct.StatAmount;
-
-		// Serialize the GameplayEffect class reference
-		UClass* GameplayEffectClass = Struct.GameplayEffect.Get();
-		Ar << GameplayEffectClass;
-
-		// Update the TSubclassOf from the deserialized class reference
-		if (Ar.IsLoading())
-		{
-			Struct.GameplayEffect = GameplayEffectClass;
-		}
-
-		return Ar;
-	}
-};
 
 
 
-USTRUCT(BlueprintType,Blueprintable)
-struct FDynamicItemData
-{
-	GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	FName ItemName = "NONAMEDUDE";
-
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	TArray<FStatsAndEffects> StatsAndEffects = TArray<FStatsAndEffects>();
-
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	float Condition = -2.0f;
-	
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	FLinearColor ITemColor1 = FColor();
-	
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	FLinearColor ITemColor2 = FColor();
-	
-};
-
-
-UCLASS(Blueprintable, BlueprintType)
-class UStaticItemData : public UPrimaryDataAsset
-{
-	GENERATED_BODY()
-
-public:
-
-
-	
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	TEnumAsByte<EItemType> ItemType = Unknown;
-
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	int32 StackSize = 1;
-
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	FGameplayTag EquipmentSlotTag = FGameplayTag();
-
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	bool bCanEquip = false;
-
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	bool bQuestItem = false;
-
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	bool bConsumable = false;
-
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	bool bStackable = false;
-	
-};
 
 
 UCLASS()
@@ -142,7 +42,7 @@ UInvItemInstance(const FObjectInitializer& ObjectInitializer = FObjectInitialize
 	FString UniqueItemID = "";
 
 	UPROPERTY(Replicated,EditAnywhere,BlueprintReadWrite)
-	TObjectPtr<UStaticItemData> ItemData = nullptr;
+	TObjectPtr<UBasePrimaryItem> ItemData = nullptr;
 
 	UPROPERTY(Replicated,EditAnywhere,BlueprintReadWrite)
 	FDynamicItemData DynamicItemData = FDynamicItemData();
@@ -208,7 +108,7 @@ struct FInventoryList : public FFastArraySerializer
 	TArray<FInvEntry> Inventory;
 
    //~Main Functions
-	void AddItem(FName ItemName, UStaticItemData* StaticItemData, FDynamicItemData DynamicItemData, int32 Quantity);
+	void AddItem(FName ItemName, UBasePrimaryItem* StaticItemData, FDynamicItemData DynamicItemData, int32 Quantity);
 	bool RemoveItem(FInvEntry Item);
 	bool MoveItem(FInvEntry Item, int32 Index);
 	bool LoadItemFromDatabase(FInventorySaveItem Item);

@@ -451,7 +451,7 @@ void UInventoryManager::HandleInventoryLoadingAsync(TObjectPtr<UInventoryCompone
             Item.SlotTag = FGameplayTag::RequestGameplayTag(FName(*RowData[3]));
             Item.Quantity = FCString::Atoi(*RowData[4]);
             FSoftObjectPath SoftPath = FSoftObjectPath(RowData[5]);
-            TSoftObjectPtr<UStaticItemData> SoftPtr = Cast<UStaticItemData>(SoftPath.TryLoad());
+            TSoftObjectPtr<UBasePrimaryItem> SoftPtr = Cast<UBasePrimaryItem>(SoftPath.TryLoad());
             Item.StaticData = SoftPtr;
 
             TArray<uint8> BlobData;
@@ -496,7 +496,7 @@ void UInventoryManager::HandleInventoryLoadingAsync(TObjectPtr<UInventoryCompone
                     FString RetrievedPath(Item.StaticData.ToString());
                     FSoftObjectPath ReconstructedPath(RetrievedPath);
                     FSoftObjectPtr AssetPointer(ReconstructedPath);
-                    UStaticItemData* LoadedAsset = Cast<UStaticItemData>(AssetPointer.LoadSynchronous());
+                    UBasePrimaryItem* LoadedAsset = Cast<UBasePrimaryItem>(AssetPointer.LoadSynchronous());
                     FDynamicItemData DynamicItemData;
                     DynamicItemData.ItemName = Item.DynamicData.SaveObject.ItemName;
                     DynamicItemData.Condition = Item.DynamicData.SaveObject.Condition;
@@ -621,7 +621,7 @@ void UInventoryManager::HandleInventorySavingAsync(
             BlobStruct.SerializeToBinary(BlobStruct.SaveObject.StatsAndEffects,BlobData);
 
             FSoftObjectPath ItemDataPath = Entry.ItemObject->ItemData;
-            TSoftObjectPtr<UStaticItemData> SoftPtr = TSoftObjectPtr<UStaticItemData>(ItemDataPath);
+            TSoftObjectPtr<UBasePrimaryItem> SoftPtr = TSoftObjectPtr<UBasePrimaryItem>(ItemDataPath);
             FString SoftPtrString = SoftPtr.ToString();
 
             // Construct insert query
