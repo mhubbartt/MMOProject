@@ -629,7 +629,7 @@ void UInventoryManager::HandleInventorySavingAsync(
                 "INSERT INTO %s ( UniqueItemID, ItemName, SlotIndex, SlotTag, Quantity, ItemStaticData, ItemData) "
                 "VALUES ( '%s', '%s', %d, '%s', %d,'%s', ?);"),
                                                   *InPlayerName.ToString(),
-                                                  *Entry.ItemObject->UniqueItemID,
+                                                  *Entry.ItemObject->DynamicItemData.UniqueItemID,
                                                   *Entry.ItemObject->DynamicItemData.ItemName.ToString(),
                                                   Entry.SlotIndex,
                                                   *Entry.SlotTag.ToString(),

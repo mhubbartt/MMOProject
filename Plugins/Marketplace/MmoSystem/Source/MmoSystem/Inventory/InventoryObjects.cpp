@@ -2,6 +2,9 @@
 
 
 #include "InventoryObjects.h"
+
+#include <string>
+#include "MmoSystem/StrucNEnumhHeaders.h"
 #include "MmoSystem/Inventory/InventoryComponent.h"
 #include "MmoSystem/GlobalsNTags.h"
 #include "InventoryManager/InventorySaveBlobStruct.h"
@@ -41,6 +44,9 @@ void FInventoryList::AddItem(FName ItemName, UBasePrimaryItem* StaticItemData,
 	
 	if (ItemInstance)
 	{
+		DynamicItemData.UniqueItemID = FGuid::NewGuid().ToString();
+		CalculateStackId( DynamicItemData);
+		
 		ItemInstance->DynamicItemData.ItemName = ItemName;
 		ItemInstance->ItemData = StaticItemData;
 		ItemInstance->DynamicItemData = DynamicItemData;	
@@ -84,9 +90,86 @@ void FInventoryList::AddItem(FName ItemName, UBasePrimaryItem* StaticItemData,
 
 }
 
-bool FInventoryList::RemoveItem(FInvEntry Item)
+void FInventoryList::RemoveItem(FName UniqueItemID, int32 QuantityToRemove, bool bDestroyAll, bool bIsConsumed)
 {
-	return false;
+	for (int32 i = 0; i < Inventory.Num(); i++)
+	{
+		FInvEntry& Entry = Inventory[i];
+
+		if (Entry.ItemObject && Entry.ItemObject->DynamicItemData.UniqueItemID == UniqueItemID)
+		{
+			// Apply consumable effects if applicable
+			if (bIsConsumed && Entry.ItemObject->ItemData->ItemType == MSGlobal::ItemType_Consumable)
+			{
+				ApplyConsumableEffects(Entry.ItemObject->DynamicItemData);
+			}
+
+			// Deduct quantity or remove entire stack
+			if (bDestroyAll || Entry.Quantity <= QuantityToRemove)
+			{
+				Inventory.RemoveAt(i);
+				MarkArrayDirty();
+			}
+			else
+			{
+				Entry.Quantity -= QuantityToRemove;
+				MarkItemDirty(Entry);
+			}
+
+			return;
+		}
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("Item with UniqueItemID %s not found in inventory."), *UniqueItemID.ToString());
+}
+
+
+void FInventoryList::ApplyConsumableEffects(FDynamicItemData ItemData)
+{
+	UE_LOG(LogTemp, Log, TEXT("Applying consumable effects for item: %s"), *ItemData.ItemName.ToString());
+
+	if (AActor* Owner = OwningInventory->GetOwner())
+	{
+		UAbilitySystemComponent* ASC = Owner->FindComponentByClass<UAbilitySystemComponent>();
+		if (ASC)
+		{
+			for (int32 i = 0; i < ItemData.StatsAndEffects.Num(); i++)
+			{
+				const FStatsAndEffects& StatEffect = ItemData.StatsAndEffects[i];
+				if (!StatEffect.GameplayEffect)
+				{
+					UE_LOG(LogTemp, Warning, TEXT("GameplayEffect is null for item: %s"), *ItemData.ItemName.ToString());
+					continue;
+				}
+
+				// Prepare the SetByCaller parameters
+				FGameplayEffectSpecHandle SpecHandle = ASC->MakeOutgoingSpec(
+					StatEffect.GameplayEffect->GetClass(),
+					1.0f, // Level of the effect
+					ASC->MakeEffectContext()
+				);
+
+				if (SpecHandle.IsValid())
+				{
+					FGameplayEffectSpec* Spec = SpecHandle.Data.Get();
+					if (Spec)
+					{
+						
+					
+						Spec->SetSetByCallerMagnitude(StatEffect.StatTag, StatEffect.StatAmount);
+						
+
+						// Apply the effect to the target (self in this case)
+						ASC->ApplyGameplayEffectSpecToTarget(*Spec, ASC);
+					}
+				}
+				else
+				{
+					UE_LOG(LogTemp, Warning, TEXT("Failed to create GameplayEffectSpec for item: %s"), *ItemData.ItemName.ToString());
+				}
+			}
+		}
+	}
 }
 
 bool FInventoryList::MoveItem(FInvEntry Item, int32 Index)
@@ -118,8 +201,7 @@ void UInvItemInstance::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty
 
 	DOREPLIFETIME(ThisClass, DynamicItemData);
 	DOREPLIFETIME(ThisClass, ItemData);
-	DOREPLIFETIME(ThisClass, StackID);
-	DOREPLIFETIME(ThisClass, UniqueItemID);
+
 }
 
 FInventoryList::FInventoryList(const TObjectPtr<UInventoryComponent>& InOwningInventory)
@@ -167,7 +249,18 @@ void FInventoryList::PostReplicatedChange(const TArrayView<int32> AddedIndices, 
 }
 
 
+void FInventoryList::CalculateStackId(FDynamicItemData DynamicItemData)
+{
 
+	FString LocalStackID = " ";
+	for ( int32 i = 0; i < DynamicItemData.StatsAndEffects.Num() ; i++)
+	{
+		LocalStackID += DynamicItemData.StatsAndEffects[i].StatTag.ToString();
+		LocalStackID += FString::FromInt(DynamicItemData.StatsAndEffects[i].StatAmount);
+		LocalStackID += DynamicItemData.StatsAndEffects[i].GameplayEffect->GetName();
+	}
+	DynamicItemData.StackID = LocalStackID;
+}
 
 
 

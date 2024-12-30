@@ -33,6 +33,8 @@ struct FStatsAndEffects
 		Ar << Struct.StatTag;
 		Ar << Struct.StatAmount;
 
+	
+
 		// Serialize the GameplayEffect class reference
 		UClass* GameplayEffectClass = Struct.GameplayEffect.Get();
 		Ar << GameplayEffectClass;
@@ -78,5 +80,11 @@ struct FDynamicItemData
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString CreatorID = "None"; // For ownership tracking
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	FString StackID = "";
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	FString UniqueItemID = "";
 	
 };

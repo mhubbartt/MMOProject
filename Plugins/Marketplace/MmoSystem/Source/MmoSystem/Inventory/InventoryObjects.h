@@ -31,11 +31,7 @@ public:
 	//~End of UObject interface
 	virtual void GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const override;
 
-	UPROPERTY(Replicated,EditAnywhere,BlueprintReadWrite)
-	FString StackID = "";
 
-	UPROPERTY(Replicated,EditAnywhere,BlueprintReadWrite)
-	FString UniqueItemID = "";
 
 	UPROPERTY(Replicated,EditAnywhere,BlueprintReadWrite)
 	TObjectPtr<UBasePrimaryItem> ItemData = nullptr;
@@ -105,10 +101,11 @@ struct FInventoryList : public FFastArraySerializer
 
    //~Main Functions
 	void AddItem(FName ItemName, UBasePrimaryItem* StaticItemData, FDynamicItemData DynamicItemData, int32 Quantity);
-	bool RemoveItem(FInvEntry Item);
+	void RemoveItem(FName UniqueItemID, int32 QuantityToRemove, bool bDestroyAll, bool bIsConsumed);
+	void ApplyConsumableEffects(FDynamicItemData ItemData);
 	bool MoveItem(FInvEntry Item, int32 Index);
 	bool LoadItemFromDatabase(FInventorySaveItem Item);
-	
+	void CalculateStackId(FDynamicItemData DynamicItemData);
 
 	bool NetDeltaSerialize(FNetDeltaSerializeInfo& DeltaParms)
 	{
@@ -117,6 +114,9 @@ struct FInventoryList : public FFastArraySerializer
 
 	
 };
+
+
+
 template<>
 struct TStructOpsTypeTraits<FInventoryList> : public TStructOpsTypeTraitsBase2<FInventoryList>
 {

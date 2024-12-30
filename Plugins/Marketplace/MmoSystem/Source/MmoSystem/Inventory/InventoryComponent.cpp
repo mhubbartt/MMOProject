@@ -108,5 +108,5 @@ void UInventoryComponent::AddItemToInventory_Implementation( FName ItemName, UBa
 }
 void UInventoryComponent::RemoveItemFromInventory_Implementation(FName UniqueItemID, int32 QuantityToRemove, bool bDestroyAll, bool bIsConsumed)
 {
-	// TODO:
+	InventoryList.RemoveItem(UniqueItemID, QuantityToRemove, bDestroyAll, bIsConsumed);
 }

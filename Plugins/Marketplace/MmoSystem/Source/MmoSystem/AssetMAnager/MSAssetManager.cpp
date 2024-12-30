@@ -18,14 +18,22 @@ T* UMSAssetManager::LoadItemAsset(const FPrimaryAssetId& AssetId)
 {
     if (LoadedAssets.Contains(AssetId))
     {
-        return Cast<T>(LoadedAssets[AssetId]);
+        UPrimaryDataAsset* CachedAsset = LoadedAssets[AssetId];
+        if (CachedAsset && CachedAsset->IsValidLowLevel())
+        {
+            return Cast<T>(CachedAsset);
+        }
+        else
+        {
+            LogInvalidAsset(AssetId, TEXT("Invalid cached asset"), TEXT("LoadItemAsset"));
+            LoadedAssets.Remove(AssetId); // Remove invalid cache entry
+        }
     }
 
     FSoftObjectPath AssetPath = GetPrimaryAssetPath(AssetId);
-
     if (!AssetPath.IsValid())
     {
-        LogInvalidAsset(AssetId, TEXT("Invalid asset path for sync load."));
+        LogInvalidAsset(AssetId, TEXT("Invalid asset path"), TEXT("LoadItemAsset"));
         return nullptr;
     }
 
@@ -34,7 +42,7 @@ T* UMSAssetManager::LoadItemAsset(const FPrimaryAssetId& AssetId)
 
     if (!LoadedObject)
     {
-        LogInvalidAsset(AssetId, TEXT("Failed to load asset synchronously."));
+        LogInvalidAsset(AssetId, TEXT("Failed to load asset synchronously"), TEXT("LoadItemAsset"));
         return nullptr;
     }
 
@@ -45,7 +53,7 @@ T* UMSAssetManager::LoadItemAsset(const FPrimaryAssetId& AssetId)
         return Cast<T>(LoadedAsset);
     }
 
-    LogInvalidAsset(AssetId, TEXT("Loaded object is not a UPrimaryDataAsset."));
+    LogInvalidAsset(AssetId, TEXT("Loaded object is not a UPrimaryDataAsset"), TEXT("LoadItemAsset"));
     return nullptr;
 }
 
@@ -199,7 +207,7 @@ void UMSAssetManager::PrintLoadedAssets() const
 void UMSAssetManager::StartInitialLoading()
 {
     Super::StartInitialLoading();
-
+    StartPeriodicCleanup(PeriodicCleanupInterval);
     TArray<FPrimaryAssetId> InitialAssets = {
         FPrimaryAssetId("Item.HealthPotion"),
         FPrimaryAssetId("Item.Sword")
@@ -209,7 +217,187 @@ void UMSAssetManager::StartInitialLoading()
     PrintLoadedAssets();
 }
 
-void UMSAssetManager::LogInvalidAsset(const FPrimaryAssetId& AssetId, const FString& Reason) const
+void UMSAssetManager::LogInvalidAsset(const FPrimaryAssetId& AssetId, const FString& Reason, const FString& Context) const
 {
-    UE_LOG(LogTemp, Error, TEXT("Asset ID: %s - %s"), *AssetId.ToString(), *Reason);
+    if (Context.IsEmpty())
+    {
+        UE_LOG(LogTemp, Error, TEXT("Asset ID: %s - %s"), *AssetId.ToString(), *Reason);
+    }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("[%s] Asset ID: %s - %s"), *Context, *AssetId.ToString(), *Reason);
+    }
+}
+template <typename T>
+void UMSAssetManager::LoadItemAssetAsyncWithRetry(const FPrimaryAssetId& AssetId, TFunction<void(T*)> Callback, int32 RetryCount)
+{
+    if (RetryCount <= 0)
+    {
+        LogInvalidAsset(AssetId, TEXT("Exceeded maximum retries for async load"), TEXT("LoadItemAssetAsyncWithRetry"));
+        Callback(nullptr);
+        return;
+    }
+
+    FSoftObjectPath AssetPath = GetPrimaryAssetPath(AssetId);
+    if (!AssetPath.IsValid())
+    {
+        LogInvalidAsset(AssetId, TEXT("Invalid asset path for async load"), TEXT("LoadItemAssetAsyncWithRetry"));
+        Callback(nullptr);
+        return;
+    }
+
+    FStreamableManager& Manager = UAssetManager::GetStreamableManager();
+    TSharedPtr<FStreamableHandle> Handle = Manager.RequestAsyncLoad(
+        AssetPath,
+        [this, AssetId, Callback, RetryCount, AssetPath]()
+        {
+            UObject* LoadedObject = AssetPath.ResolveObject();
+            if (!LoadedObject)
+            {
+                LogInvalidAsset(AssetId, TEXT("Retrying async load"), TEXT("LoadItemAssetAsyncWithRetry"));
+                LoadItemAssetAsyncWithRetry<T>(AssetId, Callback, RetryCount - 1);
+                return;
+            }
+
+            UPrimaryDataAsset* LoadedAsset = Cast<UPrimaryDataAsset>(LoadedObject);
+            if (LoadedAsset)
+            {
+                LoadedAssets.Add(AssetId, LoadedAsset);
+                Callback(Cast<T>(LoadedAsset));
+            }
+            else
+            {
+                LogInvalidAsset(AssetId, TEXT("Loaded object is not a UPrimaryDataAsset"), TEXT("LoadItemAssetAsyncWithRetry"));
+                Callback(nullptr);
+            }
+        },
+        FStreamableManager::AsyncLoadHighPriority
+    );
+
+    if (!Handle.IsValid())
+    {
+        LogInvalidAsset(AssetId, TEXT("Failed to initiate async load"), TEXT("LoadItemAssetAsyncWithRetry"));
+        Callback(nullptr);
+    }
+}
+template <typename T>
+void UMSAssetManager::LoadItemAssetAsyncWithTimeout(const FPrimaryAssetId& AssetId, TFunction<void(T*)> Callback, float TimeoutSeconds)
+{
+    FSoftObjectPath AssetPath = GetPrimaryAssetPath(AssetId);
+    if (!AssetPath.IsValid())
+    {
+        LogInvalidAsset(AssetId, TEXT("Invalid asset path for async load"), TEXT("LoadItemAssetAsyncWithTimeout"));
+        Callback(nullptr);
+        return;
+    }
+
+    FStreamableManager& StreamableManager = UAssetManager::GetStreamableManager();
+    TSharedPtr<FStreamableHandle> Handle = StreamableManager.RequestAsyncLoad(
+        AssetPath,
+        [this, AssetId, Callback,AssetPath]()
+        {
+            UObject* LoadedObject = AssetPath.ResolveObject();
+            if (!LoadedObject)
+            {
+                LogInvalidAsset(AssetId, TEXT("Async load failed within timeout"), TEXT("LoadItemAssetAsyncWithTimeout"));
+                Callback(nullptr);
+                return;
+            }
+
+            UPrimaryDataAsset* LoadedAsset = Cast<UPrimaryDataAsset>(LoadedObject);
+            if (LoadedAsset)
+            {
+                LoadedAssets.Add(AssetId, LoadedAsset);
+                Callback(Cast<T>(LoadedAsset));
+            }
+            else
+            {
+                LogInvalidAsset(AssetId, TEXT("Loaded object is not a UPrimaryDataAsset"), TEXT("LoadItemAssetAsyncWithTimeout"));
+                Callback(nullptr);
+            }
+        },
+        FStreamableManager::AsyncLoadHighPriority
+    );
+
+    if (!Handle.IsValid())
+    {
+        LogInvalidAsset(AssetId, TEXT("Failed to initiate async load"), TEXT("LoadItemAssetAsyncWithTimeout"));
+        Callback(nullptr);
+        return;
+    }
+
+    // Timeout Handling
+    FTimerHandle TimeoutHandle;
+    GetWorld()->GetTimerManager().SetTimer(
+        TimeoutHandle,
+        [this,Handle, AssetId, Callback]()
+        {
+            if (!Handle->HasLoadCompleted())
+            {
+                LogInvalidAsset(AssetId, TEXT("Async load timed out"), TEXT("LoadItemAssetAsyncWithTimeout"));
+                Callback(nullptr);
+            }
+        },
+        TimeoutSeconds,
+        false // Non-repeating timer
+    );
+}
+void UMSAssetManager::CleanupLoadedAssets()
+{
+    int32 RemovedCount = 0;
+
+    for (auto It = LoadedAssets.CreateIterator(); It; ++It)
+    {
+        if (!It->Value || !It->Value->IsValidLowLevel())
+        {
+            UE_LOG(LogTemp, Log, TEXT("Removing invalid or unused asset: %s"), *It->Key.ToString());
+            It.RemoveCurrent();
+            RemovedCount++;
+        }
+    }
+
+    if (RemovedCount > 0)
+    {
+        UE_LOG(LogTemp, Log, TEXT("Dynamic Cleanup: Removed %d invalid or unused assets from cache."), RemovedCount);
+    }
+    else
+    {
+        UE_LOG(LogTemp, Log, TEXT("Dynamic Cleanup: No assets removed. Cache is clean."));
+    }
+}
+
+void UMSAssetManager::StartPeriodicCleanup(float Interval)
+{
+    if (Interval <= 0.0f)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Invalid interval for periodic cleanup. Cleanup will not be started."));
+        return;
+    }
+
+    if (GetWorld())
+    {
+        GetWorld()->GetTimerManager().SetTimer(
+            CleanupTimerHandle,
+            this,
+            &UMSAssetManager::CleanupLoadedAssets,
+            Interval,
+            true // Loop the timer
+        );
+
+        UE_LOG(LogTemp, Log, TEXT("Periodic cleanup started with an interval of %.2f seconds."), Interval);
+    }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("Failed to start periodic cleanup: World is not valid."));
+    }
+}
+
+
+void UMSAssetManager::StopPeriodicCleanup()
+{
+    if (GetWorld())
+    {
+        GetWorld()->GetTimerManager().ClearTimer(CleanupTimerHandle);
+        UE_LOG(LogTemp, Log, TEXT("Periodic cleanup stopped."));
+    }
 }

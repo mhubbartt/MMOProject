@@ -21,7 +21,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 template<> MMOSYSTEM_API UScriptStruct* StaticStruct<struct FStatsAndEffects>();
 
-#define FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_ItemDynamicData_h_55_GENERATED_BODY \
+#define FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_ItemDynamicData_h_57_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FDynamicItemData_Statics; \
 	MMOSYSTEM_API static class UScriptStruct* StaticStruct();
 

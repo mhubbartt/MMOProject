@@ -25,9 +25,7 @@ public: \
 	enum class ENetFields_Private : uint16 \
 	{ \
 		NETFIELD_REP_START=(uint16)((int32)Super::ENetFields_Private::NETFIELD_REP_END + (int32)1), \
-		StackID=NETFIELD_REP_START, \
-		UniqueItemID, \
-		ItemData, \
+		ItemData=NETFIELD_REP_START, \
 		DynamicItemData, \
 		NETFIELD_REP_END=DynamicItemData	}; \
 	NO_API virtual void ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const override; \
@@ -60,7 +58,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 template<> MMOSYSTEM_API UClass* StaticClass<class UInvItemInstance>();
 
-#define FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryObjects_h_52_GENERATED_BODY \
+#define FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryObjects_h_48_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FInvEntry_Statics; \
 	MMOSYSTEM_API static class UScriptStruct* StaticStruct(); \
 	typedef FFastArraySerializerItem Super;
@@ -68,7 +66,7 @@ template<> MMOSYSTEM_API UClass* StaticClass<class UInvItemInstance>();
 
 template<> MMOSYSTEM_API UScriptStruct* StaticStruct<struct FInvEntry>();
 
-#define FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryObjects_h_78_GENERATED_BODY \
+#define FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryObjects_h_74_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FInventoryList_Statics; \
 	MMOSYSTEM_API static class UScriptStruct* StaticStruct(); \
 	typedef FFastArraySerializer Super; \

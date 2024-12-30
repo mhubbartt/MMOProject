@@ -16,6 +16,21 @@ class MMOSYSTEM_API UMSAssetManager : public UAssetManager
     GENERATED_BODY()
 
 public:
+    
+    /**
+ * Start periodic cleanup of LoadedAssets.
+ * This sets up a recurring timer to invoke CleanupLoadedAssets at regular intervals.
+ * 
+ * @param Interval The time interval (in seconds) between cleanups.
+ */
+    void StartPeriodicCleanup(float Interval);
+    void StopPeriodicCleanup();
+
+    /**
+         * Dynamically clean up unused or invalid assets from the cache.
+         * This function checks for assets that are no longer valid or in use and removes them from the LoadedAssets map.
+         */
+        void CleanupLoadedAssets();
     /**
      * Get the singleton instance of the Asset Manager.
      *
@@ -43,7 +58,14 @@ public:
      */
     template <typename T>
     void LoadItemAssetAsync(const FPrimaryAssetId& AssetId, TFunction<void(T*)> Callback);
+    
+    // Load an asset asynchronously with retries
+    template <typename T>
+    void LoadItemAssetAsyncWithRetry(const FPrimaryAssetId& AssetId, TFunction<void(T*)> Callback, int32 RetryCount);
 
+    // Load an asset asynchronously with a timeout
+    template <typename T>
+    void LoadItemAssetAsyncWithTimeout(const FPrimaryAssetId& AssetId, TFunction<void(T*)> Callback, float TimeoutSeconds);
     /**
      * Preload a list of assets and their dependencies.
      *
@@ -63,6 +85,13 @@ public:
     void PrintLoadedAssets() const;
 
 protected:
+
+    UPROPERTY(BlueprintReadWrite)
+    float PeriodicCleanupInterval = 120.0f;
+
+    /** Timer handle for scheduling dynamic cleanup. */
+    FTimerHandle CleanupTimerHandle;    
+    
     /**
      * Called during the initial loading process.
      *
@@ -84,14 +113,16 @@ private:
     void PreloadAssetWithDependencies(const FPrimaryAssetId& AssetId, TSet<FPrimaryAssetId>& LoadedSet);
 
     /**
-     * Log invalid assets for debugging.
-     *
-     * Outputs an error message to the log if an asset cannot be loaded or resolved.
-     *
-     * @param AssetId The primary asset ID of the invalid asset.
-     * @param Reason A description of why the asset is considered invalid.
-     */
-    void LogInvalidAsset(const FPrimaryAssetId& AssetId, const FString& Reason) const;
+ * Log invalid asset information for debugging.
+ *
+ * @param AssetId The primary asset ID of the invalid asset.
+ * @param Reason A description of why the asset is considered invalid.
+ * @param Context Additional context for the error, such as the calling function name.
+ */
+    void LogInvalidAsset(const FPrimaryAssetId& AssetId, const FString& Reason, const FString& Context = TEXT("")) const;
+
+
+
 
     /**
      * Cache for loaded assets to prevent redundant loading.

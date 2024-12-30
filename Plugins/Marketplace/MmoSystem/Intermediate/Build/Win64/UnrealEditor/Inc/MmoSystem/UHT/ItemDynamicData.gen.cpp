@@ -156,6 +156,20 @@ struct Z_Construct_UScriptStruct_FDynamicItemData_Statics
 		{ "ToolTip", "For ownership tracking" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StackID_MetaData[] = {
+		{ "Category", "DynamicItemData" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// For ownership tracking\n" },
+#endif
+		{ "ModuleRelativePath", "Inventory/ItemData/ItemDynamicData.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "For ownership tracking" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_UniqueItemID_MetaData[] = {
+		{ "Category", "DynamicItemData" },
+		{ "ModuleRelativePath", "Inventory/ItemData/ItemDynamicData.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FNamePropertyParams NewProp_ItemName;
 	static const UECodeGen_Private::FStrPropertyParams NewProp_Description;
@@ -166,6 +180,8 @@ struct Z_Construct_UScriptStruct_FDynamicItemData_Statics
 	static const UECodeGen_Private::FStructPropertyParams NewProp_ITemColor2;
 	static const UECodeGen_Private::FStrPropertyParams NewProp_OwnerID;
 	static const UECodeGen_Private::FStrPropertyParams NewProp_CreatorID;
+	static const UECodeGen_Private::FStrPropertyParams NewProp_StackID;
+	static const UECodeGen_Private::FStrPropertyParams NewProp_UniqueItemID;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static void* NewStructOps()
 	{
@@ -182,6 +198,8 @@ const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FDynami
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FDynamicItemData_Statics::NewProp_ITemColor2 = { "ITemColor2", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FDynamicItemData, ITemColor2), Z_Construct_UScriptStruct_FLinearColor, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ITemColor2_MetaData), NewProp_ITemColor2_MetaData) };
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FDynamicItemData_Statics::NewProp_OwnerID = { "OwnerID", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FDynamicItemData, OwnerID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OwnerID_MetaData), NewProp_OwnerID_MetaData) };
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FDynamicItemData_Statics::NewProp_CreatorID = { "CreatorID", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FDynamicItemData, CreatorID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CreatorID_MetaData), NewProp_CreatorID_MetaData) };
+const UECodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FDynamicItemData_Statics::NewProp_StackID = { "StackID", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FDynamicItemData, StackID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StackID_MetaData), NewProp_StackID_MetaData) };
+const UECodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FDynamicItemData_Statics::NewProp_UniqueItemID = { "UniqueItemID", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FDynamicItemData, UniqueItemID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_UniqueItemID_MetaData), NewProp_UniqueItemID_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FDynamicItemData_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FDynamicItemData_Statics::NewProp_ItemName,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FDynamicItemData_Statics::NewProp_Description,
@@ -192,6 +210,8 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FD
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FDynamicItemData_Statics::NewProp_ITemColor2,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FDynamicItemData_Statics::NewProp_OwnerID,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FDynamicItemData_Statics::NewProp_CreatorID,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FDynamicItemData_Statics::NewProp_StackID,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FDynamicItemData_Statics::NewProp_UniqueItemID,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FDynamicItemData_Statics::PropPointers) < 2048);
 const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FDynamicItemData_Statics::StructParams = {
@@ -222,10 +242,10 @@ struct Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace
 {
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
 		{ FStatsAndEffects::StaticStruct, Z_Construct_UScriptStruct_FStatsAndEffects_Statics::NewStructOps, TEXT("StatsAndEffects"), &Z_Registration_Info_UScriptStruct_StatsAndEffects, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FStatsAndEffects), 1159584597U) },
-		{ FDynamicItemData::StaticStruct, Z_Construct_UScriptStruct_FDynamicItemData_Statics::NewStructOps, TEXT("DynamicItemData"), &Z_Registration_Info_UScriptStruct_DynamicItemData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FDynamicItemData), 1272730908U) },
+		{ FDynamicItemData::StaticStruct, Z_Construct_UScriptStruct_FDynamicItemData_Statics::NewStructOps, TEXT("DynamicItemData"), &Z_Registration_Info_UScriptStruct_DynamicItemData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FDynamicItemData), 3846627065U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_ItemDynamicData_h_179710944(TEXT("/Script/MmoSystem"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_ItemDynamicData_h_2827296048(TEXT("/Script/MmoSystem"),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_ItemDynamicData_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_ItemDynamicData_h_Statics::ScriptStructInfo),
 	nullptr, 0);

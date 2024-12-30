@@ -44,14 +44,6 @@ struct Z_Construct_UClass_UInvItemInstance_Statics
 		{ "ModuleRelativePath", "Inventory/InventoryObjects.h" },
 		{ "ObjectInitializerConstructorDeclared", "" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StackID_MetaData[] = {
-		{ "Category", "InvItemInstance" },
-		{ "ModuleRelativePath", "Inventory/InventoryObjects.h" },
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_UniqueItemID_MetaData[] = {
-		{ "Category", "InvItemInstance" },
-		{ "ModuleRelativePath", "Inventory/InventoryObjects.h" },
-	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ItemData_MetaData[] = {
 		{ "Category", "InvItemInstance" },
 		{ "ModuleRelativePath", "Inventory/InventoryObjects.h" },
@@ -61,8 +53,6 @@ struct Z_Construct_UClass_UInvItemInstance_Statics
 		{ "ModuleRelativePath", "Inventory/InventoryObjects.h" },
 	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FStrPropertyParams NewProp_StackID;
-	static const UECodeGen_Private::FStrPropertyParams NewProp_UniqueItemID;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ItemData;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_DynamicItemData;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
@@ -72,13 +62,9 @@ struct Z_Construct_UClass_UInvItemInstance_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_UInvItemInstance_Statics::NewProp_StackID = { "StackID", nullptr, (EPropertyFlags)0x0010000000000025, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInvItemInstance, StackID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StackID_MetaData), NewProp_StackID_MetaData) };
-const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_UInvItemInstance_Statics::NewProp_UniqueItemID = { "UniqueItemID", nullptr, (EPropertyFlags)0x0010000000000025, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInvItemInstance, UniqueItemID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_UniqueItemID_MetaData), NewProp_UniqueItemID_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInvItemInstance_Statics::NewProp_ItemData = { "ItemData", nullptr, (EPropertyFlags)0x0114000000000025, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInvItemInstance, ItemData), Z_Construct_UClass_UBasePrimaryItem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ItemData_MetaData), NewProp_ItemData_MetaData) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UInvItemInstance_Statics::NewProp_DynamicItemData = { "DynamicItemData", nullptr, (EPropertyFlags)0x0010000000000025, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInvItemInstance, DynamicItemData), Z_Construct_UScriptStruct_FDynamicItemData, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DynamicItemData_MetaData), NewProp_DynamicItemData_MetaData) }; // 1272730908
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UInvItemInstance_Statics::NewProp_DynamicItemData = { "DynamicItemData", nullptr, (EPropertyFlags)0x0010000000000025, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInvItemInstance, DynamicItemData), Z_Construct_UScriptStruct_FDynamicItemData, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DynamicItemData_MetaData), NewProp_DynamicItemData_MetaData) }; // 3846627065
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UInvItemInstance_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInvItemInstance_Statics::NewProp_StackID,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInvItemInstance_Statics::NewProp_UniqueItemID,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInvItemInstance_Statics::NewProp_ItemData,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInvItemInstance_Statics::NewProp_DynamicItemData,
 };
@@ -117,13 +103,9 @@ template<> MMOSYSTEM_API UClass* StaticClass<UInvItemInstance>()
 }
 void UInvItemInstance::ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const
 {
-	static const FName Name_StackID(TEXT("StackID"));
-	static const FName Name_UniqueItemID(TEXT("UniqueItemID"));
 	static const FName Name_ItemData(TEXT("ItemData"));
 	static const FName Name_DynamicItemData(TEXT("DynamicItemData"));
 	const bool bIsValid = true
-		&& Name_StackID == ClassReps[(int32)ENetFields_Private::StackID].Property->GetFName()
-		&& Name_UniqueItemID == ClassReps[(int32)ENetFields_Private::UniqueItemID].Property->GetFName()
 		&& Name_ItemData == ClassReps[(int32)ENetFields_Private::ItemData].Property->GetFName()
 		&& Name_DynamicItemData == ClassReps[(int32)ENetFields_Private::DynamicItemData].Property->GetFName();
 	checkf(bIsValid, TEXT("UHT Generated Rep Indices do not match runtime populated Rep Indices for properties in UInvItemInstance"));
@@ -322,10 +304,10 @@ struct Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace
 		{ FInventoryList::StaticStruct, Z_Construct_UScriptStruct_FInventoryList_Statics::NewStructOps, TEXT("InventoryList"), &Z_Registration_Info_UScriptStruct_InventoryList, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FInventoryList), 969400203U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UInvItemInstance, UInvItemInstance::StaticClass, TEXT("UInvItemInstance"), &Z_Registration_Info_UClass_UInvItemInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UInvItemInstance), 4184898980U) },
+		{ Z_Construct_UClass_UInvItemInstance, UInvItemInstance::StaticClass, TEXT("UInvItemInstance"), &Z_Registration_Info_UClass_UInvItemInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UInvItemInstance), 2788858056U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryObjects_h_1961088265(TEXT("/Script/MmoSystem"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryObjects_h_1485631980(TEXT("/Script/MmoSystem"),
 	Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryObjects_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryObjects_h_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryObjects_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_InventoryObjects_h_Statics::ScriptStructInfo),
 	nullptr, 0);
