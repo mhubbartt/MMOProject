@@ -101,7 +101,7 @@ public:
 
 
 UCLASS(Blueprintable, BlueprintType)
-class UBaseWEquippablePrimaryItem : public UBasePrimaryItem
+class UBaseEquippablePrimaryItem : public UBasePrimaryItem
 {
 	GENERATED_BODY()
 
@@ -126,6 +126,26 @@ public:
 	TArray< FStatsAndEffects> StatsAndEffects = TArray<FStatsAndEffects>();
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Equipment Management")
-	TArray< UGameplayAbility*> WeaponAbilities = TArray<UGameplayAbility*>();
+	TArray< UGameplayAbility*> EquipmentAbilities = TArray<UGameplayAbility*>();
+	
+};
+
+UCLASS(Blueprintable, BlueprintType)
+class UBaseConsumablePrimaryItem : public UBasePrimaryItem
+{
+	GENERATED_BODY()
+
+public:
+
+
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Consumable Management")
+	UStaticMesh* WorldMesh = nullptr;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Consumable Management")
+	TArray< FStatsAndEffects> StatsAndEffects = TArray<FStatsAndEffects>();
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Consumable Management")
+	TArray< UGameplayAbility*> ConsumableAbilities = TArray<UGameplayAbility*>();
 	
 };

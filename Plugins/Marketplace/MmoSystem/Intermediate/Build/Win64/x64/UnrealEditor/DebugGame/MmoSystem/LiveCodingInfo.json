@@ -62,7 +62,6 @@
 			"InventorySaveBlobStruct.cpp.obj",
 			"InventoryObjects.cpp.obj",
 			"BasePrimaryItem.cpp.obj",
-			"ItemTypeTags.cpp.obj",
 			"MmoSystem.cpp.obj",
 			"MmoSystemBPLibrary.cpp.obj",
 			"PlayerData.cpp.obj",
@@ -70,7 +69,8 @@
 			"BaseCharacter.cpp.obj",
 			"NetCharacterMovementComponent.cpp.obj",
 			"NPCCharacter.cpp.obj",
-			"PlayerCharacter.cpp.obj"
+			"PlayerCharacter.cpp.obj",
+			"ItemTypeTags.cpp.obj"
 		],
 		"Module.MmoSystem.3.cpp.obj": [
 			"LoggingMacros.cpp.obj",

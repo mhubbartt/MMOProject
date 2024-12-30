@@ -3,8 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameplayTagContainer.h"
-#include "GameplayTags.h"
 #include "NativeGameplayTags.h"
 
 namespace MSGlobal

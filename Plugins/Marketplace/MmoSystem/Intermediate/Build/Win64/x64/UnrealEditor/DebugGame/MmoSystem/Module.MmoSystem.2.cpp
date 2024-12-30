@@ -40,7 +40,6 @@
 #include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/Inventory/InventoryManager/InventorySaveBlobStruct.cpp"
 #include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/Inventory/InventoryObjects.cpp"
 #include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/Inventory/ItemData/BasePrimaryItem.cpp"
-#include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/Inventory/ItemTypeTags.cpp"
 #include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/MmoSystem.cpp"
 #include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/MmoSystemBPLibrary.cpp"
 #include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/PlayerData/PlayerData.cpp"

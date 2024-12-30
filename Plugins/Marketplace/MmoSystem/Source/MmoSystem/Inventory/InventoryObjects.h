@@ -17,11 +17,6 @@ class UInventoryComponent;
 
 
 
-
-
-
-
-
 UCLASS()
 class UInvItemInstance : public UObject
 {
@@ -29,7 +24,8 @@ class UInvItemInstance : public UObject
 
 public:
 
-UInvItemInstance(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
+	UInvItemInstance(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
+	
 	//~UObject interface
 	virtual bool IsSupportedForNetworking() const override { return true; }
 	//~End of UObject interface
