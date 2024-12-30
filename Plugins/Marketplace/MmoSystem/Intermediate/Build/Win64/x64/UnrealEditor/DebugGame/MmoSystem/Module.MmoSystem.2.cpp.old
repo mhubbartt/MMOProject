@@ -40,5 +40,3 @@
 #include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/MmoSystemBPLibrary.cpp"
 #include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/PlayerData/PlayerData.cpp"
 #include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/PlayerData/PlayerDataSubsystem.cpp"
-#include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/Player/BaseCharacter.cpp"
-#include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/Player/NetCharacterMovementComponent.cpp"

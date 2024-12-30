@@ -87,13 +87,14 @@ void UInventoryComponent::ReadyForReplication()
 void UInventoryComponent::DebugInventory() 
 {	
 #if !UE_BUILD_SHIPPING
-	if (bShowDebug && !InventoryList.Inventory.IsEmpty())
+	for (int32 i = 0; i < InventoryList.Inventory.Num(); i++)
 	{
-		for (int32 i = 0; i < InventoryList.Inventory.Num(); i++)
-		{
-			const FString Name = InventoryList.Inventory[i].ItemObject->DynamicItemData.ItemName.ToString();            
-			MMO_INVENTORY_DEBUG(-1, 0.0f, FColor::Emerald, "Item Name: %s, Index: %hd, Quantity:  %hd", *Name, i, InventoryList.Inventory[i].Quantity);
-		}
+		const FInvEntry& Entry = InventoryList.Inventory[i];
+		UE_LOG(LogTemp, Log, TEXT("Item: %s, Index: %d, Quantity: %d, StackID: %s, UniqueID: %s"),
+			*Entry.ItemObject->DynamicItemData.ItemName.ToString(),
+			i, Entry.Quantity,
+			*Entry.ItemObject->DynamicItemData.StackID,
+			*Entry.ItemObject->DynamicItemData.UniqueItemID);
 	}
 #endif
 }
