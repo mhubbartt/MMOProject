@@ -4,6 +4,7 @@
 		"Module.MmoSystem.1.cpp.obj": [
 			"BaseAbility.gen.cpp.obj",
 			"BaseCharacter.gen.cpp.obj",
+			"BasePrimaryItem.gen.cpp.obj",
 			"BaseUserWidget.gen.cpp.obj",
 			"InteractionComponent.gen.cpp.obj",
 			"InteractionInterface.gen.cpp.obj",
@@ -13,12 +14,11 @@
 			"InventoryObjects.gen.cpp.obj",
 			"InventorySaveBlobStruct.gen.cpp.obj",
 			"ItemDynamicData.gen.cpp.obj",
+			"MmoSystem.init.gen.cpp.obj",
 			"MmoSystemBPLibrary.gen.cpp.obj",
 			"MSAbilitySystemComponent.gen.cpp.obj",
-			"MSAttributeSet.gen.cpp.obj",
-			"BasePrimaryItem.gen.cpp.obj",
-			"MmoSystem.init.gen.cpp.obj",
-			"MSAssetManager.gen.cpp.obj"
+			"MSAssetManager.gen.cpp.obj",
+			"MSAttributeSet.gen.cpp.obj"
 		],
 		"Module.MmoSystem.2.cpp.obj": [
 			"MSCameraAssistInterface.gen.cpp.obj",
@@ -53,12 +53,16 @@
 			"MSHUD.cpp.obj",
 			"MSPlayerController.cpp.obj",
 			"MSPlayerState.cpp.obj",
+			"GlobalsNTags.cpp.obj",
 			"InteractionComponent.cpp.obj",
 			"InteractionInterface.cpp.obj",
 			"WorldActor.cpp.obj",
 			"InventoryComponent.cpp.obj",
 			"InventoryManager.cpp.obj",
 			"InventorySaveBlobStruct.cpp.obj",
+			"InventoryObjects.cpp.obj",
+			"BasePrimaryItem.cpp.obj",
+			"ItemTypeTags.cpp.obj",
 			"MmoSystem.cpp.obj",
 			"MmoSystemBPLibrary.cpp.obj",
 			"PlayerData.cpp.obj",
@@ -66,11 +70,7 @@
 			"BaseCharacter.cpp.obj",
 			"NetCharacterMovementComponent.cpp.obj",
 			"NPCCharacter.cpp.obj",
-			"PlayerCharacter.cpp.obj",
-			"GlobalsNTags.cpp.obj",
-			"InventoryObjects.cpp.obj",
-			"BasePrimaryItem.cpp.obj",
-			"ItemTypeTags.cpp.obj"
+			"PlayerCharacter.cpp.obj"
 		],
 		"Module.MmoSystem.3.cpp.obj": [
 			"LoggingMacros.cpp.obj",
