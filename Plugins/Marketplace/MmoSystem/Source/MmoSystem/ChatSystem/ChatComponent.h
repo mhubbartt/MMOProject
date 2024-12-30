@@ -2,7 +2,6 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "Net/UnrealNetwork.h"
 #include "Net/Serialization/FastArraySerializer.h"
 #include "ChatComponent.generated.h"
 
@@ -50,6 +49,7 @@ class MMOSYSTEM_API UChatComponent : public UActorComponent
 public:
 	// Constructor
 	UChatComponent();
+	~UChatComponent();
 
 	// Add a chat message
 	UFUNCTION(Server, Reliable, WithValidation)
@@ -61,7 +61,14 @@ public:
 
 	// Add a message locally
 	UFUNCTION(BlueprintCallable, Category = "Chat")
-	void AddMessage(const FChatMessage& ChatMessage);
+	void AddMessage( FChatMessage ChatMessage);
+
+	UFUNCTION(BlueprintCallable, Category = "Chat")
+	void ReloadChatSettings();
+	void ModerateMessageAsync( FChatMessage ChatMessage, TFunction<void(bool)> Callback);
+
+	
+	FCriticalSection ChatHistoryMutex; 
 
 protected:
 	virtual void BeginPlay() override;
@@ -77,8 +84,8 @@ private:
 	void OnRep_ChatHistory();
 
 	// Thread-safe Python moderation
-	bool ModerateMessage(FChatMessage& ChatMessage);
+	bool ModerateMessage(FChatMessage ChatMessage);
 
 	// Asynchronous logging
-	void LogMessageAsync(const FChatMessage& ChatMessage);
+	void LogMessageAsync( FChatMessage ChatMessage);
 };

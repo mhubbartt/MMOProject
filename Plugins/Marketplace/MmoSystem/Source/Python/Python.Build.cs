@@ -8,7 +8,7 @@ public class Python : ModuleRules
         Type = ModuleType.External;
 
         string PythonPath = Path.GetFullPath(Path.Combine(ModuleDirectory, "Python/"));
-        string IncludePath = Path.GetFullPath(Path.Combine(PythonPath, "include/"));
+        string IncludePath = Path.GetFullPath(Path.Combine(ModuleDirectory, "include/"));
         // Include Python headers and libraries
         PublicIncludePaths.Add(IncludePath);
 

@@ -19,6 +19,7 @@
 			"MSAssetManager.gen.cpp.obj",
 			"MSAttributeSet.gen.cpp.obj",
 			"ChatComponent.gen.cpp.obj",
+			"ChatSettings.gen.cpp.obj",
 			"MmoSystem.init.gen.cpp.obj"
 		],
 		"Module.MmoSystem.2.cpp.obj": [

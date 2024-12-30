@@ -22,6 +22,7 @@ public class MmoSystem : ModuleRules
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
+				"Core",
 				"CoreUObject",
 				"Engine",
 				"Slate",
@@ -44,7 +45,10 @@ public class MmoSystem : ModuleRules
 				"BlueprintGraph",
 				"KismetCompiler",
 				"PythonScriptPlugin",
-				"Python"
+				"Python",
+				"DeveloperSettings",
+				"DesktopPlatform",
+				"MainFrame",
 				
 
 
