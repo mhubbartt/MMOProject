@@ -23,8 +23,12 @@ public class MySql : ModuleRules
             //RuntimeDependencies.Add(Path.Combine(LibraryPath, "libssl-1_1-x64.dll"));
 
             RuntimeDependencies.Add("$(BinaryOutputDir)/libmysql.dll", Path.Combine(LibraryPath, "libmysql.dll"));
-            RuntimeDependencies.Add("$(BinaryOutputDir)/libcrypto-1_1-x64.dll", Path.Combine(LibraryPath, "libcrypto-1_1-x64.dll"));
-            RuntimeDependencies.Add("$(BinaryOutputDir)/libssl-1_1-x64.dll", Path.Combine(LibraryPath, "libssl-1_1-x64.dll"));
+            RuntimeDependencies.Add("$(BinaryOutputDir)/libcrypto-1_1-x64.dll",
+                Path.Combine(LibraryPath, "libcrypto-1_1-x64.dll"));
+            RuntimeDependencies.Add("$(BinaryOutputDir)/libssl-1_1-x64.dll",
+                Path.Combine(LibraryPath, "libssl-1_1-x64.dll"));
+
+
         }
     }
 }

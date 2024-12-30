@@ -320,6 +320,9 @@
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\AnimGraphRuntime\UHT"
 /I "Runtime\AnimGraphRuntime\Public"
 /I "C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystem\Source\MySQL\include"
+/I "..\Plugins\Experimental\PythonScriptPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\PythonScriptPlugin\UHT"
+/I "..\Plugins\Experimental\PythonScriptPlugin\Source"
+/I "..\Plugins\Experimental\PythonScriptPlugin\Source\PythonScriptPlugin\Public"
 /I "C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystem\Intermediate\Build\Win64\UnrealEditor\Inc\MmoSystem\UHT"
 /I "C:\Users\Epoch\Documents\GitHub\MMOProject\Plugins\Marketplace\MmoSystem\Source"
 /external:W0

@@ -34180,6 +34180,10 @@
 			"Type": "UFS"
 		},
 		{
+			"Path": "$(EngineDir)/Plugins/Experimental/PythonFoundationPackages/PythonFoundationPackages.uplugin",
+			"Type": "UFS"
+		},
+		{
 			"Path": "$(EngineDir)/Plugins/Experimental/PythonScriptPlugin/PythonScriptPlugin.uplugin",
 			"Type": "UFS"
 		},
@@ -34724,6 +34728,7 @@
 		"PropertyAccessEditor",
 		"PropertyAccessNode",
 		"ProxyLODPlugin",
+		"PythonFoundationPackages",
 		"PythonScriptPlugin",
 		"RenderDocPlugin",
 		"RenderGraphInsights",

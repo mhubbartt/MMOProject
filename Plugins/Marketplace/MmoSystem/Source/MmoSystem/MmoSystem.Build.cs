@@ -14,6 +14,7 @@ public class MmoSystem : ModuleRules
 			new string[]
 			{
 				"Core",
+				"PythonScriptPlugin"
 				
 				// ... add other public dependencies that you statically link with here ...
 			}
@@ -42,13 +43,18 @@ public class MmoSystem : ModuleRules
 				"MySql",
 				"BlueprintGraph",
 				"KismetCompiler",
+				"PythonScriptPlugin",
+				"Python"
 				
 
 
 				// ... add private dependencies that you statically link with here ...	
 			}
 		);
-		 
+		
+
 	}
+		 
 }
+
 
