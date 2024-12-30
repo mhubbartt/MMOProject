@@ -58,25 +58,25 @@ template<> MMOSYSTEM_API UClass* StaticClass<class UBasePrimaryItem>();
 
 #define FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_BasePrimaryItem_h_106_INCLASS_NO_PURE_DECLS \
 private: \
-	static void StaticRegisterNativesUBaseWEquippablePrimaryItem(); \
-	friend struct Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics; \
+	static void StaticRegisterNativesUBaseEquippablePrimaryItem(); \
+	friend struct Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics; \
 public: \
-	DECLARE_CLASS(UBaseWEquippablePrimaryItem, UBasePrimaryItem, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/MmoSystem"), NO_API) \
-	DECLARE_SERIALIZER(UBaseWEquippablePrimaryItem)
+	DECLARE_CLASS(UBaseEquippablePrimaryItem, UBasePrimaryItem, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/MmoSystem"), NO_API) \
+	DECLARE_SERIALIZER(UBaseEquippablePrimaryItem)
 
 
 #define FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_BasePrimaryItem_h_106_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API UBaseWEquippablePrimaryItem(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+	NO_API UBaseEquippablePrimaryItem(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
-	UBaseWEquippablePrimaryItem(UBaseWEquippablePrimaryItem&&); \
-	UBaseWEquippablePrimaryItem(const UBaseWEquippablePrimaryItem&); \
+	UBaseEquippablePrimaryItem(UBaseEquippablePrimaryItem&&); \
+	UBaseEquippablePrimaryItem(const UBaseEquippablePrimaryItem&); \
 public: \
-	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UBaseWEquippablePrimaryItem); \
-	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UBaseWEquippablePrimaryItem); \
-	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UBaseWEquippablePrimaryItem) \
-	NO_API virtual ~UBaseWEquippablePrimaryItem();
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UBaseEquippablePrimaryItem); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UBaseEquippablePrimaryItem); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UBaseEquippablePrimaryItem) \
+	NO_API virtual ~UBaseEquippablePrimaryItem();
 
 
 #define FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_BasePrimaryItem_h_103_PROLOG
@@ -89,7 +89,42 @@ private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-template<> MMOSYSTEM_API UClass* StaticClass<class UBaseWEquippablePrimaryItem>();
+template<> MMOSYSTEM_API UClass* StaticClass<class UBaseEquippablePrimaryItem>();
+
+#define FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_BasePrimaryItem_h_136_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUBaseConsumablePrimaryItem(); \
+	friend struct Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics; \
+public: \
+	DECLARE_CLASS(UBaseConsumablePrimaryItem, UBasePrimaryItem, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/MmoSystem"), NO_API) \
+	DECLARE_SERIALIZER(UBaseConsumablePrimaryItem)
+
+
+#define FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_BasePrimaryItem_h_136_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UBaseConsumablePrimaryItem(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	UBaseConsumablePrimaryItem(UBaseConsumablePrimaryItem&&); \
+	UBaseConsumablePrimaryItem(const UBaseConsumablePrimaryItem&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UBaseConsumablePrimaryItem); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UBaseConsumablePrimaryItem); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UBaseConsumablePrimaryItem) \
+	NO_API virtual ~UBaseConsumablePrimaryItem();
+
+
+#define FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_BasePrimaryItem_h_133_PROLOG
+#define FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_BasePrimaryItem_h_136_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_BasePrimaryItem_h_136_INCLASS_NO_PURE_DECLS \
+	FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_BasePrimaryItem_h_136_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> MMOSYSTEM_API UClass* StaticClass<class UBaseConsumablePrimaryItem>();
 
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_BasePrimaryItem_h

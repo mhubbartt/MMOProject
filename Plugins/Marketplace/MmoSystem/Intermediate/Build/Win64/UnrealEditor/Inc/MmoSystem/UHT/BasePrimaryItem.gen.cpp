@@ -19,10 +19,12 @@ ENGINE_API UClass* Z_Construct_UClass_UStaticMesh_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UTexture2D_NoRegister();
 GAMEPLAYABILITIES_API UClass* Z_Construct_UClass_UGameplayAbility_NoRegister();
 GAMEPLAYTAGS_API UScriptStruct* Z_Construct_UScriptStruct_FGameplayTag();
+MMOSYSTEM_API UClass* Z_Construct_UClass_UBaseConsumablePrimaryItem();
+MMOSYSTEM_API UClass* Z_Construct_UClass_UBaseConsumablePrimaryItem_NoRegister();
+MMOSYSTEM_API UClass* Z_Construct_UClass_UBaseEquippablePrimaryItem();
+MMOSYSTEM_API UClass* Z_Construct_UClass_UBaseEquippablePrimaryItem_NoRegister();
 MMOSYSTEM_API UClass* Z_Construct_UClass_UBasePrimaryItem();
 MMOSYSTEM_API UClass* Z_Construct_UClass_UBasePrimaryItem_NoRegister();
-MMOSYSTEM_API UClass* Z_Construct_UClass_UBaseWEquippablePrimaryItem();
-MMOSYSTEM_API UClass* Z_Construct_UClass_UBaseWEquippablePrimaryItem_NoRegister();
 MMOSYSTEM_API UScriptStruct* Z_Construct_UScriptStruct_FItemDependency();
 MMOSYSTEM_API UScriptStruct* Z_Construct_UScriptStruct_FStatsAndEffects();
 UPackage* Z_Construct_UPackage__Script_MmoSystem();
@@ -285,16 +287,16 @@ DEFINE_VTABLE_PTR_HELPER_CTOR(UBasePrimaryItem);
 UBasePrimaryItem::~UBasePrimaryItem() {}
 // End Class UBasePrimaryItem
 
-// Begin Class UBaseWEquippablePrimaryItem
-void UBaseWEquippablePrimaryItem::StaticRegisterNativesUBaseWEquippablePrimaryItem()
+// Begin Class UBaseEquippablePrimaryItem
+void UBaseEquippablePrimaryItem::StaticRegisterNativesUBaseEquippablePrimaryItem()
 {
 }
-IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UBaseWEquippablePrimaryItem);
-UClass* Z_Construct_UClass_UBaseWEquippablePrimaryItem_NoRegister()
+IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UBaseEquippablePrimaryItem);
+UClass* Z_Construct_UClass_UBaseEquippablePrimaryItem_NoRegister()
 {
-	return UBaseWEquippablePrimaryItem::StaticClass();
+	return UBaseEquippablePrimaryItem::StaticClass();
 }
-struct Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics
+struct Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
@@ -327,7 +329,7 @@ struct Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics
 		{ "Category", "Equipment Management" },
 		{ "ModuleRelativePath", "Inventory/ItemData/BasePrimaryItem.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_WeaponAbilities_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_EquipmentAbilities_MetaData[] = {
 		{ "Category", "Equipment Management" },
 		{ "ModuleRelativePath", "Inventory/ItemData/BasePrimaryItem.h" },
 	};
@@ -340,76 +342,169 @@ struct Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_WorldMesh;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_StatsAndEffects_Inner;
 	static const UECodeGen_Private::FArrayPropertyParams NewProp_StatsAndEffects;
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_WeaponAbilities_Inner;
-	static const UECodeGen_Private::FArrayPropertyParams NewProp_WeaponAbilities;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_EquipmentAbilities_Inner;
+	static const UECodeGen_Private::FArrayPropertyParams NewProp_EquipmentAbilities;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
-		TCppClassTypeTraits<UBaseWEquippablePrimaryItem>::IsAbstract,
+		TCppClassTypeTraits<UBaseEquippablePrimaryItem>::IsAbstract,
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::NewProp_EquipmentSlotTag = { "EquipmentSlotTag", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBaseWEquippablePrimaryItem, EquipmentSlotTag), Z_Construct_UScriptStruct_FGameplayTag, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_EquipmentSlotTag_MetaData), NewProp_EquipmentSlotTag_MetaData) }; // 1298103297
-void Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::NewProp_bIsTwoHanded_SetBit(void* Obj)
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::NewProp_EquipmentSlotTag = { "EquipmentSlotTag", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBaseEquippablePrimaryItem, EquipmentSlotTag), Z_Construct_UScriptStruct_FGameplayTag, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_EquipmentSlotTag_MetaData), NewProp_EquipmentSlotTag_MetaData) }; // 1298103297
+void Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::NewProp_bIsTwoHanded_SetBit(void* Obj)
 {
-	((UBaseWEquippablePrimaryItem*)Obj)->bIsTwoHanded = 1;
+	((UBaseEquippablePrimaryItem*)Obj)->bIsTwoHanded = 1;
 }
-const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::NewProp_bIsTwoHanded = { "bIsTwoHanded", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UBaseWEquippablePrimaryItem), &Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::NewProp_bIsTwoHanded_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsTwoHanded_MetaData), NewProp_bIsTwoHanded_MetaData) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::NewProp_Handedness = { "Handedness", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBaseWEquippablePrimaryItem, Handedness), Z_Construct_UScriptStruct_FGameplayTag, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Handedness_MetaData), NewProp_Handedness_MetaData) }; // 1298103297
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::NewProp_EquipedMesh = { "EquipedMesh", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBaseWEquippablePrimaryItem, EquipedMesh), Z_Construct_UClass_USkeletalMesh_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_EquipedMesh_MetaData), NewProp_EquipedMesh_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::NewProp_WorldMesh = { "WorldMesh", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBaseWEquippablePrimaryItem, WorldMesh), Z_Construct_UClass_UStaticMesh_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_WorldMesh_MetaData), NewProp_WorldMesh_MetaData) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::NewProp_StatsAndEffects_Inner = { "StatsAndEffects", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FStatsAndEffects, METADATA_PARAMS(0, nullptr) }; // 1159584597
-const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::NewProp_StatsAndEffects = { "StatsAndEffects", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBaseWEquippablePrimaryItem, StatsAndEffects), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatsAndEffects_MetaData), NewProp_StatsAndEffects_MetaData) }; // 1159584597
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::NewProp_WeaponAbilities_Inner = { "WeaponAbilities", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UGameplayAbility_NoRegister, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::NewProp_WeaponAbilities = { "WeaponAbilities", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBaseWEquippablePrimaryItem, WeaponAbilities), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_WeaponAbilities_MetaData), NewProp_WeaponAbilities_MetaData) };
-const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::NewProp_EquipmentSlotTag,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::NewProp_bIsTwoHanded,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::NewProp_Handedness,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::NewProp_EquipedMesh,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::NewProp_WorldMesh,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::NewProp_StatsAndEffects_Inner,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::NewProp_StatsAndEffects,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::NewProp_WeaponAbilities_Inner,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::NewProp_WeaponAbilities,
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::NewProp_bIsTwoHanded = { "bIsTwoHanded", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UBaseEquippablePrimaryItem), &Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::NewProp_bIsTwoHanded_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsTwoHanded_MetaData), NewProp_bIsTwoHanded_MetaData) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::NewProp_Handedness = { "Handedness", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBaseEquippablePrimaryItem, Handedness), Z_Construct_UScriptStruct_FGameplayTag, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Handedness_MetaData), NewProp_Handedness_MetaData) }; // 1298103297
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::NewProp_EquipedMesh = { "EquipedMesh", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBaseEquippablePrimaryItem, EquipedMesh), Z_Construct_UClass_USkeletalMesh_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_EquipedMesh_MetaData), NewProp_EquipedMesh_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::NewProp_WorldMesh = { "WorldMesh", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBaseEquippablePrimaryItem, WorldMesh), Z_Construct_UClass_UStaticMesh_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_WorldMesh_MetaData), NewProp_WorldMesh_MetaData) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::NewProp_StatsAndEffects_Inner = { "StatsAndEffects", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FStatsAndEffects, METADATA_PARAMS(0, nullptr) }; // 1159584597
+const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::NewProp_StatsAndEffects = { "StatsAndEffects", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBaseEquippablePrimaryItem, StatsAndEffects), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatsAndEffects_MetaData), NewProp_StatsAndEffects_MetaData) }; // 1159584597
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::NewProp_EquipmentAbilities_Inner = { "EquipmentAbilities", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UGameplayAbility_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::NewProp_EquipmentAbilities = { "EquipmentAbilities", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBaseEquippablePrimaryItem, EquipmentAbilities), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_EquipmentAbilities_MetaData), NewProp_EquipmentAbilities_MetaData) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::NewProp_EquipmentSlotTag,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::NewProp_bIsTwoHanded,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::NewProp_Handedness,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::NewProp_EquipedMesh,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::NewProp_WorldMesh,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::NewProp_StatsAndEffects_Inner,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::NewProp_StatsAndEffects,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::NewProp_EquipmentAbilities_Inner,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::NewProp_EquipmentAbilities,
 };
-static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::PropPointers) < 2048);
-UObject* (*const Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::DependentSingletons[])() = {
+static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::PropPointers) < 2048);
+UObject* (*const Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::DependentSingletons[])() = {
 	(UObject* (*)())Z_Construct_UClass_UBasePrimaryItem,
 	(UObject* (*)())Z_Construct_UPackage__Script_MmoSystem,
 };
-static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::DependentSingletons) < 16);
-const UECodeGen_Private::FClassParams Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::ClassParams = {
-	&UBaseWEquippablePrimaryItem::StaticClass,
+static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::DependentSingletons) < 16);
+const UECodeGen_Private::FClassParams Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::ClassParams = {
+	&UBaseEquippablePrimaryItem::StaticClass,
 	nullptr,
 	&StaticCppClassTypeInfo,
 	DependentSingletons,
 	nullptr,
-	Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::PropPointers,
+	Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::PropPointers,
 	nullptr,
 	UE_ARRAY_COUNT(DependentSingletons),
 	0,
-	UE_ARRAY_COUNT(Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::PropPointers),
+	UE_ARRAY_COUNT(Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::PropPointers),
 	0,
 	0x000000A0u,
-	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::Class_MetaDataParams), Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::Class_MetaDataParams)
+	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::Class_MetaDataParams), Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::Class_MetaDataParams)
 };
-UClass* Z_Construct_UClass_UBaseWEquippablePrimaryItem()
+UClass* Z_Construct_UClass_UBaseEquippablePrimaryItem()
 {
-	if (!Z_Registration_Info_UClass_UBaseWEquippablePrimaryItem.OuterSingleton)
+	if (!Z_Registration_Info_UClass_UBaseEquippablePrimaryItem.OuterSingleton)
 	{
-		UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UBaseWEquippablePrimaryItem.OuterSingleton, Z_Construct_UClass_UBaseWEquippablePrimaryItem_Statics::ClassParams);
+		UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UBaseEquippablePrimaryItem.OuterSingleton, Z_Construct_UClass_UBaseEquippablePrimaryItem_Statics::ClassParams);
 	}
-	return Z_Registration_Info_UClass_UBaseWEquippablePrimaryItem.OuterSingleton;
+	return Z_Registration_Info_UClass_UBaseEquippablePrimaryItem.OuterSingleton;
 }
-template<> MMOSYSTEM_API UClass* StaticClass<UBaseWEquippablePrimaryItem>()
+template<> MMOSYSTEM_API UClass* StaticClass<UBaseEquippablePrimaryItem>()
 {
-	return UBaseWEquippablePrimaryItem::StaticClass();
+	return UBaseEquippablePrimaryItem::StaticClass();
 }
-UBaseWEquippablePrimaryItem::UBaseWEquippablePrimaryItem(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {}
-DEFINE_VTABLE_PTR_HELPER_CTOR(UBaseWEquippablePrimaryItem);
-UBaseWEquippablePrimaryItem::~UBaseWEquippablePrimaryItem() {}
-// End Class UBaseWEquippablePrimaryItem
+UBaseEquippablePrimaryItem::UBaseEquippablePrimaryItem(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {}
+DEFINE_VTABLE_PTR_HELPER_CTOR(UBaseEquippablePrimaryItem);
+UBaseEquippablePrimaryItem::~UBaseEquippablePrimaryItem() {}
+// End Class UBaseEquippablePrimaryItem
+
+// Begin Class UBaseConsumablePrimaryItem
+void UBaseConsumablePrimaryItem::StaticRegisterNativesUBaseConsumablePrimaryItem()
+{
+}
+IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UBaseConsumablePrimaryItem);
+UClass* Z_Construct_UClass_UBaseConsumablePrimaryItem_NoRegister()
+{
+	return UBaseConsumablePrimaryItem::StaticClass();
+}
+struct Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "IncludePath", "Inventory/ItemData/BasePrimaryItem.h" },
+		{ "IsBlueprintBase", "true" },
+		{ "ModuleRelativePath", "Inventory/ItemData/BasePrimaryItem.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_WorldMesh_MetaData[] = {
+		{ "Category", "Consumable Management" },
+		{ "ModuleRelativePath", "Inventory/ItemData/BasePrimaryItem.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StatsAndEffects_MetaData[] = {
+		{ "Category", "Consumable Management" },
+		{ "ModuleRelativePath", "Inventory/ItemData/BasePrimaryItem.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ConsumableAbilities_MetaData[] = {
+		{ "Category", "Consumable Management" },
+		{ "ModuleRelativePath", "Inventory/ItemData/BasePrimaryItem.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_WorldMesh;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_StatsAndEffects_Inner;
+	static const UECodeGen_Private::FArrayPropertyParams NewProp_StatsAndEffects;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_ConsumableAbilities_Inner;
+	static const UECodeGen_Private::FArrayPropertyParams NewProp_ConsumableAbilities;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static UObject* (*const DependentSingletons[])();
+	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
+		TCppClassTypeTraits<UBaseConsumablePrimaryItem>::IsAbstract,
+	};
+	static const UECodeGen_Private::FClassParams ClassParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics::NewProp_WorldMesh = { "WorldMesh", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBaseConsumablePrimaryItem, WorldMesh), Z_Construct_UClass_UStaticMesh_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_WorldMesh_MetaData), NewProp_WorldMesh_MetaData) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics::NewProp_StatsAndEffects_Inner = { "StatsAndEffects", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FStatsAndEffects, METADATA_PARAMS(0, nullptr) }; // 1159584597
+const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics::NewProp_StatsAndEffects = { "StatsAndEffects", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBaseConsumablePrimaryItem, StatsAndEffects), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatsAndEffects_MetaData), NewProp_StatsAndEffects_MetaData) }; // 1159584597
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics::NewProp_ConsumableAbilities_Inner = { "ConsumableAbilities", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UGameplayAbility_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics::NewProp_ConsumableAbilities = { "ConsumableAbilities", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBaseConsumablePrimaryItem, ConsumableAbilities), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ConsumableAbilities_MetaData), NewProp_ConsumableAbilities_MetaData) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics::NewProp_WorldMesh,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics::NewProp_StatsAndEffects_Inner,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics::NewProp_StatsAndEffects,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics::NewProp_ConsumableAbilities_Inner,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics::NewProp_ConsumableAbilities,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics::PropPointers) < 2048);
+UObject* (*const Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics::DependentSingletons[])() = {
+	(UObject* (*)())Z_Construct_UClass_UBasePrimaryItem,
+	(UObject* (*)())Z_Construct_UPackage__Script_MmoSystem,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics::DependentSingletons) < 16);
+const UECodeGen_Private::FClassParams Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics::ClassParams = {
+	&UBaseConsumablePrimaryItem::StaticClass,
+	nullptr,
+	&StaticCppClassTypeInfo,
+	DependentSingletons,
+	nullptr,
+	Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics::PropPointers,
+	nullptr,
+	UE_ARRAY_COUNT(DependentSingletons),
+	0,
+	UE_ARRAY_COUNT(Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics::PropPointers),
+	0,
+	0x000000A0u,
+	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics::Class_MetaDataParams), Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics::Class_MetaDataParams)
+};
+UClass* Z_Construct_UClass_UBaseConsumablePrimaryItem()
+{
+	if (!Z_Registration_Info_UClass_UBaseConsumablePrimaryItem.OuterSingleton)
+	{
+		UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UBaseConsumablePrimaryItem.OuterSingleton, Z_Construct_UClass_UBaseConsumablePrimaryItem_Statics::ClassParams);
+	}
+	return Z_Registration_Info_UClass_UBaseConsumablePrimaryItem.OuterSingleton;
+}
+template<> MMOSYSTEM_API UClass* StaticClass<UBaseConsumablePrimaryItem>()
+{
+	return UBaseConsumablePrimaryItem::StaticClass();
+}
+UBaseConsumablePrimaryItem::UBaseConsumablePrimaryItem(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {}
+DEFINE_VTABLE_PTR_HELPER_CTOR(UBaseConsumablePrimaryItem);
+UBaseConsumablePrimaryItem::~UBaseConsumablePrimaryItem() {}
+// End Class UBaseConsumablePrimaryItem
 
 // Begin Registration
 struct Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_BasePrimaryItem_h_Statics
@@ -419,10 +514,11 @@ struct Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
 		{ Z_Construct_UClass_UBasePrimaryItem, UBasePrimaryItem::StaticClass, TEXT("UBasePrimaryItem"), &Z_Registration_Info_UClass_UBasePrimaryItem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBasePrimaryItem), 374586826U) },
-		{ Z_Construct_UClass_UBaseWEquippablePrimaryItem, UBaseWEquippablePrimaryItem::StaticClass, TEXT("UBaseWEquippablePrimaryItem"), &Z_Registration_Info_UClass_UBaseWEquippablePrimaryItem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBaseWEquippablePrimaryItem), 617910433U) },
+		{ Z_Construct_UClass_UBaseEquippablePrimaryItem, UBaseEquippablePrimaryItem::StaticClass, TEXT("UBaseEquippablePrimaryItem"), &Z_Registration_Info_UClass_UBaseEquippablePrimaryItem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBaseEquippablePrimaryItem), 1129817069U) },
+		{ Z_Construct_UClass_UBaseConsumablePrimaryItem, UBaseConsumablePrimaryItem::StaticClass, TEXT("UBaseConsumablePrimaryItem"), &Z_Registration_Info_UClass_UBaseConsumablePrimaryItem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBaseConsumablePrimaryItem), 2015013447U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_BasePrimaryItem_h_180900114(TEXT("/Script/MmoSystem"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_BasePrimaryItem_h_873126452(TEXT("/Script/MmoSystem"),
 	Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_BasePrimaryItem_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_BasePrimaryItem_h_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_BasePrimaryItem_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Documents_GitHub_MMOProject_Plugins_Marketplace_MmoSystem_Source_MmoSystem_Inventory_ItemData_BasePrimaryItem_h_Statics::ScriptStructInfo),
 	nullptr, 0);

@@ -60,11 +60,9 @@
             "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\plugins\\runtime\\gameplayabilities\\intermediate\\build\\win64\\unrealeditor\\inc\\gameplayabilities\\uht\\gameplayeffect.generated.h",
             "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\unrealeditor\\inc\\mmosystem\\uht\\itemdynamicdata.generated.h",
             "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\inventory\\itemtypetags.h",
-            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\gameplaytags\\public\\gameplaytags.h",
-            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\core\\public\\misc\\monolithicheaderboilerplate.h",
+            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\gameplaytags\\public\\nativegameplaytags.h",
             "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\gameplaytags\\classes\\gameplaytagsmanager.h",
             "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\gameplaytags\\uht\\gameplaytagsmanager.generated.h",
-            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\gameplaytags\\public\\nativegameplaytags.h",
             "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\intermediate\\build\\win64\\unrealeditor\\inc\\mmosystem\\uht\\baseprimaryitem.generated.h"
         ],
         "ImportedModules": [],

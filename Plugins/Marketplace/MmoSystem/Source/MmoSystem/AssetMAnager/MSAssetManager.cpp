@@ -109,11 +109,12 @@ void UMSAssetManager::PreloadAssets(const TArray<FPrimaryAssetId>& AssetIds)
 
 void UMSAssetManager::PreloadAssetWithDependencies(const FPrimaryAssetId& AssetId, TSet<FPrimaryAssetId>& LoadedSet)
 {
-    if (LoadedSet.Contains(AssetId))
+     if (LoadedSet.Contains(AssetId))
     {
         return; // Prevent duplicate loads
     }
 
+    // Load main asset synchronously
     UBasePrimaryItem* Asset = LoadItemAsset<UBasePrimaryItem>(AssetId);
     if (!Asset)
     {
@@ -124,11 +125,58 @@ void UMSAssetManager::PreloadAssetWithDependencies(const FPrimaryAssetId& AssetI
     UE_LOG(LogTemp, Log, TEXT("Preloading Asset: %s"), *AssetId.ToString());
     LoadedSet.Add(AssetId);
 
-    // Resolve dependencies using the custom struct
+    // Collect dependencies
     TArray<FPrimaryAssetId> ResolvedDependencies = Asset->GetResolvedDependencies();
+    TArray<FSoftObjectPath> DependencyPaths;
+
     for (const FPrimaryAssetId& DependencyId : ResolvedDependencies)
     {
-        PreloadAssetWithDependencies(DependencyId, LoadedSet);
+        if (!LoadedSet.Contains(DependencyId))
+        {
+            FSoftObjectPath AssetPath = GetPrimaryAssetPath(DependencyId);
+            if (AssetPath.IsValid())
+            {
+                DependencyPaths.Add(AssetPath);
+            }
+            else
+            {
+                LogInvalidAsset(DependencyId, TEXT("Invalid dependency path."));
+            }
+        }
+    }
+
+    // Asynchronously load all dependencies in a batch
+    if (DependencyPaths.Num() > 0)
+    {
+        FStreamableManager& Manager = UAssetManager::GetStreamableManager();
+        TSharedPtr<FStreamableHandle> Handle = Manager.RequestAsyncLoad(
+            DependencyPaths,
+            [this, ResolvedDependencies, &LoadedSet]()
+            {
+                for (const FPrimaryAssetId& DependencyId : ResolvedDependencies)
+                {
+                    if (!LoadedSet.Contains(DependencyId))
+                    {
+                        UBasePrimaryItem* LoadedDependency = LoadItemAsset<UBasePrimaryItem>(DependencyId);
+                        if (LoadedDependency)
+                        {
+                            UE_LOG(LogTemp, Log, TEXT("Successfully loaded dependency: %s"), *DependencyId.ToString());
+                            LoadedSet.Add(DependencyId);
+                        }
+                        else
+                        {
+                            LogInvalidAsset(DependencyId, TEXT("Failed to load dependency asynchronously."));
+                        }
+                    }
+                }
+            },
+            FStreamableManager::AsyncLoadHighPriority
+        );
+
+        if (!Handle.IsValid())
+        {
+            UE_LOG(LogTemp, Warning, TEXT("Failed to initiate async load for dependencies."));
+        }
     }
 }
 
