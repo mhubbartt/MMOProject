@@ -391,11 +391,6 @@
             "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\game\\msgameinstance.cpp",
             "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\game\\msgamemode.cpp",
             "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\game\\mshud.cpp",
-            "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\game\\msplayercontroller.cpp",
-            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\engine\\classes\\gameframework\\gamestatebase.h",
-            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\gamestatebase.generated.h",
-            "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\systemmessages\\loggingmacros.h",
-            "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\uloggermacros.h",
             "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\game\\msplayerstate.cpp",
             "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\globalsntags.cpp",
             "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\interaction\\interactioncomponent.cpp",
@@ -476,14 +471,12 @@
             "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\engine\\public\\net\\datareplication.h",
             "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\core\\public\\containers\\staticbitarray.h",
             "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\actorchannel.generated.h",
+            "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\systemmessages\\loggingmacros.h",
             "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\inventory\\inventorymanager\\inventorymanager.cpp",
             "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\inventory\\inventorymanager\\inventorysaveblobstruct.cpp",
             "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\core\\public\\serialization\\bufferarchive.h",
             "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\coreuobject\\public\\serialization\\objectandnameasstringproxyarchive.h",
-            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\core\\public\\serialization\\nameasstringproxyarchive.h",
-            "c:\\users\\epoch\\documents\\github\\mmoproject\\plugins\\marketplace\\mmosystem\\source\\mmosystem\\inventory\\inventoryobjects.cpp",
-            "c:\\program files\\microsoft visual studio\\2022\\preview\\vc\\tools\\msvc\\14.38.33130\\include\\string",
-            "c:\\program files\\microsoft visual studio\\2022\\preview\\vc\\tools\\msvc\\14.38.33130\\include\\cctype"
+            "c:\\users\\epoch\\desktop\\unrealengine-release\\engine\\source\\runtime\\core\\public\\serialization\\nameasstringproxyarchive.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

@@ -1,23 +1,45 @@
 #include "ChatComponent.h"
 
+#include <chrono>
+
 #include "ChatSettings.h"
 #include "Python.h"
+#include "PythonManager.h"
 #include "HAL/PlatformFilemanager.h"
 #include "GameFramework/Actor.h"
+#include "GameFramework/PlayerState.h"
 #include "Net/UnrealNetwork.h"
 
 
+
+// Global Python lifecycle variables
+static std::atomic<int> PythonInstanceCount = 0;
+static bool bPythonAvailable = true; // Tracks Python availability
+
+// Thread-safe timestamp generator
+FString GetTimestamp()
+{
+    auto Now = std::chrono::system_clock::now();
+    auto Time = std::chrono::system_clock::to_time_t(Now);
+    char Buffer[26];
+    ctime_s(Buffer, sizeof(Buffer), &Time);
+    return FString(Buffer).TrimEnd(); // Trim trailing newline
+}
 
 UChatComponent::UChatComponent()
 {
     PrimaryComponentTick.bCanEverTick = false;
     SetIsReplicatedByDefault(true);
-    Py_Initialize(); // Initialize Python once
+
+    // Use PythonManager for lifecycle management
+    PythonManager::GetInstance().Initialize();
 }
 
 UChatComponent::~UChatComponent()
-{
-    Py_Finalize(); // Finalize Python when the component is destroyed
+{    
+    
+    PythonManager::GetInstance().Finalize();
+    
 }
 
 
@@ -47,7 +69,7 @@ void UChatComponent::ServerSendMessage_Implementation(const FString& Sender, con
     ChatMessage.Channel = Channel;
     ChatMessage.Timestamp = FDateTime::Now();
 
-    ModerateMessageAsync(ChatMessage, [this, Sender, Channel, ChatMessage](bool bIsApproved)
+    ModerateMessageAsync(ChatMessage, [this, Sender, ChatMessage](bool bIsApproved)
     {
         if (bIsApproved)
         {
@@ -55,18 +77,7 @@ void UChatComponent::ServerSendMessage_Implementation(const FString& Sender, con
         }
         else
         {
-            if (APlayerController* PC = Cast<APlayerController>(GetOwner()))
-            {
-                PC->ClientMessage(FString::Printf(TEXT("Your message was moderated: %s"), *ChatMessage.Message));
-            }
-
-            FChatMessage ModerationNotice;
-            ModerationNotice.Sender = TEXT("System");
-            ModerationNotice.Message = FString::Printf(TEXT("%s's message was moderated."), *Sender);
-            ModerationNotice.Channel = Channel;
-            ModerationNotice.Timestamp = FDateTime::Now();
-
-            AddMessage(ModerationNotice);
+            NotifySender(Sender, FString::Printf(TEXT("Your message was moderated: %s"), *ChatMessage.Message));
         }
     });
 }
@@ -84,37 +95,65 @@ void UChatComponent::ClientReceiveMessage_Implementation(const FChatMessage& Cha
 
 void UChatComponent::AddMessage( FChatMessage ChatMessage)
 {
-    FScopeLock Lock(&ChatHistoryMutex); // Lock the mutex
+    FScopeLock Lock(&ChatHistoryMutex); // Ensure thread safety
 
-    const UChatSettings* Settings = GetDefault<UChatSettings>();
-    const int32 MaxMessages = Settings->MaxChatHistory;
-
-    if (ChatHistory.Num() >= MaxMessages)
+    if (MaxChatHistory == 1)
     {
-        ChatHistory.RemoveAt(0);
+        ChatHistory.SetNum(1);
+        CircularIndex = 0;
+        UE_LOG(LogTemp, Log, TEXT("Buffer size is 1. Overwriting the single message with [%s: %s]."), 
+               *ChatMessage.Sender, *ChatMessage.Message);
+        ChatHistory[CircularIndex] = ChatMessage;
+        return;
     }
 
-    ChatHistory.Add(ChatMessage);
-    LogMessageAsync(ChatMessage);
+    if (ChatHistory.Num() < MaxChatHistory)
+    {
+        ChatHistory.Add(ChatMessage);
+    }
+    else
+    {
+        UE_LOG(LogTemp, Log, TEXT("Overwriting message [%s: %s] at CircularIndex %d."),
+               *ChatHistory[CircularIndex].Sender, *ChatHistory[CircularIndex].Message, CircularIndex);
+
+        ChatHistory[CircularIndex] = ChatMessage;
+
+        // Log when CircularIndex wraps to 0
+        if (CircularIndex == MaxChatHistory - 1)
+        {
+            UE_LOG(LogTemp, Log, TEXT("CircularIndex wrapped to 0. Buffer is full."));
+        }
+
+        CircularIndex = (CircularIndex + 1) % MaxChatHistory;
+    }
+
+    UE_LOG(LogTemp, Log, TEXT("Added message [%s: %s] at CircularIndex %d."),
+           *ChatMessage.Sender, *ChatMessage.Message, CircularIndex);
+
+ 
 }
 
 void UChatComponent::OnRep_ChatHistory()
 {
-    for (const FChatMessage& Message : ChatHistory)
-    {
-        // Notify UI or other systems
-    }
+    // Notify the client that the chat history has been updated
+    UE_LOG(LogTemp, Log, TEXT("Chat history replicated to client."));
+
+    // Update the chat UI (assuming a method exists for this)
+    UpdateChatUI(ChatHistory);
 }
 
 bool UChatComponent::ModerateMessage(FChatMessage ChatMessage)
 {
-    const UChatSettings* Settings = GetDefault<UChatSettings>();
-
-    if (!Py_IsInitialized())
+    if (!PythonManager::GetInstance().IsPythonAvailable())
     {
-        UE_LOG(LogTemp, Warning, TEXT("Python is not initialized. Falling back to C++ moderation."));
+        UE_LOG(LogTemp, Warning, TEXT("Python unavailable. Skipping moderation."));
+        return true; // Allow all messages if moderation is disabled
+    }
 
-        // Fallback moderation logic
+    // Existing moderation logic...
+    const UChatSettings* Settings = GetDefault<UChatSettings>();
+    if (Settings->bEnableProfanityFilter)
+    {
         for (const FString& Word : Settings->ProhibitedWords)
         {
             if (ChatMessage.Message.Contains(Word))
@@ -123,61 +162,8 @@ bool UChatComponent::ModerateMessage(FChatMessage ChatMessage)
                 return false; // Message rejected
             }
         }
-
-        return true; // Message passed moderation
     }
-
-    // Python moderation logic
-    FString ProhibitedWordsString = FString::Join(Settings->ProhibitedWords, TEXT(", "));
-    FString PythonScript = FString::Printf(TEXT(R"(
-prohibited_words = [%s]
-def moderate_message(sender, message, channel):
-    for word in prohibited_words:
-        if word in message.lower():
-            return f"[Moderated]: {sender}, your message contains prohibited content."
-    return message
-)"), *ProhibitedWordsString);
-
-    PyRun_SimpleString(TCHAR_TO_UTF8(*PythonScript));
-
-    PyObject* pModule = PyImport_AddModule("__main__");
-    PyObject* pFunc = PyObject_GetAttrString(pModule, "moderate_message");
-
-    if (pFunc && PyCallable_Check(pFunc))
-    {
-        PyObject* pArgs = PyTuple_Pack(3,
-            PyUnicode_FromString(TCHAR_TO_UTF8(*ChatMessage.Sender)),
-            PyUnicode_FromString(TCHAR_TO_UTF8(*ChatMessage.Message)),
-            PyUnicode_FromString(TCHAR_TO_UTF8(*ChatMessage.Channel))
-        );
-
-        PyObject* pResult = PyObject_CallObject(pFunc, pArgs);
-
-        if (pResult)
-        {
-            FString Result = UTF8_TO_TCHAR(PyUnicode_AsUTF8(pResult));
-            Py_DECREF(pResult);
-
-            if (!Result.IsEmpty() && Result != ChatMessage.Message)
-            {
-                ChatMessage.Message = Result;
-                return false; // Moderation rejected the message
-            }
-        }
-        else
-        {
-            PyErr_Print(); // Log Python errors
-        }
-
-        Py_XDECREF(pArgs);
-    }
-    else
-    {
-        UE_LOG(LogTemp, Error, TEXT("Failed to call Python moderation function."));
-        PyErr_Print();
-    }
-
-    return true; // Allow message if Python fails
+    return true;
 }
 
 
@@ -200,10 +186,19 @@ void UChatComponent::LogMessageAsync( FChatMessage ChatMessage)
 void UChatComponent::ReloadChatSettings()
 {
     const UChatSettings* Settings = GetDefault<UChatSettings>();
-    UE_LOG(LogTemp, Log, TEXT("Settings Reloaded: MaxChatHistory = %d, DefaultChannel = %s, Moderation = %s"),
-           Settings->MaxChatHistory,
-           *Settings->DefaultChannel,
-           Settings->bEnableModeration ? TEXT("Enabled") : TEXT("Disabled"));
+
+    MaxChatHistory = Settings->MaxChatHistory;
+
+    // Validate MaxChatHistory
+    if (MaxChatHistory <= 0)
+    {
+        UE_LOG(LogTemp, Error, TEXT("Invalid MaxChatHistory value: %d. Resetting to default 10."), MaxChatHistory);
+        MaxChatHistory = 10; // Reset to a default value
+    }
+
+    // Ensure ChatHistory size matches MaxChatHistory
+    ChatHistory.SetNum(MaxChatHistory);
+    CircularIndex = 0; // Reset CircularIndex
 }
 
 
@@ -222,3 +217,115 @@ void UChatComponent::ModerateMessageAsync( FChatMessage ChatMessage, TFunction<v
         });
     });
 }
+
+TArray<FChatMessage> UChatComponent::GetOrderedChatHistory()
+{
+    FScopeLock Lock(&ChatHistoryMutex);
+
+    TArray<FChatMessage> OrderedHistory;
+
+    if (ChatHistory.Num() < MaxChatHistory)
+    {
+        return ChatHistory; // No wrapping; return as is
+    }
+
+    // Extract messages starting from CircularIndex
+    for (int32 i = CircularIndex; i < ChatHistory.Num(); ++i)
+    {
+        OrderedHistory.Add(ChatHistory[i]);
+    }
+
+    // Add messages from the beginning up to CircularIndex
+    for (int32 i = 0; i < CircularIndex; ++i)
+    {
+        OrderedHistory.Add(ChatHistory[i]);
+    }
+
+    return OrderedHistory;
+}
+
+void UChatComponent::NotifySender(const FString& Sender, const FString& Message)
+{
+    // Find the player controller associated with the sender
+    APlayerController* SenderController = FindPlayerController(Sender);
+
+    if (SenderController)
+    {
+        // Send the message to the sender
+        SenderController->ClientMessage(Message);
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Could not find PlayerController for sender: %s"), *Sender);
+    }
+}
+
+APlayerController* UChatComponent::FindPlayerController(const FString& PlayerName)
+{
+    for (FConstPlayerControllerIterator It = GetWorld()->GetPlayerControllerIterator(); It; ++It)
+    {
+        APlayerController* PC = It->Get();
+        if (PC && PC->PlayerState && PC->PlayerState->GetPlayerName() == PlayerName)
+        {
+            return PC;
+        }
+    }
+
+    return nullptr;
+}
+
+void UChatComponent::UpdateChatUI(const TArray<FChatMessage>& UpdatedHistory)
+{
+    // Iterate through updated chat messages and display them in the UI
+    for (const FChatMessage& Message : UpdatedHistory)
+    {
+        UE_LOG(LogTemp, Log, TEXT("[%s] %s: %s"), *Message.Timestamp.ToString(), *Message.Sender, *Message.Message);
+        // Add messages to the UI here
+    }
+}
+
+void UChatComponent::InitializePython()
+{
+    int RetryCount = 3; // Number of retries for initialization
+    bool bInitialized = false;
+
+    for (int Attempt = 1; Attempt <= RetryCount; ++Attempt)
+    {
+        Py_Initialize();
+        if (Py_IsInitialized())
+        {
+            UE_LOG(LogTemp, Log, TEXT("[%s] Python initialized successfully on attempt %d."), *GetTimestamp(), Attempt);
+            bInitialized = true;
+            break;
+        }
+        else
+        {
+            UE_LOG(LogTemp, Warning, TEXT("[%s] Python initialization failed on attempt %d."), *GetTimestamp(), Attempt);
+        }
+    }
+
+    if (!bInitialized)
+    {
+        bPythonAvailable = false;
+        UE_LOG(LogTemp, Error, TEXT("[%s] Python failed to initialize after multiple attempts. Disabling Python-dependent features."), *GetTimestamp());
+        throw std::runtime_error("Python initialization failed.");
+    }
+}
+
+void UChatComponent::FinalizePython()
+{
+    if (bPythonAvailable)
+    {
+        Py_Finalize();
+        if (Py_IsInitialized())
+        {
+            UE_LOG(LogTemp, Error, TEXT("[%s] Python failed to finalize properly."), *GetTimestamp());
+            throw std::runtime_error("Python finalization failed.");
+        }
+        else
+        {
+            UE_LOG(LogTemp, Log, TEXT("[%s] Python finalized successfully."), *GetTimestamp());
+        }
+    }
+}
+

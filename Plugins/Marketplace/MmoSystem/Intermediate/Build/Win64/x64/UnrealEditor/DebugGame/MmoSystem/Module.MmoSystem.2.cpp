@@ -29,7 +29,6 @@
 #include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/Game/MSGameInstance.cpp"
 #include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/Game/MSGameMode.cpp"
 #include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/Game/MSHUD.cpp"
-#include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/Game/MSPlayerController.cpp"
 #include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/Game/MSPlayerState.cpp"
 #include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/GlobalsNTags.cpp"
 #include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/Interaction/InteractionComponent.cpp"
@@ -38,4 +37,3 @@
 #include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/Inventory/InventoryComponent.cpp"
 #include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/Inventory/InventoryManager/InventoryManager.cpp"
 #include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/Inventory/InventoryManager/InventorySaveBlobStruct.cpp"
-#include "C:/Users/Epoch/Documents/GitHub/MMOProject/Plugins/Marketplace/MmoSystem/Source/MmoSystem/Inventory/InventoryObjects.cpp"

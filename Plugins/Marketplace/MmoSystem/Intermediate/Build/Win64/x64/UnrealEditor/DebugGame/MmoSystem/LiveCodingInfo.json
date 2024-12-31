@@ -53,7 +53,6 @@
 			"MSGameInstance.cpp.obj",
 			"MSGameMode.cpp.obj",
 			"MSHUD.cpp.obj",
-			"MSPlayerController.cpp.obj",
 			"MSPlayerState.cpp.obj",
 			"GlobalsNTags.cpp.obj",
 			"InteractionComponent.cpp.obj",
@@ -62,10 +61,12 @@
 			"InventoryComponent.cpp.obj",
 			"InventoryManager.cpp.obj",
 			"InventorySaveBlobStruct.cpp.obj",
-			"InventoryObjects.cpp.obj",
-			"ChatComponent.cpp.obj"
+			"ChatComponent.cpp.obj",
+			"PythonManager.cpp.obj",
+			"MSPlayerController.cpp.obj"
 		],
 		"Module.MmoSystem.3.cpp.obj": [
+			"InventoryObjects.cpp.obj",
 			"BasePrimaryItem.cpp.obj",
 			"ItemTypeTags.cpp.obj",
 			"MmoSystem.cpp.obj",

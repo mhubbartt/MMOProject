@@ -2,11 +2,10 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "Net/Serialization/FastArraySerializer.h"
 #include "ChatComponent.generated.h"
 
 USTRUCT(BlueprintType)
-struct FChatMessage : public FFastArraySerializerItem
+struct FChatMessage
 {
 	GENERATED_BODY()
 
@@ -23,20 +22,7 @@ struct FChatMessage : public FFastArraySerializerItem
 	FDateTime Timestamp;
 };
 
-USTRUCT(BlueprintType)
-struct FChatHistory : public FFastArraySerializer
-{
-	GENERATED_BODY()
 
-	UPROPERTY()
-	TArray<FChatMessage> Messages;
-
-	void AddMessage(const FChatMessage& NewMessage)
-	{
-		Messages.Add(NewMessage);
-		MarkItemDirty(Messages.Last());
-	}
-};
 
 /**
  * Chat Component for managing chat messages
@@ -49,8 +35,10 @@ class MMOSYSTEM_API UChatComponent : public UActorComponent
 public:
 	// Constructor
 	UChatComponent();
-	~UChatComponent();
+	virtual ~UChatComponent() override;
+	
 
+	
 	// Add a chat message
 	UFUNCTION(Server, Reliable, WithValidation)
 	void ServerSendMessage(const FString& Sender, const FString& Message, const FString& Channel);
@@ -62,12 +50,25 @@ public:
 	// Add a message locally
 	UFUNCTION(BlueprintCallable, Category = "Chat")
 	void AddMessage( FChatMessage ChatMessage);
+	
+	UFUNCTION(BlueprintCallable, Category = "Chat")
+	void NotifySender(const FString& Sender, const FString& Message);
+	APlayerController* FindPlayerController(const FString& PlayerName);
 
 	UFUNCTION(BlueprintCallable, Category = "Chat")
 	void ReloadChatSettings();
 	void ModerateMessageAsync( FChatMessage ChatMessage, TFunction<void(bool)> Callback);
 
 	
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Chat")
+	int32 MaxChatHistory = 100;
+
+	TArray<FChatMessage> GetOrderedChatHistory();
+	void UpdateChatUI(const TArray<FChatMessage>& UpdatedHistory);
+	void InitializePython();
+	void FinalizePython();
+
 	FCriticalSection ChatHistoryMutex; 
 
 protected:
@@ -75,9 +76,15 @@ protected:
 	virtual void GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const override;
 
 private:
-	// Chat history
-	UPROPERTY(ReplicatedUsing = OnRep_ChatHistory)
-	TArray<FChatMessage> ChatHistory;
+
+	UPROPERTY(ReplicatedUsing=OnRep_ChatHistory)	
+	TArray<FChatMessage> ChatHistory; // Fixed-size buffer for chat messages
+
+
+
+	int32 CircularIndex = 0; // Tracks the current position
+
+
 
 	// Replication handler
 	UFUNCTION()

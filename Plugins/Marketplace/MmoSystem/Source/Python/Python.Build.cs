@@ -5,7 +5,8 @@ public class Python : ModuleRules
 {
     public Python(ReadOnlyTargetRules Target) : base(Target)
     {
-        Type = ModuleType.External;
+	    PrivateDependencyModuleNames.AddRange(new string[] { "MmoSystem" });
+	    Type = ModuleType.External;
 
         string PythonPath = Path.GetFullPath(Path.Combine(ModuleDirectory, "Python/"));
         string IncludePath = Path.GetFullPath(Path.Combine(ModuleDirectory, "include/"));

@@ -99,3 +99,4 @@ UInventoryManager* AMSPlayerController::GetInventoryComponent() const
 {
 	return InventoryComponent;
 }
+

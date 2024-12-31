@@ -13,6 +13,11 @@ class MMOSYSTEM_API UChatSettings : public UDeveloperSettings
 	GENERATED_BODY()
 
 public:
+
+	// Enable or disable profanity filtering
+	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category="Moderation")
+	bool bEnableProfanityFilter = true;
+	
 	// Maximum number of messages in chat history
 	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category="Chat")
 	int32 MaxChatHistory = 100;
