@@ -4,6 +4,30 @@
 #include "Engine/DeveloperSettings.h"
 #include "ChatSettings.generated.h"
 
+
+
+UCLASS()
+class UChatSettingsAsset : public UPrimaryDataAsset
+{
+	GENERATED_BODY()
+
+public:
+	FPrimaryAssetId SettingID;
+	
+};
+
+UCLASS()
+class UProhibitedWords : public UChatSettingsAsset
+{
+	GENERATED_BODY()
+
+public:
+	TArray<FString> ProhibitedWords;
+	
+};
+
+
+
 /**
  * Configuration for the chat system, accessible in Project Settings.
  */
@@ -31,9 +55,13 @@ public:
 	bool bEnableModeration = true;
 
 	// Prohibited words for moderation
-	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category="Moderation")
-	TArray<FString> ProhibitedWords = { "badword1", "badword2" };
+	UPROPERTY( EditAnywhere, BlueprintReadOnly, Category="Moderation")
+	UProhibitedWords* ProhibitedWords = nullptr;
 
 	// Returns the category for this settings page in Project Settings
-	virtual FName GetCategoryName() const override { return FName("Chat"); }
+	virtual FName GetCategoryName() const override { return FName("Chat Settings"); }
+
+	
 };
+
+

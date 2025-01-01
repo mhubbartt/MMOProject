@@ -4,6 +4,13 @@
 #include "Components/ActorComponent.h"
 #include "ChatComponent.generated.h"
 
+
+class UChatSettings;
+
+
+
+
+
 USTRUCT(BlueprintType)
 struct FChatMessage
 {
@@ -23,7 +30,7 @@ struct FChatMessage
 };
 
 
-
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnChatHistoryUpdated, const TArray<FChatMessage>&, UpdatedHistory);
 /**
  * Chat Component for managing chat messages
  */
@@ -36,7 +43,7 @@ public:
 	// Constructor
 	UChatComponent();
 	virtual ~UChatComponent() override;
-	
+	APlayerController* FindPlayerController(const FString& PlayerName);
 
 	
 	// Add a chat message
@@ -53,46 +60,46 @@ public:
 	
 	UFUNCTION(BlueprintCallable, Category = "Chat")
 	void NotifySender(const FString& Sender, const FString& Message);
-	APlayerController* FindPlayerController(const FString& PlayerName);
 
 	UFUNCTION(BlueprintCallable, Category = "Chat")
 	void ReloadChatSettings();
-	void ModerateMessageAsync( FChatMessage ChatMessage, TFunction<void(bool)> Callback);
+	
+	UFUNCTION(BlueprintCallable, Category = "Chat")
+	TArray<FChatMessage> GetOrderedChatHistory();
+	
+	UFUNCTION(BlueprintCallable, Category = "Chat")
+	void UpdateChatUI(const TArray<FChatMessage>& UpdatedHistory);
+
 
 	
+	// Delegates
+	UPROPERTY(BlueprintAssignable, Category = "Chat")
+	FOnChatHistoryUpdated OnChatHistoryUpdated;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Chat")
-	int32 MaxChatHistory = 100;
 
-	TArray<FChatMessage> GetOrderedChatHistory();
-	void UpdateChatUI(const TArray<FChatMessage>& UpdatedHistory);
-	void InitializePython();
-	void FinalizePython();
 
-	FCriticalSection ChatHistoryMutex; 
 
 protected:
 	virtual void BeginPlay() override;
 	virtual void GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const override;
+
+	// Replication handler
+	UFUNCTION()
+	void OnRep_ChatHistory();
+
+	
+	bool ModerateMessage(FChatMessage ChatMessage);
+	void ModerateMessageAsync( FChatMessage ChatMessage, TFunction<void(bool)> Callback);
+	void LogMessageAsync( FChatMessage ChatMessage);
 
 private:
 
 	UPROPERTY(ReplicatedUsing=OnRep_ChatHistory)	
 	TArray<FChatMessage> ChatHistory; // Fixed-size buffer for chat messages
 
-
-
 	int32 CircularIndex = 0; // Tracks the current position
-
-
-
-	// Replication handler
-	UFUNCTION()
-	void OnRep_ChatHistory();
-
-	// Thread-safe Python moderation
-	bool ModerateMessage(FChatMessage ChatMessage);
-
-	// Asynchronous logging
-	void LogMessageAsync( FChatMessage ChatMessage);
+	
+	FCriticalSection ChatHistoryMutex;
+	UPROPERTY()
+	UChatSettings* ChatSettings = nullptr;
 };

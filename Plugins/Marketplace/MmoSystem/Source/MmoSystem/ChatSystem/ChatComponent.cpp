@@ -1,20 +1,11 @@
 #include "ChatComponent.h"
-
 #include <chrono>
-
 #include "ChatSettings.h"
-#include "Python.h"
-#include "PythonManager.h"
-#include "HAL/PlatformFilemanager.h"
-#include "GameFramework/Actor.h"
-#include "GameFramework/PlayerState.h"
 #include "Net/UnrealNetwork.h"
 
+DEFINE_LOG_CATEGORY_STATIC(ChatComponentLog, Log, All);
 
 
-// Global Python lifecycle variables
-static std::atomic<int> PythonInstanceCount = 0;
-static bool bPythonAvailable = true; // Tracks Python availability
 
 // Thread-safe timestamp generator
 FString GetTimestamp()
@@ -30,15 +21,13 @@ UChatComponent::UChatComponent()
 {
     PrimaryComponentTick.bCanEverTick = false;
     SetIsReplicatedByDefault(true);
+    ChatSettings = GetMutableDefault<UChatSettings>();
 
-    // Use PythonManager for lifecycle management
-    PythonManager::GetInstance().Initialize();
 }
 
-UChatComponent::~UChatComponent()
-{    
+UChatComponent::~UChatComponent(){    
     
-    PythonManager::GetInstance().Finalize();
+
     
 }
 
@@ -59,7 +48,7 @@ void UChatComponent::ServerSendMessage_Implementation(const FString& Sender, con
 {
     if (Message.IsEmpty() || Channel.IsEmpty())
     {
-        UE_LOG(LogTemp, Warning, TEXT("Invalid message or channel"));
+        UE_LOG(ChatComponentLog, Warning, TEXT("Invalid message or channel"));
         return;
     }
 
@@ -97,37 +86,37 @@ void UChatComponent::AddMessage( FChatMessage ChatMessage)
 {
     FScopeLock Lock(&ChatHistoryMutex); // Ensure thread safety
 
-    if (MaxChatHistory == 1)
+    if (ChatSettings->MaxChatHistory == 1)
     {
         ChatHistory.SetNum(1);
         CircularIndex = 0;
-        UE_LOG(LogTemp, Log, TEXT("Buffer size is 1. Overwriting the single message with [%s: %s]."), 
+        UE_LOG(ChatComponentLog, Log, TEXT("Buffer size is 1. Overwriting the single message with [%s: %s]."), 
                *ChatMessage.Sender, *ChatMessage.Message);
         ChatHistory[CircularIndex] = ChatMessage;
         return;
     }
 
-    if (ChatHistory.Num() < MaxChatHistory)
+    if (ChatHistory.Num() < ChatSettings->MaxChatHistory)
     {
         ChatHistory.Add(ChatMessage);
     }
     else
     {
-        UE_LOG(LogTemp, Log, TEXT("Overwriting message [%s: %s] at CircularIndex %d."),
+        UE_LOG(ChatComponentLog, Log, TEXT("Overwriting message [%s: %s] at CircularIndex %d."),
                *ChatHistory[CircularIndex].Sender, *ChatHistory[CircularIndex].Message, CircularIndex);
 
         ChatHistory[CircularIndex] = ChatMessage;
 
         // Log when CircularIndex wraps to 0
-        if (CircularIndex == MaxChatHistory - 1)
+        if (CircularIndex == ChatSettings->MaxChatHistory - 1)
         {
-            UE_LOG(LogTemp, Log, TEXT("CircularIndex wrapped to 0. Buffer is full."));
+            UE_LOG(ChatComponentLog, Log, TEXT("CircularIndex wrapped to 0. Buffer is full."));
         }
 
-        CircularIndex = (CircularIndex + 1) % MaxChatHistory;
+        CircularIndex = (CircularIndex + 1) % ChatSettings->MaxChatHistory;
     }
 
-    UE_LOG(LogTemp, Log, TEXT("Added message [%s: %s] at CircularIndex %d."),
+    UE_LOG(ChatComponentLog, Log, TEXT("Added message [%s: %s] at CircularIndex %d."),
            *ChatMessage.Sender, *ChatMessage.Message, CircularIndex);
 
  
@@ -136,25 +125,19 @@ void UChatComponent::AddMessage( FChatMessage ChatMessage)
 void UChatComponent::OnRep_ChatHistory()
 {
     // Notify the client that the chat history has been updated
-    UE_LOG(LogTemp, Log, TEXT("Chat history replicated to client."));
+    UE_LOG(ChatComponentLog, Log, TEXT("Chat history replicated to client."));
 
     // Update the chat UI (assuming a method exists for this)
     UpdateChatUI(ChatHistory);
 }
 
 bool UChatComponent::ModerateMessage(FChatMessage ChatMessage)
-{
-    if (!PythonManager::GetInstance().IsPythonAvailable())
-    {
-        UE_LOG(LogTemp, Warning, TEXT("Python unavailable. Skipping moderation."));
-        return true; // Allow all messages if moderation is disabled
-    }
+{   
 
-    // Existing moderation logic...
-    const UChatSettings* Settings = GetDefault<UChatSettings>();
-    if (Settings->bEnableProfanityFilter)
+  
+    if (ChatSettings->bEnableProfanityFilter)
     {
-        for (const FString& Word : Settings->ProhibitedWords)
+        for (const FString& Word : ChatSettings->ProhibitedWords->ProhibitedWords)
         {
             if (ChatMessage.Message.Contains(Word))
             {
@@ -184,20 +167,16 @@ void UChatComponent::LogMessageAsync( FChatMessage ChatMessage)
 }
 
 void UChatComponent::ReloadChatSettings()
-{
-    const UChatSettings* Settings = GetDefault<UChatSettings>();
-
-    MaxChatHistory = Settings->MaxChatHistory;
-
+{   
     // Validate MaxChatHistory
-    if (MaxChatHistory <= 0)
+    if (ChatSettings->MaxChatHistory <= 0)
     {
-        UE_LOG(LogTemp, Error, TEXT("Invalid MaxChatHistory value: %d. Resetting to default 10."), MaxChatHistory);
-        MaxChatHistory = 10; // Reset to a default value
+        UE_LOG(ChatComponentLog, Error, TEXT("Invalid MaxChatHistory value: %d. Resetting to default 100."), ChatSettings->MaxChatHistory);
+        ChatSettings->MaxChatHistory = 100; // Reset to a default value
     }
 
     // Ensure ChatHistory size matches MaxChatHistory
-    ChatHistory.SetNum(MaxChatHistory);
+    ChatHistory.SetNum(ChatSettings->MaxChatHistory);
     CircularIndex = 0; // Reset CircularIndex
 }
 
@@ -220,11 +199,11 @@ void UChatComponent::ModerateMessageAsync( FChatMessage ChatMessage, TFunction<v
 
 TArray<FChatMessage> UChatComponent::GetOrderedChatHistory()
 {
-    FScopeLock Lock(&ChatHistoryMutex);
+    FScopeLock TryLock(&ChatHistoryMutex);
 
     TArray<FChatMessage> OrderedHistory;
 
-    if (ChatHistory.Num() < MaxChatHistory)
+    if (ChatHistory.Num() < ChatSettings->MaxChatHistory)
     {
         return ChatHistory; // No wrapping; return as is
     }
@@ -256,76 +235,27 @@ void UChatComponent::NotifySender(const FString& Sender, const FString& Message)
     }
     else
     {
-        UE_LOG(LogTemp, Warning, TEXT("Could not find PlayerController for sender: %s"), *Sender);
+        UE_LOG(ChatComponentLog, Warning, TEXT("Could not find PlayerController for sender: %s"), *Sender);
     }
 }
 
 APlayerController* UChatComponent::FindPlayerController(const FString& PlayerName)
-{
-    for (FConstPlayerControllerIterator It = GetWorld()->GetPlayerControllerIterator(); It; ++It)
+{   
+         
+    if (APlayerController* PC = GetWorld()->GetFirstPlayerController())
     {
-        APlayerController* PC = It->Get();
-        if (PC && PC->PlayerState && PC->PlayerState->GetPlayerName() == PlayerName)
-        {
-            return PC;
-        }
+        return  PC;
     }
-
+  
     return nullptr;
 }
 
 void UChatComponent::UpdateChatUI(const TArray<FChatMessage>& UpdatedHistory)
 {
-    // Iterate through updated chat messages and display them in the UI
-    for (const FChatMessage& Message : UpdatedHistory)
-    {
-        UE_LOG(LogTemp, Log, TEXT("[%s] %s: %s"), *Message.Timestamp.ToString(), *Message.Sender, *Message.Message);
-        // Add messages to the UI here
-    }
+    // Emit an event to notify the UI system
+    OnChatHistoryUpdated.Broadcast(UpdatedHistory);
+
+    UE_LOG(ChatComponentLog, Log, TEXT("Chat UI updated with %d messages."), UpdatedHistory.Num());
 }
 
-void UChatComponent::InitializePython()
-{
-    int RetryCount = 3; // Number of retries for initialization
-    bool bInitialized = false;
-
-    for (int Attempt = 1; Attempt <= RetryCount; ++Attempt)
-    {
-        Py_Initialize();
-        if (Py_IsInitialized())
-        {
-            UE_LOG(LogTemp, Log, TEXT("[%s] Python initialized successfully on attempt %d."), *GetTimestamp(), Attempt);
-            bInitialized = true;
-            break;
-        }
-        else
-        {
-            UE_LOG(LogTemp, Warning, TEXT("[%s] Python initialization failed on attempt %d."), *GetTimestamp(), Attempt);
-        }
-    }
-
-    if (!bInitialized)
-    {
-        bPythonAvailable = false;
-        UE_LOG(LogTemp, Error, TEXT("[%s] Python failed to initialize after multiple attempts. Disabling Python-dependent features."), *GetTimestamp());
-        throw std::runtime_error("Python initialization failed.");
-    }
-}
-
-void UChatComponent::FinalizePython()
-{
-    if (bPythonAvailable)
-    {
-        Py_Finalize();
-        if (Py_IsInitialized())
-        {
-            UE_LOG(LogTemp, Error, TEXT("[%s] Python failed to finalize properly."), *GetTimestamp());
-            throw std::runtime_error("Python finalization failed.");
-        }
-        else
-        {
-            UE_LOG(LogTemp, Log, TEXT("[%s] Python finalized successfully."), *GetTimestamp());
-        }
-    }
-}
 

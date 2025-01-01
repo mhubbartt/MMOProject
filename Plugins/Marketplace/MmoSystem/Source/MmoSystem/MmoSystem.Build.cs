@@ -45,7 +45,6 @@ public class MmoSystem : ModuleRules
 				"BlueprintGraph",
 				"KismetCompiler",
 				"PythonScriptPlugin",
-				"Python",
 				"DeveloperSettings",
 				"DesktopPlatform",
 				"MainFrame",
