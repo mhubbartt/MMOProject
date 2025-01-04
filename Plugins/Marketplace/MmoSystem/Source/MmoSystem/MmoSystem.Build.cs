@@ -14,7 +14,8 @@ public class MmoSystem : ModuleRules
 			new string[]
 			{
 				"Core",
-				"PythonScriptPlugin"
+				"PythonScriptPlugin",
+				"LuaCore"
 				
 				// ... add other public dependencies that you statically link with here ...
 			}
@@ -48,14 +49,19 @@ public class MmoSystem : ModuleRules
 				"DeveloperSettings",
 				"DesktopPlatform",
 				"MainFrame",
+				"LuaCore"
 				
+				
+
 
 
 				// ... add private dependencies that you statically link with here ...	
 			}
+			
+			
 		);
 		
-
+	
 	}
 		 
 }

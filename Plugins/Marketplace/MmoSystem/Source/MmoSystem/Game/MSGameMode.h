@@ -6,27 +6,24 @@
 #include "GameFramework/GameMode.h"
 #include "MSGameMode.generated.h"
 
-class PythonManager;
-class UChatComponent;
+
+class UChatManager;
+
 
 UCLASS(minimalapi)
 class AMSGameMode : public AGameMode
 {
 	GENERATED_BODY()
 
+	virtual void PostLogin(APlayerController* NewPlayer) override;
+
 public:
+	
 	AMSGameMode();
 
-	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
-
-	
-
-private:
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Chat", meta = (AllowPrivateAccess = "true"))
-	UChatComponent* ChatComponent;
-
-
+	virtual void Tick(float DeltaSeconds) override;
+UPROPERTY()
+	UChatManager *ChatManager;
 };
 
 

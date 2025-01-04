@@ -4,7 +4,7 @@
 #include "InventoryComponent.h"
 #include "Engine/ActorChannel.h"
 #include "InventoryManager/InventorySaveBlobStruct.h"
-#include "MmoSystem/SystemMessages/LoggingMacros.h"
+#include "MmoSystem/LoggingMacros.h"
 #include "Net/UnrealNetwork.h"
 
 using namespace MSGlobal;

@@ -2,7 +2,7 @@
 
 
 #include "InventorySaveBlobStruct.h"
-#include "MmoSystem/SystemMessages/LoggingMacros.h"
+#include "MmoSystem/LoggingMacros.h"
 #include "Serialization/BufferArchive.h"
 #include "Serialization/ObjectAndNameAsStringProxyArchive.h"
 

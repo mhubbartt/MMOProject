@@ -5,7 +5,7 @@
 #include "Async/Async.h"
 #include "Misc/FileHelper.h"
 #include "MmoSystem/GlobalsNTags.h"
-#include "MmoSystem/SystemMessages/LoggingMacros.h"
+#include "MmoSystem/LoggingMacros.h"
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
 

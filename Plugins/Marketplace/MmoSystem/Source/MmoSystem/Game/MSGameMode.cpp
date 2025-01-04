@@ -2,21 +2,35 @@
 
 #include "MSGameMode.h"
 
-#include "MmoSystem/ChatSystem/ChatComponent.h"
+#include "MSPlayerController.h"
+#include "MmoSystem/ChatSystem/ChatManager.h"
+#include "MmoSystem/ChatSystem/ChatSystem.h"
 
+
+void AMSGameMode::PostLogin(APlayerController* NewPlayer)
+{
+	Super::PostLogin(NewPlayer);
+
+	AMSPlayerController* MSController = Cast<AMSPlayerController>(NewPlayer);
+	if (MSController)
+	{
+		UChatSystem* ChatSystem = MSController->GetChatComponent();
+		if (ChatSystem)
+		{
+			ChatSystem->JoinChatRoom("GlobalRoom");
+		}
+	}
+}
 
 AMSGameMode::AMSGameMode()
 {
 
-	ChatComponent = CreateDefaultSubobject<UChatComponent>(TEXT("ChatComponent"));
-	ChatComponent->SetIsReplicated(true);
-
-
+	ChatManager = CreateDefaultSubobject<UChatManager>("ChatManager");
 }
 
-void AMSGameMode::EndPlay(const EEndPlayReason::Type EndPlayReason)
+void AMSGameMode::Tick(float DeltaSeconds)
 {
-	Super::EndPlay(EndPlayReason);
+	Super::Tick(DeltaSeconds);
 
-
+	ChatManager->PrintCurrentChannelsToScreen();
 }

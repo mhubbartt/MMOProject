@@ -9,8 +9,12 @@
 #include "MSPlayerController.generated.h"
 
 
+class UChatSystem;
+class UChatComponent;
 class UInventoryManager;
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnMessageReceived, FGameplayTag, MessageTag, FString, Message);
+
+
+
 
 UCLASS()
 class MMOSYSTEM_API AMSPlayerController : public APlayerController, public IMSCameraAssistInterface
@@ -20,6 +24,8 @@ public:
 	
 	AMSPlayerController(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 	virtual void Tick(float DeltaSeconds) override;
+
+	
 	
 	//~IMSCameraAssistInterface interface
 	virtual void OnCameraPenetratingTarget() override;	
@@ -29,24 +35,16 @@ public:
 	//Helper Functions
 
 	AMSPlayerState* GetMMOPlayerState() const;
-	UInventoryManager* GetInventoryComponent() const ;
+	UInventoryManager* GetInventoryComponent() const;
+	UChatSystem* GetChatComponent() const;
 
-	//~Message Functions
-	UFUNCTION(BlueprintCallable,Server,Reliable,  Category = "Messaging")
-	void BroadCastMessageToAllClients_Server(FGameplayTag MessageTag, const FString& Message);
-
-	UFUNCTION(BlueprintCallable,Client,Reliable)
-	void SendMessage(FGameplayTag MessageTag, const FString& Message);
-
-	FOnMessageReceived OnMessageReceived;
-	//~Message Functions End
 	
 
 protected:
 
-
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UInventoryManager> InventoryComponent;
-
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UChatSystem> ChatComponent;
 
 };

@@ -6,28 +6,6 @@
 
 
 
-UCLASS()
-class UChatSettingsAsset : public UPrimaryDataAsset
-{
-	GENERATED_BODY()
-
-public:
-	FPrimaryAssetId SettingID;
-	
-};
-
-UCLASS()
-class UProhibitedWords : public UChatSettingsAsset
-{
-	GENERATED_BODY()
-
-public:
-	TArray<FString> ProhibitedWords;
-	
-};
-
-
-
 /**
  * Configuration for the chat system, accessible in Project Settings.
  */
@@ -38,25 +16,44 @@ class MMOSYSTEM_API UChatSettings : public UDeveloperSettings
 
 public:
 
-	// Enable or disable profanity filtering
-	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category="Moderation")
-	bool bEnableProfanityFilter = true;
 	
-	// Maximum number of messages in chat history
-	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category="Chat")
-	int32 MaxChatHistory = 100;
+	// Enable or disable profanity filtering
+	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category="Player Settings")
+	bool bEnableProfanityFilter = true;
 
 	// Default chat channel
-	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category="Chat")
+	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category="Player Settings")
 	FString DefaultChannel = "General";
 
+	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category="Player Settings")
+	int32 LocalMaxChatHistory = 1000;
+
+
+	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category="System Settings")
+	TArray<FString> DefaultChannels = {"General", "Trade", "Help"};
+
+	// Maximum number of messages in chat history
+	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category="System Settings")
+	int32 MaxChatHistory = 10000;
+
 	// Enable or disable chat moderation
-	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category="Moderation")
+	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category="System Settings")
 	bool bEnableModeration = true;
 
 	// Prohibited words for moderation
-	UPROPERTY( EditAnywhere, BlueprintReadOnly, Category="Moderation")
-	UProhibitedWords* ProhibitedWords = nullptr;
+	UPROPERTY( EditAnywhere, BlueprintReadOnly, Category="System Settings")
+	TArray<FString> ProhibitedWords = {"badword1", "badword2", "badword3"};
+
+	// Maximum number of messages in chat history
+	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category="System Settings")
+	FDirectoryPath LogDirectory = FDirectoryPath( FPaths::ProjectLogDir() + TEXT("Logs"));
+
+	// Maximum number of messages in chat history
+	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category="System Settings")
+	FFilePath LogFileName = FFilePath( TEXT("ChatLog.log"));
+
+	
+
 
 	// Returns the category for this settings page in Project Settings
 	virtual FName GetCategoryName() const override { return FName("Chat Settings"); }

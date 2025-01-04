@@ -11,7 +11,7 @@
 #include "MmoSystem/Camera/MSCameraComponent.h"
 #include "MmoSystem/Game/MSHUD.h"
 #include "MmoSystem/Game/MSPlayerController.h"
-#include "MmoSystem/SystemMessages/LoggingMacros.h"
+#include "MmoSystem/LoggingMacros.h"
 #include "Net/UnrealNetwork.h"
 
 using namespace MSGlobal;
